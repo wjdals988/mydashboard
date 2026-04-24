@@ -6,7 +6,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export type ProjectStatus = "live" | "building" | "not-listed";
+export type ProjectStatus = "live" | "building" | "personal-use";
 export type ProjectVisual = "speed" | "calendar" | "location" | "alerts";
 
 export type Project = {
@@ -108,8 +108,8 @@ export const projects: Project[] = [
       "Android 12+용 위치 공유 앱과 1x1 홈 화면 위젯 프로젝트.",
     description:
       "현재 버전은 1.1.0이며, 앱 실행 또는 홈 화면 위젯 탭 한 번으로 현재 위치를 가져와 주요 지도 링크와 함께 공유할 수 있는 Android 위치 공유 앱입니다.",
-    status: "not-listed",
-    statusLabel: "미등록",
+    status: "personal-use",
+    statusLabel: "개인 사용 중",
     year: "2026",
     updatedAt: "2026.04.25",
     tags: ["Android", "Widget", "Location", "Maps"],
@@ -180,5 +180,5 @@ export function getProject(slug: string) {
 export const statusTone: Record<ProjectStatus, string> = {
   live: "border-emerald-700/20 bg-emerald-700/10 text-emerald-900",
   building: "border-rose-700/20 bg-rose-700/10 text-rose-900",
-  "not-listed": "border-slate-700/20 bg-slate-700/10 text-slate-900",
+  "personal-use": "border-sky-700/20 bg-sky-700/10 text-sky-900",
 };

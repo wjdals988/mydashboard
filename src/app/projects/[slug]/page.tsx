@@ -25,12 +25,12 @@ export async function generateMetadata({
 
   if (!project) {
     return {
-      title: "프로젝트 없음 | JM 포트폴리오",
+      title: "프로젝트 없음 | JM 프로젝트 보드",
     };
   }
 
   return {
-    title: `${project.title} | JM 포트폴리오`,
+    title: `${project.title} | JM 프로젝트 보드`,
     description: project.summary,
   };
 }

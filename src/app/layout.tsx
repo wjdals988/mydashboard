@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JM 포트폴리오",
-  description: "JM의 프로젝트를 모아둔 포트폴리오 대시보드입니다.",
+  title: "JM 프로젝트 보드",
+  description: "JM이 만들고 운영하는 프로젝트를 모아둔 개인 대시보드입니다.",
 };
 
 export default function RootLayout({

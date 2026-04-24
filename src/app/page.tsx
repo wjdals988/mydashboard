@@ -25,7 +25,7 @@ export default function Home() {
               <span className="grid size-9 place-items-center rounded-md bg-[var(--foreground)] text-sm text-white">
                 JM
               </span>
-              포트폴리오
+              프로젝트 보드
             </Link>
             <a
               className="inline-flex h-10 items-center gap-2 rounded-md border border-black/10 bg-white/70 px-4 text-sm font-semibold"
@@ -43,7 +43,7 @@ export default function Home() {
             </p>
             <div className="space-y-4">
               <h1 className="text-5xl font-semibold tracking-normal text-balance md:text-7xl">
-                JM 포트폴리오
+                JM 프로젝트 보드
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
                 직접 만들고 운영하거나 실험 중인 웹, 모바일, 자동화 프로젝트를
