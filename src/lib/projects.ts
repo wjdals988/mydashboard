@@ -37,7 +37,7 @@ export const projects: Project[] = [
       "빠르게 시작하고 바로 결과를 확인하는 반응속도 테스트입니다. 단순한 게임성보다 결과 확인과 반복 플레이 흐름을 중심에 둔 프로젝트입니다.",
     status: "live",
     statusLabel: "운영 중",
-    year: "2025",
+    year: "2026",
     liveUrl: "https://speed-jm.vercel.app/",
     tags: ["Web App", "Interaction", "Vercel"],
     highlights: [
@@ -63,7 +63,7 @@ export const projects: Project[] = [
       "개인 일정 확인을 넘어 함께 가능한 시간을 찾기 위한 일정 관리 프로젝트입니다. 약속 조율이나 그룹 일정 확인처럼 반복되는 상황을 더 빠르게 처리하는 데 초점을 둡니다.",
     status: "live",
     statusLabel: "운영 중",
-    year: "2025",
+    year: "2026",
     liveUrl: "https://checker-jm.vercel.app/",
     tags: ["Productivity", "Calendar", "Collaboration"],
     highlights: [
@@ -89,7 +89,7 @@ export const projects: Project[] = [
       "위치 정보를 빠르게 확인하는 위젯 형태의 앱 프로젝트입니다. 아직 앱스토어에 등록되지는 않았지만, 모바일 환경에서 필요한 정보를 짧은 시선 이동으로 확인하는 사용성을 목표로 합니다.",
     status: "not-listed",
     statusLabel: "미등록",
-    year: "2025",
+    year: "2026",
     tags: ["Mobile", "Widget", "Location"],
     highlights: [
       "위젯 중심의 빠른 정보 확인",

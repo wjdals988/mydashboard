@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             {project.liveUrl && (
               <a
-                className="inline-flex h-11 items-center gap-2 rounded-md bg-[var(--foreground)] px-5 text-sm font-semibold text-white"
+                className="inline-flex h-11 items-center gap-2 rounded-md bg-emerald-800 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-900"
                 href={project.liveUrl}
                 rel="noreferrer"
                 target="_blank"
@@ -110,6 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           <ProjectVisual
             accent={project.accent}
+            liveUrl={project.liveUrl}
             title={project.title}
             type={project.visual}
           />

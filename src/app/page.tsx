@@ -18,8 +18,8 @@ const stats = [
 export default function Home() {
   return (
     <main>
-      <section className="mx-auto grid min-h-[82vh] w-full max-w-7xl content-end gap-10 px-5 pb-12 pt-8 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pt-14">
-        <div className="space-y-8">
+      <section className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-10 pt-6 md:px-8 md:pt-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <div className="space-y-7">
           <nav className="flex items-center justify-between gap-4">
             <Link className="flex items-center gap-2 font-semibold" href="/">
               <span className="grid size-9 place-items-center rounded-md bg-[var(--foreground)] text-sm text-white">
@@ -53,7 +53,7 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="rounded-lg border border-black/10 bg-[var(--panel)] p-5 shadow-sm">
+        <aside className="rounded-lg border border-black/10 bg-[var(--panel)] p-5 shadow-sm lg:mt-14">
           <div className="grid grid-cols-3 gap-3">
             {stats.map((item) => (
               <div

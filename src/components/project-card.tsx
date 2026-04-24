@@ -49,7 +49,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            className="inline-flex h-10 items-center gap-2 rounded-md bg-[var(--foreground)] px-4 text-sm font-semibold text-white"
+            className="inline-flex h-10 items-center gap-2 rounded-md bg-emerald-800 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-900"
             href={`/projects/${project.slug}`}
           >
             상세 보기
@@ -57,7 +57,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </Link>
           {project.liveUrl && (
             <a
-              className="inline-flex h-10 items-center gap-2 rounded-md border border-black/10 bg-white px-4 text-sm font-semibold"
+              className="inline-flex h-10 items-center gap-2 rounded-md border border-emerald-800/25 bg-white px-4 text-sm font-semibold text-emerald-950 shadow-sm transition hover:border-emerald-800/45 hover:bg-emerald-50"
               href={project.liveUrl}
               rel="noreferrer"
               target="_blank"
@@ -70,6 +70,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <ProjectVisual
         accent={project.accent}
+        liveUrl={project.liveUrl}
         title={project.title}
         type={project.visual}
       />

@@ -4,22 +4,73 @@ type ProjectVisualProps = {
   type: ProjectVisual;
   accent: string;
   title: string;
+  liveUrl?: string;
 };
 
-export function ProjectVisual({ type, accent, title }: ProjectVisualProps) {
+export function ProjectVisual({
+  type,
+  accent,
+  title,
+  liveUrl,
+}: ProjectVisualProps) {
   return (
     <div
-      className="relative min-h-[220px] overflow-hidden rounded-lg border border-black/10 bg-[var(--panel-strong)] p-5 shadow-sm"
+      className={`relative min-h-[220px] overflow-hidden rounded-lg border border-black/10 bg-[var(--panel-strong)] shadow-sm ${
+        liveUrl ? "p-0" : "p-5"
+      }`}
       aria-label={`${title} preview`}
     >
       <div
-        className="absolute inset-x-0 top-0 h-1.5"
+        className="absolute inset-x-0 top-0 z-10 h-1.5"
         style={{ backgroundColor: accent }}
       />
-      {type === "speed" && <SpeedVisual accent={accent} />}
-      {type === "calendar" && <CalendarVisual accent={accent} />}
-      {type === "location" && <LocationVisual accent={accent} />}
-      {type === "alerts" && <AlertsVisual accent={accent} />}
+      {liveUrl ? (
+        <LivePreview accent={accent} title={title} url={liveUrl} />
+      ) : (
+        <>
+          {type === "speed" && <SpeedVisual accent={accent} />}
+          {type === "calendar" && <CalendarVisual accent={accent} />}
+          {type === "location" && <LocationVisual accent={accent} />}
+          {type === "alerts" && <AlertsVisual accent={accent} />}
+        </>
+      )}
+    </div>
+  );
+}
+
+function LivePreview({
+  accent,
+  title,
+  url,
+}: {
+  accent: string;
+  title: string;
+  url: string;
+}) {
+  return (
+    <div className="relative h-[260px] bg-[#ebe7dc] md:h-full md:min-h-[260px]">
+      <div className="flex h-9 items-center gap-2 border-b border-black/10 bg-white px-3 pt-1">
+        <span className="size-2.5 rounded-full bg-[#d85f5f]" />
+        <span className="size-2.5 rounded-full bg-[#e6b04c]" />
+        <span className="size-2.5 rounded-full bg-[#4baf70]" />
+        <span className="ml-2 min-w-0 flex-1 truncate rounded bg-black/[0.04] px-2 py-1 font-mono text-[11px] text-[var(--muted)]">
+          {url.replace("https://", "")}
+        </span>
+      </div>
+      <div className="absolute inset-x-0 bottom-0 top-9 overflow-hidden bg-white">
+        <iframe
+          className="pointer-events-none h-[780px] w-[1280px] origin-top-left scale-[0.24] border-0 sm:scale-[0.34] md:scale-[0.28] lg:scale-[0.32]"
+          loading="lazy"
+          src={url}
+          title={`${title} live preview`}
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-16"
+        style={{
+          background: `linear-gradient(to top, ${accent}24, transparent)`,
+        }}
+      />
     </div>
   );
 }
