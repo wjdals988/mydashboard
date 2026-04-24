@@ -23,6 +23,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <span className="font-mono text-xs text-[var(--muted)]">
               {project.year}
             </span>
+            <span className="font-mono text-xs text-[var(--muted)]">
+              최근 업데이트 {project.updatedAt}
+            </span>
           </div>
           <div className="space-y-2">
             <p className="flex items-center gap-2 text-sm font-semibold text-[var(--muted)]">

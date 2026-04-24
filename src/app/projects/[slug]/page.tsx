@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             목록으로
           </Link>
           <span className="font-mono text-xs text-[var(--muted)]">
-            {project.year}
+            최근 업데이트 {project.updatedAt}
           </span>
         </nav>
 
@@ -72,6 +72,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <span className="flex items-center gap-2 text-sm font-semibold text-[var(--muted)]">
                 <Icon aria-hidden="true" size={17} />
                 {project.eyebrow}
+              </span>
+              <span className="font-mono text-xs text-[var(--muted)]">
+                {project.year}
               </span>
             </div>
 

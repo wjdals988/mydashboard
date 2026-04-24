@@ -18,6 +18,7 @@ export type Project = {
   status: ProjectStatus;
   statusLabel: string;
   year: string;
+  updatedAt: string;
   liveUrl?: string;
   tags: string[];
   highlights: string[];
@@ -39,6 +40,7 @@ export const projects: Project[] = [
     status: "live",
     statusLabel: "운영 중",
     year: "2026",
+    updatedAt: "2026.04.25",
     liveUrl: "https://speed-jm.vercel.app/",
     tags: ["Next.js", "Reaction Test", "Redis", "Vercel"],
     highlights: [
@@ -72,6 +74,7 @@ export const projects: Project[] = [
     status: "live",
     statusLabel: "운영 중",
     year: "2026",
+    updatedAt: "2026.04.25",
     liveUrl: "https://checker-jm.vercel.app/",
     tags: ["Firebase", "Calendar", "Todo", "Vercel"],
     highlights: [
@@ -101,22 +104,32 @@ export const projects: Project[] = [
     slug: "location-widget",
     title: "위치공유 앱 위젯",
     eyebrow: "Location Widget",
-    summary: "앱스토어 업로드 전 단계의 위치공유 중심 위젯 프로젝트.",
+    summary:
+      "Android 12+용 위치 공유 앱과 1x1 홈 화면 위젯 프로젝트.",
     description:
-      "위치 정보를 빠르게 확인하는 위젯 형태의 앱 프로젝트입니다. 아직 앱스토어에 등록되지는 않았지만, 모바일 환경에서 필요한 정보를 짧은 시선 이동으로 확인하는 사용성을 목표로 합니다.",
+      "현재 버전은 1.1.0이며, 앱 실행 또는 홈 화면 위젯 탭 한 번으로 현재 위치를 가져와 주요 지도 링크와 함께 공유할 수 있는 Android 위치 공유 앱입니다.",
     status: "not-listed",
     statusLabel: "미등록",
     year: "2026",
-    tags: ["Mobile", "Widget", "Location"],
+    updatedAt: "2026.04.25",
+    tags: ["Android", "Widget", "Location", "Maps"],
     highlights: [
-      "위젯 중심의 빠른 정보 확인",
-      "지도와 상태 정보를 함께 보여주는 구성",
-      "앱스토어 등록 전 프로토타입 단계",
+      "앱을 실행하면 위치 권한 요청 후 현재 위치 미리보기를 바로 로드합니다.",
+      "현재 주소, 좌표, 카카오맵, 네이버지도, 구글지도 링크를 확인하고 시스템 공유 시트로 공유할 수 있습니다.",
+      "1x1 홈 화면 위젯을 누르면 투명 공유 화면을 거쳐 위치 획득 후 바로 공유 시트가 열립니다.",
+      "고정밀 현재 위치 조회를 우선 사용하고 실패 시 마지막 위치를 대체값으로 사용합니다.",
+      "주소는 시·도, 시·군·구, 동, 도로명, 번지 등 가능한 범위를 조합해 표시합니다.",
+      "공유 텍스트에는 카카오맵 웹 링크, 네이버지도 좌표 링크, 구글지도 검색 링크를 함께 포함합니다.",
+      "앱 아이콘과 위젯 preview 이미지를 반영해 홈 화면에서 바로 식별할 수 있게 구성했습니다.",
     ],
     nextSteps: [
-      "권한 안내와 개인정보 문구 정리",
-      "앱스토어 제출용 메타데이터 준비",
-      "실사용 환경에서 배터리와 위치 갱신 주기 점검",
+      "실제 기기에서 위치 권한, 위젯 탭, 시스템 공유 시트, 네이버지도 scheme 동작을 검증합니다.",
+      "네이버지도 앱 미설치 사용자를 위해 웹 지도 fallback 링크를 공유 문구에 추가합니다.",
+      "한국어 문자열이 APK 화면과 공유 문구에서 깨지지 않는지 UTF-8 기준으로 점검합니다.",
+      "주소 품질을 높이기 위해 Kakao Local API나 Naver Reverse Geocoding API 연동을 검토합니다.",
+      "릴리즈 서명, versionCode 관리, R8 설정, 앱 이름과 패키지명을 확정해 배포 준비를 진행합니다.",
+      "1x1 전체 공유, 2x1 지도 앱 선택, 3x2 지도별 버튼 위젯으로 UX를 확장합니다.",
+      "목적지 저장, 거리, 예상 도착 시간 공유 기능을 위해 경로 API와 목적지 관리 UI를 추가합니다.",
     ],
     visual: "location",
     accent: "#3f6f9f",
@@ -126,22 +139,33 @@ export const projects: Project[] = [
     slug: "streamer-alert-system",
     title: "스트리머 알림 시스템",
     eyebrow: "Streamer Alerts",
-    summary: "스트리머 활동과 이벤트를 감지해 알림으로 연결하는 구현 중인 시스템.",
+    summary:
+      "라이브 상태 감지, 앱/위젯 알림, 웹 관리자 콘솔을 묶은 알림 시스템.",
     description:
-      "스트리머의 방송, 이벤트, 상태 변화를 놓치지 않도록 알림 흐름을 설계하는 프로젝트입니다. 현재 구현 중이며, 신뢰도 높은 감지와 전달 구조를 우선순위로 둡니다.",
+      "YouTube와 Chzzk 라이브 상태를 주기적으로 감지하고, 상태 전환이 발생하면 Android 앱과 위젯에 알림을 전달하며, 웹 관리자 콘솔에서 감지 대상과 일정을 관리하는 구조입니다.",
     status: "building",
     statusLabel: "구현 중",
     year: "2026",
-    tags: ["Notification", "Automation", "Streaming"],
+    updatedAt: "2026.04.25",
+    tags: ["Firebase", "FCM", "Redis", "Android", "Admin"],
     highlights: [
-      "이벤트 감지와 알림 전달 구조 설계",
-      "스트리머별 상태를 확인하는 대시보드 방향",
-      "확장 가능한 알림 채널을 고려한 구조",
+      "백엔드 polling이 15분마다 YouTube와 Chzzk 상태를 조회하고 OFFLINE에서 LIVE로 바뀔 때 FCM data message를 전송합니다.",
+      "무료 할당량 보호 로직이 YouTube, Redis, Firestore, Functions, Chzzk 사용량을 추적하고 한도 근접 시 차단합니다.",
+      "Android 앱은 저장소를 직접 읽지 않고 공개 API를 통해 라이브 상태, 일정, quota 정보를 조회합니다.",
+      "관리자 API는 감지 대상과 일정을 읽고 저장하며, 관리자 키와 Firebase ID token 인증을 함께 지원합니다.",
+      "정적 관리자 웹 콘솔에서 스트리머 추가/삭제, 플랫폼/채널 ID, 오늘 게임, 주간 일정을 편집합니다.",
+      "Android 앱은 Compose 탭 UI로 라이브 상태와 일정을 보여주고, FCM payload에 따라 앱과 위젯 문구를 갱신합니다.",
+      "Firestore 직접 접근은 막고 서버 측 Admin SDK 경유만 허용하는 보안 구조를 사용합니다.",
     ],
     nextSteps: [
-      "감지 대상 플랫폼 확정",
-      "알림 채널과 실패 재시도 정책 설계",
-      "운영 로그와 상태 모니터링 화면 추가",
+      "Firebase Functions, Android, Vercel에 필요한 운영 환경변수를 정리하고 실제 배포 설정을 확정합니다.",
+      "운영 환경에서는 관리자 API CORS를 관리자 도메인으로 제한합니다.",
+      "관리자 키 방식의 한계를 보완하기 위해 Firebase Auth, Clerk, 키 회전, rate limit을 검토합니다.",
+      "관리자 API 설정 읽기/쓰기, 보안 규칙, polling fallback 순서에 대한 테스트를 추가합니다.",
+      "Android 빌드와 실제 기기 알림/위젯 동작 검증을 진행합니다.",
+      "중복 streamer ID, YouTube/Chzzk 채널 ID 형식, 일정 개수와 텍스트 길이를 검증합니다.",
+      "Chzzk 비공식 응답 변경, FCM topic 구독 실패, quota 단계별 경고에 대비한 운영 화면을 보강합니다.",
+      "배포 순서, 환경변수 예시, 관리자 웹 사용법, Android 빌드 절차를 UTF-8 문서로 정리합니다.",
     ],
     visual: "alerts",
     accent: "#b84f62",
