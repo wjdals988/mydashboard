@@ -117,8 +117,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
 
         <section className="grid gap-5 md:grid-cols-2">
-          <DetailBlock title="핵심 포인트" items={project.highlights} />
-          <DetailBlock title="다음 작업" items={project.nextSteps} />
+          <DetailBlock title="주요 기능" items={project.highlights} />
+          <DetailBlock title="추후 과제" items={project.nextSteps} />
         </section>
       </div>
     </main>
