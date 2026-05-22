@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { ProjectVisual } from "@/components/project-visual";
 import { type Project, statusTone } from "@/lib/projects";
@@ -67,6 +67,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
             >
               바로가기
               <ExternalLink aria-hidden="true" size={16} />
+            </a>
+          )}
+          {project.apk && (
+            <a
+              className="inline-flex h-10 items-center gap-2 rounded-md border border-sky-800/25 bg-white px-4 text-sm font-semibold text-sky-950 shadow-sm transition hover:border-sky-800/45 hover:bg-sky-50"
+              href={project.apk.url}
+              rel="noreferrer"
+            >
+              APK 다운로드
+              <ArrowDownToLine aria-hidden="true" size={16} />
             </a>
           )}
         </div>

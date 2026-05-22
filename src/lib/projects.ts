@@ -26,6 +26,16 @@ export type Project = {
   year: string;
   updatedAt: string;
   liveUrl?: string;
+  apk?: {
+    url: string;
+    fileName: string;
+    version: string;
+    versionCode: number;
+    size: string;
+    sha256: string;
+    releaseUrl: string;
+    label: string;
+  };
   tags: string[];
   highlights: string[];
   nextSteps: string[];
@@ -118,6 +128,17 @@ export const projects: Project[] = [
     statusLabel: "개인 사용 중",
     year: "2026",
     updatedAt: "2026.04.25",
+    apk: {
+      url: "https://github.com/wjdals988/imherebuddy/releases/download/v1.1.0/location-share-widget-v1.1.0.apk",
+      fileName: "location-share-widget-v1.1.0.apk",
+      version: "1.1.0",
+      versionCode: 3,
+      size: "11,153,863 bytes",
+      sha256:
+        "154a4357a01dc72f4d7d043925d80a31bb0b5bc89672c67de15343bf363a3441",
+      releaseUrl: "https://github.com/wjdals988/imherebuddy/releases/tag/v1.1.0",
+      label: "signed release APK",
+    },
     tags: ["Android", "Widget", "Location", "Maps"],
     highlights: [
       "앱을 실행하면 위치 권한 요청 후 현재 위치 미리보기를 바로 로드합니다.",

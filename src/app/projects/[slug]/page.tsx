@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowDownToLine, ArrowLeft, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -109,6 +109,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <ExternalLink aria-hidden="true" size={16} />
               </a>
             )}
+            {project.apk && (
+              <a
+                className="inline-flex h-11 items-center gap-2 rounded-md bg-sky-800 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-900"
+                href={project.apk.url}
+                rel="noreferrer"
+              >
+                APK 다운로드
+                <ArrowDownToLine aria-hidden="true" size={16} />
+              </a>
+            )}
           </div>
 
           <ProjectVisual
@@ -123,8 +133,57 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <DetailBlock title="주요 기능" items={project.highlights} />
           <DetailBlock title="추후 과제" items={project.nextSteps} />
         </section>
+
+        {project.apk && <ApkBlock apk={project.apk} />}
       </div>
     </main>
+  );
+}
+
+function ApkBlock({
+  apk,
+}: {
+  apk: NonNullable<ReturnType<typeof getProject>>["apk"];
+}) {
+  if (!apk) {
+    return null;
+  }
+
+  return (
+    <section className="rounded-lg border border-black/10 bg-[var(--panel)] p-5 shadow-sm">
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
+        <div>
+          <p className="text-sm font-semibold text-sky-900">Android 다운로드</p>
+          <h2 className="mt-2 text-xl font-semibold">{apk.fileName}</h2>
+          <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+            {apk.label} · v{apk.version} ({apk.versionCode}) · {apk.size}
+          </p>
+        </div>
+        <a
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-sky-800 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-900"
+          href={apk.url}
+          rel="noreferrer"
+        >
+          APK 다운로드
+          <ArrowDownToLine aria-hidden="true" size={16} />
+        </a>
+      </div>
+      <div className="mt-4 grid gap-3 text-sm md:grid-cols-[120px_1fr]">
+        <span className="font-semibold text-[var(--muted)]">SHA256</span>
+        <code className="break-all rounded-md border border-black/10 bg-white/70 px-3 py-2 font-mono text-xs">
+          {apk.sha256}
+        </code>
+        <span className="font-semibold text-[var(--muted)]">Release</span>
+        <a
+          className="break-all rounded-md border border-black/10 bg-white/70 px-3 py-2 text-sm text-sky-900 underline-offset-4 hover:underline"
+          href={apk.releaseUrl}
+          rel="noreferrer"
+          target="_blank"
+        >
+          {apk.releaseUrl}
+        </a>
+      </div>
+    </section>
   );
 }
 
