@@ -32,6 +32,7 @@ export function ProjectVisual({
           {type === "calendar" && <CalendarVisual accent={accent} />}
           {type === "location" && <LocationVisual accent={accent} />}
           {type === "alerts" && <AlertsVisual accent={accent} />}
+          {type === "coupons" && <CouponsVisual accent={accent} />}
         </>
       )}
     </div>
@@ -242,6 +243,71 @@ function AlertsVisual({ accent }: { accent: string }) {
             <span className="font-mono text-xs text-[var(--muted)]">{state}</span>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function CouponsVisual({ accent }: { accent: string }) {
+  const coupons = [
+    ["COFFEE", "D-3"],
+    ["CAKE", "D-8"],
+    ["MEAL", "D-14"],
+  ];
+
+  return (
+    <div className="flex h-full min-h-[180px] flex-col justify-between gap-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-semibold">coupon room</p>
+          <p className="text-xs text-[var(--muted)]">private image storage</p>
+        </div>
+        <span
+          className="rounded-full px-3 py-1 font-mono text-xs text-white"
+          style={{ backgroundColor: accent }}
+        >
+          09:00
+        </span>
+      </div>
+
+      <div className="grid gap-3">
+        {coupons.map(([name, day], index) => (
+          <div
+            className="grid grid-cols-[56px_1fr_auto] items-center gap-3 rounded-md border border-black/10 bg-white p-3 shadow-sm"
+            key={name}
+          >
+            <div
+              className="grid aspect-[4/3] place-items-center rounded-md text-[10px] font-semibold text-white"
+              style={{
+                backgroundColor: accent,
+                opacity: 0.68 + index * 0.1,
+              }}
+            >
+              IMG
+            </div>
+            <div className="min-w-0">
+              <p className="truncate font-mono text-sm font-semibold">{name}</p>
+              <div className="mt-2 h-1.5 rounded-full bg-black/10">
+                <div
+                  className="h-1.5 rounded-full"
+                  style={{
+                    width: `${76 - index * 18}%`,
+                    backgroundColor: accent,
+                  }}
+                />
+              </div>
+            </div>
+            <span className="rounded-full border border-black/10 px-2 py-1 font-mono text-xs">
+              {day}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between rounded-md border border-black/10 bg-black/[0.03] px-3 py-2 text-xs text-[var(--muted)]">
+        <span>FCM ready</span>
+        <span>Blob private</span>
+        <span>ML Kit OCR</span>
       </div>
     </div>
   );

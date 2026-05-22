@@ -1,13 +1,19 @@
 import {
   BellRing,
   CalendarDays,
+  Gift,
   Gauge,
   MapPinned,
   type LucideIcon,
 } from "lucide-react";
 
 export type ProjectStatus = "live" | "building" | "personal-use";
-export type ProjectVisual = "speed" | "calendar" | "location" | "alerts";
+export type ProjectVisual =
+  | "speed"
+  | "calendar"
+  | "location"
+  | "alerts"
+  | "coupons";
 
 export type Project = {
   slug: string;
@@ -134,6 +140,43 @@ export const projects: Project[] = [
     visual: "location",
     accent: "#3f6f9f",
     icon: MapPinned,
+  },
+  {
+    slug: "gifticon-doctor",
+    title: "기프티콘닥터",
+    eyebrow: "Gifticon Doctor",
+    summary:
+      "방 단위로 쿠폰 이미지를 공유하고 만료 전에 푸시 알림을 받는 Android 앱.",
+    description:
+      "현재 버전은 0.1.12 (13)이며, Firebase 인증, 방 기반 쿠폰 공유, Vercel Blob Private Storage, FCM 푸시 알림, Vercel 백엔드 API를 묶어 기프티콘 만료 관리를 돕는 Android 앱입니다.",
+    status: "building",
+    statusLabel: "구현 중",
+    year: "2026",
+    updatedAt: "2026.05.23",
+    tags: ["Android", "Firebase", "FCM", "Vercel Blob", "ML Kit"],
+    highlights: [
+      "이메일/비밀번호 로그인과 Google 로그인을 지원합니다.",
+      "방 생성, 초대코드 입장, 공개 방 목록, 방 비밀번호 입장, 방장/멤버 역할 관리를 제공합니다.",
+      "쿠폰 추가, 수정, 삭제, 예약, 예약 취소, 사용 완료 처리가 가능합니다.",
+      "Android Photo Picker로 쿠폰 이미지를 업로드하고, 상세 화면에서 이미지를 크게 확인할 수 있습니다.",
+      "ML Kit 기반으로 쿠폰명, 브랜드, 만료일 자동 인식을 보조합니다.",
+      "쿠폰 이미지는 Vercel Blob Private Storage에 저장하고, 인증된 API를 통해서만 조회합니다.",
+      "비공개 쿠폰, 등록자에게만 알림, 개인 전체 푸시 설정, 알림 모드 3단계를 지원합니다.",
+      "Vercel Cron으로 매일 한국시간 오전 9시에 만료 알림을 발송하고, 알림 클릭 시 쿠폰 상세 화면으로 이동합니다.",
+    ],
+    nextSteps: [
+      "실제 만료 알림이 누락되지 않도록 Cron 로그, 알림 로그, 대상 쿠폰 조건, 사용자 푸시 설정, 토큰 상태를 관측할 수 있게 합니다.",
+      "쿠폰 만료 상태 자동 갱신 배치를 추가합니다.",
+      "방장 이전, 방 삭제, 쿠폰 이미지 교체, 초대 링크 공유 UI를 완성합니다.",
+      "초대코드 재발급 이력과 감사 로그를 남깁니다.",
+      "사용자별 알림 시간, quiet hours, 알림 히스토리 화면을 추가합니다.",
+      "Firestore rules emulator 기반 보안 테스트와 Android UI 자동 테스트를 보강합니다.",
+      "Vercel API rate limit과 abuse 방어, 웹 관리자/운영 대시보드를 추가합니다.",
+      "OCR 정확도, 브랜드/바코드 인식, Play Store 서명 APK/AAB, Crashlytics/Analytics 도입을 준비합니다.",
+    ],
+    visual: "coupons",
+    accent: "#7c3aed",
+    icon: Gift,
   },
   {
     slug: "streamer-alert-system",

@@ -11,8 +11,8 @@ import { projects } from "@/lib/projects";
 
 const stats = [
   { label: "운영 중", value: "2" },
-  { label: "구현 중", value: "1" },
-  { label: "앱 프로젝트", value: "1" },
+  { label: "구현 중", value: "2" },
+  { label: "전체", value: "5" },
 ];
 
 export default function Home() {
