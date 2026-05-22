@@ -1,4 +1,5 @@
 import {
+  ArrowDownToLine,
   ArrowUpRight,
   Code2,
   Mail,
@@ -14,6 +15,8 @@ const stats = [
   { label: "구현 중", value: "2" },
   { label: "전체", value: "5" },
 ];
+
+const downloadableProjects = projects.filter((project) => project.apk);
 
 export default function Home() {
   return (
@@ -69,6 +72,48 @@ export default function Home() {
             <ContactSlot icon={Code2} label="GitHub" value="준비 중" />
             <ContactSlot icon={Mail} label="Email" value="준비 중" />
             <ContactSlot icon={NotebookText} label="Blog" value="준비 중" />
+          </div>
+          <div className="mt-5 rounded-md border border-black/10 bg-white/70 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold">APK 다운로드</p>
+                <p className="mt-1 text-xs text-[var(--muted)]">
+                  직접 설치 가능한 Android 릴리즈
+                </p>
+              </div>
+              <ArrowDownToLine
+                aria-hidden="true"
+                className="shrink-0 text-sky-900"
+                size={20}
+              />
+            </div>
+            <div className="mt-4 grid gap-2">
+              {downloadableProjects.map((project) =>
+                project.apk ? (
+                  <a
+                    className="flex min-h-12 items-center justify-between gap-3 rounded-md border border-sky-800/20 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-sky-800/45 hover:bg-sky-50"
+                    href={project.apk.url}
+                    key={project.slug}
+                    rel="noreferrer"
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate font-semibold text-sky-950">
+                        {project.title}
+                      </span>
+                      <span className="block truncate font-mono text-xs text-[var(--muted)]">
+                        v{project.apk.version} ({project.apk.versionCode}) ·{" "}
+                        {project.apk.size}
+                      </span>
+                    </span>
+                    <ArrowDownToLine
+                      aria-hidden="true"
+                      className="shrink-0 text-sky-900"
+                      size={16}
+                    />
+                  </a>
+                ) : null,
+              )}
+            </div>
           </div>
         </aside>
       </section>
