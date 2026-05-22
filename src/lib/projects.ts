@@ -174,6 +174,17 @@ export const projects: Project[] = [
     statusLabel: "구현 중",
     year: "2026",
     updatedAt: "2026.05.23",
+    apk: {
+      url: "https://github.com/wjdals988/giftcondoctor/releases/download/v0.1.12/giftcondoctor-0.1.12-13-release-signed.apk",
+      fileName: "giftcondoctor-0.1.12-13-release-signed.apk",
+      version: "0.1.12",
+      versionCode: 13,
+      size: "59,568,911 bytes",
+      sha256:
+        "b11a3f1fac10251ec7c0bd0765edb86275e46dbe273d274f4f99815d288a31a6",
+      releaseUrl: "https://github.com/wjdals988/giftcondoctor/releases/tag/v0.1.12",
+      label: "signed release APK",
+    },
     tags: ["Android", "Firebase", "FCM", "Vercel Blob", "ML Kit"],
     highlights: [
       "이메일/비밀번호 로그인과 Google 로그인을 지원합니다.",
