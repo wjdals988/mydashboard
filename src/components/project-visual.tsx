@@ -1,10 +1,14 @@
-import type { ProjectVisual } from "@/lib/projects";
+import type { ProjectVisual as ProjectVisualType } from "@/lib/projects";
 
 type ProjectVisualProps = {
-  type: ProjectVisual;
+  type: ProjectVisualType;
   accent: string;
   title: string;
   liveUrl?: string;
+  // 홈 카드에서는 외부 사이트 iframe을 띄우지 않는다. 6개 카드가 동시에
+  // cross-origin 문서를 로드하면 첫 렌더가 눈에 띄게 느려지고, 스크롤 중
+  // 프레임이 비어 보이는 현상도 있었다. 라이브 미리보기는 상세 화면에서만 쓴다.
+  live?: boolean;
 };
 
 export function ProjectVisual({
@@ -12,19 +16,23 @@ export function ProjectVisual({
   accent,
   title,
   liveUrl,
+  live = false,
 }: ProjectVisualProps) {
+  const showLive = live && Boolean(liveUrl);
+
   return (
     <div
-      className={`relative min-h-[220px] overflow-hidden rounded-lg border border-black/10 bg-[var(--panel-strong)] shadow-sm ${
-        liveUrl ? "p-0" : "p-5"
+      aria-label={`${title} 미리보기`}
+      className={`relative min-h-[212px] overflow-hidden rounded-xl border border-line bg-surface-2 ${
+        showLive ? "p-0" : "p-4"
       }`}
-      aria-label={`${title} preview`}
     >
       <div
-        className="absolute inset-x-0 top-0 z-10 h-1.5"
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 z-10 h-px"
         style={{ backgroundColor: accent }}
       />
-      {liveUrl ? (
+      {showLive && liveUrl ? (
         <LivePreview accent={accent} title={title} url={liveUrl} />
       ) : (
         <>
@@ -50,75 +58,105 @@ function LivePreview({
   url: string;
 }) {
   return (
-    <div className="relative h-[260px] bg-[#ebe7dc] md:h-full md:min-h-[260px]">
-      <div className="flex h-9 items-center gap-2 border-b border-black/10 bg-white px-3 pt-1">
-        <span className="size-2.5 rounded-full bg-[#d85f5f]" />
-        <span className="size-2.5 rounded-full bg-[#e6b04c]" />
-        <span className="size-2.5 rounded-full bg-[#4baf70]" />
-        <span className="ml-2 min-w-0 flex-1 truncate rounded bg-black/[0.04] px-2 py-1 font-mono text-[11px] text-[var(--muted)]">
+    <div className="relative h-[280px] bg-surface-3 md:h-full md:min-h-[280px]">
+      <div className="flex h-9 items-center gap-1.5 border-b border-line bg-surface px-3">
+        <span className="size-2 rounded-full bg-[var(--line-strong)]" />
+        <span className="size-2 rounded-full bg-[var(--line-strong)]" />
+        <span className="size-2 rounded-full bg-[var(--line-strong)]" />
+        <span className="ml-2 min-w-0 flex-1 truncate rounded bg-surface-2 px-2 py-1 font-mono text-[11px] text-subtle">
           {url.replace("https://", "")}
         </span>
       </div>
       <div className="absolute inset-x-0 bottom-0 top-9 overflow-hidden bg-white">
         <iframe
-          className="pointer-events-none h-[780px] w-[1280px] origin-top-left scale-[0.24] border-0 sm:scale-[0.34] md:scale-[0.28] lg:scale-[0.32]"
+          className="pointer-events-none h-[860px] w-[1280px] origin-top-left scale-[0.26] border-0 sm:scale-[0.36] md:scale-[0.3] lg:scale-[0.34]"
           loading="lazy"
+          referrerPolicy="no-referrer"
+          sandbox="allow-scripts allow-same-origin"
           src={url}
-          title={`${title} live preview`}
+          title={`${title} 라이브 미리보기`}
         />
       </div>
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-16"
-        style={{
-          background: `linear-gradient(to top, ${accent}24, transparent)`,
-        }}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-14"
+        style={{ background: `linear-gradient(to top, ${accent}2e, transparent)` }}
       />
+    </div>
+  );
+}
+
+function Frame({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex h-full min-h-[180px] flex-col justify-between gap-3">
+      {children}
+    </div>
+  );
+}
+
+function Caption({ title, sub }: { title: string; sub: string }) {
+  return (
+    <div>
+      <p className="text-[13px] font-medium">{title}</p>
+      <p className="mt-0.5 text-[11px] text-subtle">{sub}</p>
+    </div>
+  );
+}
+
+function Chip({ accent, children }: { accent: string; children: string }) {
+  return (
+    <span
+      className="rounded-full px-2.5 py-1 font-mono text-[11px] font-medium text-white"
+      style={{ backgroundColor: accent }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function Row({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="rounded-lg border border-line bg-surface px-3 py-2.5">
+      {children}
     </div>
   );
 }
 
 function SpeedVisual({ accent }: { accent: string }) {
   return (
-    <div className="flex h-full min-h-[180px] flex-col justify-between">
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
-          reaction
-        </span>
-        <span className="rounded-full border border-black/10 px-3 py-1 font-mono text-xs">
-          184ms
-        </span>
+    <Frame>
+      <div className="flex items-start justify-between">
+        <Caption sub="5라운드 평균" title="반응속도" />
+        <Chip accent={accent}>184ms</Chip>
       </div>
-      <div className="grid place-items-center py-5">
+      <div className="grid place-items-center py-1">
         <div
-          className="grid size-32 place-items-center rounded-full border-[14px]"
+          className="grid size-24 place-items-center rounded-full border-[10px]"
           style={{ borderColor: `${accent}33` }}
         >
           <div
-            className="grid size-20 place-items-center rounded-full text-lg font-semibold text-white shadow-sm"
+            className="grid size-14 place-items-center rounded-full text-sm font-medium text-white"
             style={{ backgroundColor: accent }}
           >
             GO
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-2">
-        {[42, 64, 51, 78, 58].map((height, index) => (
+      <div className="grid grid-cols-5 items-end gap-1.5">
+        {[38, 58, 46, 70, 52].map((height, index) => (
           <div
-            className="rounded-sm bg-black/10"
-            key={height + index}
+            className="rounded-sm bg-surface-3"
+            key={height}
             style={{ height }}
           >
             <div
               className="h-full rounded-sm"
-              style={{
-                backgroundColor: accent,
-                opacity: 0.42 + index * 0.08,
-              }}
+              style={{ backgroundColor: accent, opacity: 0.4 + index * 0.12 }}
             />
           </div>
         ))}
       </div>
-    </div>
+    </Frame>
   );
 }
 
@@ -127,16 +165,13 @@ function CalendarVisual({ accent }: { accent: string }) {
   const active = new Set([3, 4, 9, 12, 15, 16, 22]);
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold">April</p>
-          <p className="text-xs text-[var(--muted)]">shared availability</p>
-        </div>
-        <div className="flex -space-x-2">
+    <Frame>
+      <div className="flex items-start justify-between">
+        <Caption sub="방 단위 공유 일정" title="April" />
+        <div className="flex -space-x-1.5">
           {["J", "M", "S"].map((item) => (
             <span
-              className="grid size-8 place-items-center rounded-full border border-white text-xs font-semibold text-white"
+              className="grid size-6 place-items-center rounded-full border border-surface-2 text-[10px] font-medium text-white"
               key={item}
               style={{ backgroundColor: accent }}
             >
@@ -145,54 +180,55 @@ function CalendarVisual({ accent }: { accent: string }) {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-2 text-center text-xs">
+      <div className="grid grid-cols-7 gap-1 text-center text-[10px]">
         {days.map((day) => (
-          <span className="text-[var(--muted)]" key={day}>
+          <span className="text-subtle" key={day}>
             {day}
           </span>
         ))}
         {Array.from({ length: 28 }, (_, index) => (
           <span
-            className="grid aspect-square place-items-center rounded-md border border-black/10 font-mono"
+            className="num grid aspect-square place-items-center rounded border border-line font-mono"
             key={index}
-            style={{
-              backgroundColor: active.has(index) ? `${accent}20` : "#fffaf0",
-              color: active.has(index) ? accent : "var(--foreground)",
-            }}
+            style={
+              active.has(index)
+                ? { backgroundColor: `${accent}26`, color: accent }
+                : { backgroundColor: "var(--surface)", color: "var(--fg-subtle)" }
+            }
           >
             {index + 1}
           </span>
         ))}
       </div>
-    </div>
+    </Frame>
   );
 }
 
 function LocationVisual({ accent }: { accent: string }) {
   return (
-    <div className="relative min-h-[180px] overflow-hidden rounded-md bg-[#e9efe9]">
-      <div className="absolute inset-0 opacity-60">
-        <div className="absolute left-1/4 top-0 h-full w-px bg-white" />
-        <div className="absolute left-2/3 top-0 h-full w-px bg-white" />
-        <div className="absolute left-0 top-1/3 h-px w-full bg-white" />
-        <div className="absolute left-0 top-2/3 h-px w-full bg-white" />
+    <div className="relative min-h-[180px] overflow-hidden rounded-lg bg-surface">
+      <div aria-hidden="true" className="absolute inset-0">
+        <div className="absolute left-1/4 top-0 h-full w-px bg-[var(--line)]" />
+        <div className="absolute left-2/3 top-0 h-full w-px bg-[var(--line)]" />
+        <div className="absolute left-0 top-1/3 h-px w-full bg-[var(--line)]" />
+        <div className="absolute left-0 top-2/3 h-px w-full bg-[var(--line)]" />
       </div>
       <div
-        className="absolute left-[42%] top-[34%] size-20 rounded-full"
+        className="absolute left-[40%] top-[30%] size-20 rounded-full"
         style={{ backgroundColor: `${accent}24` }}
       />
       <div
-        className="absolute left-[49%] top-[43%] size-4 rounded-full border-4 border-white shadow"
+        className="absolute left-[48%] top-[40%] size-3.5 rounded-full ring-4 ring-[var(--surface-2)]"
         style={{ backgroundColor: accent }}
       />
-      <div className="absolute bottom-4 left-4 right-4 rounded-md border border-black/10 bg-white/90 p-3 shadow-sm">
-        <div className="flex items-center justify-between text-sm">
-          <span className="font-semibold">위젯 위치 상태</span>
-          <span className="font-mono text-xs text-[var(--muted)]">live-ish</span>
+      <div className="absolute inset-x-3 bottom-3 rounded-lg border border-line bg-surface-2 p-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[13px] font-medium">위젯 위치 상태</span>
+          <span className="font-mono text-[11px] text-subtle">1x1</span>
         </div>
-        <div className="mt-3 h-2 rounded-full bg-black/10">
+        <div className="mt-2.5 h-1.5 rounded-full bg-surface-3">
           <div
-            className="h-2 w-2/3 rounded-full"
+            className="h-1.5 w-2/3 rounded-full"
             style={{ backgroundColor: accent }}
           />
         </div>
@@ -204,48 +240,87 @@ function LocationVisual({ accent }: { accent: string }) {
 function AlertsVisual({ accent }: { accent: string }) {
   const rows = [
     ["방송 시작", "ready"],
-    ["키워드 감지", "queued"],
-    ["알림 전송", "sent"],
+    ["상태 전환 감지", "queued"],
+    ["FCM 전송", "sent"],
   ];
 
   return (
-    <div className="space-y-4">
-      <div className="rounded-md border border-black/10 bg-black/[0.03] p-4">
+    <Frame>
+      <div className="rounded-lg border border-line bg-surface p-3">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-semibold">alert pipeline</span>
-          <span
-            className="rounded-full px-2 py-1 font-mono text-xs text-white"
-            style={{ backgroundColor: accent }}
-          >
-            beta
-          </span>
+          <span className="text-[13px] font-medium">alert pipeline</span>
+          <Chip accent={accent}>15m</Chip>
         </div>
-        <div className="mt-4 flex items-center gap-2">
+        <div className="mt-3 flex items-center gap-1.5">
           {[1, 2, 3, 4].map((item) => (
-            <div className="flex flex-1 items-center gap-2" key={item}>
+            <div className="flex flex-1 items-center gap-1.5" key={item}>
               <span
-                className="grid size-8 place-items-center rounded-full text-xs font-semibold text-white"
-                style={{ backgroundColor: accent, opacity: 0.55 + item * 0.1 }}
+                className="grid size-6 place-items-center rounded-full text-[10px] font-medium text-white"
+                style={{ backgroundColor: accent, opacity: 0.5 + item * 0.12 }}
               >
                 {item}
               </span>
-              {item < 4 && <span className="h-px flex-1 bg-black/15" />}
+              {item < 4 && <span className="h-px flex-1 bg-[var(--line)]" />}
             </div>
           ))}
         </div>
       </div>
-      <div className="space-y-2">
+      <div className="grid gap-1.5">
         {rows.map(([label, state]) => (
-          <div
-            className="flex items-center justify-between rounded-md border border-black/10 bg-white px-3 py-2 text-sm"
-            key={label}
-          >
-            <span>{label}</span>
-            <span className="font-mono text-xs text-[var(--muted)]">{state}</span>
-          </div>
+          <Row key={label}>
+            <div className="flex items-center justify-between text-[13px]">
+              <span>{label}</span>
+              <span className="font-mono text-[11px] text-subtle">{state}</span>
+            </div>
+          </Row>
         ))}
       </div>
-    </div>
+    </Frame>
+  );
+}
+
+function CouponsVisual({ accent }: { accent: string }) {
+  const coupons = [
+    ["COFFEE", "D-3", 76],
+    ["CAKE", "D-8", 58],
+    ["MEAL", "D-14", 40],
+  ] as const;
+
+  return (
+    <Frame>
+      <div className="flex items-start justify-between">
+        <Caption sub="private image storage" title="coupon room" />
+        <Chip accent={accent}>09:00</Chip>
+      </div>
+      <div className="grid gap-1.5">
+        {coupons.map(([name, day, width], index) => (
+          <Row key={name}>
+            <div className="grid grid-cols-[40px_1fr_auto] items-center gap-3">
+              <div
+                className="grid aspect-[4/3] place-items-center rounded text-[9px] font-medium text-white"
+                style={{ backgroundColor: accent, opacity: 0.7 + index * 0.1 }}
+              >
+                IMG
+              </div>
+              <div className="min-w-0">
+                <p className="truncate font-mono text-[12px] font-medium">
+                  {name}
+                </p>
+                <div className="mt-1.5 h-1 rounded-full bg-surface-3">
+                  <div
+                    className="h-1 rounded-full"
+                    style={{ width: `${width}%`, backgroundColor: accent }}
+                  />
+                </div>
+              </div>
+              <span className="num rounded-full border border-line px-2 py-0.5 font-mono text-[11px] text-subtle">
+                {day}
+              </span>
+            </div>
+          </Row>
+        ))}
+      </div>
+    </Frame>
   );
 }
 
@@ -257,122 +332,48 @@ function TravelVisual({ accent }: { accent: string }) {
   ];
 
   return (
-    <div className="flex h-full min-h-[180px] flex-col justify-between gap-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold">오늘의 진료</p>
-          <p className="text-xs text-[var(--muted)]">2인 공유 여행 일기</p>
-        </div>
-        <span
-          className="rounded-full px-3 py-1 font-mono text-xs text-white"
-          style={{ backgroundColor: accent }}
-        >
-          D-12
-        </span>
+    <Frame>
+      <div className="flex items-start justify-between">
+        <Caption sub="2인 공유 여행 일기" title="오늘의 진료" />
+        <Chip accent={accent}>D-12</Chip>
       </div>
 
-      <div className="grid gap-2">
+      <div className="grid gap-1.5">
         {schedule.map(([time, place, state], index) => (
-          <div
-            className="grid grid-cols-[52px_1fr_auto] items-center gap-3 rounded-md border border-black/10 bg-white p-3 shadow-sm"
-            key={time}
-          >
-            <span
-              className="font-mono text-xs font-semibold"
-              style={{ color: accent, opacity: 0.72 + index * 0.14 }}
-            >
-              {time}
-            </span>
-            <p className="min-w-0 truncate text-sm">{place}</p>
-            <span className="rounded-full border border-black/10 px-2 py-1 font-mono text-xs text-[var(--muted)]">
-              {state}
-            </span>
-          </div>
+          <Row key={time}>
+            <div className="grid grid-cols-[46px_1fr_auto] items-center gap-3">
+              <span
+                className="num font-mono text-[11px] font-medium"
+                style={{ color: accent, opacity: 0.75 + index * 0.12 }}
+              >
+                {time}
+              </span>
+              <p className="min-w-0 truncate text-[13px]">{place}</p>
+              <span className="rounded-full border border-line px-2 py-0.5 text-[11px] text-subtle">
+                {state}
+              </span>
+            </div>
+          </Row>
         ))}
       </div>
 
-      <div className="rounded-md border border-black/10 bg-black/[0.03] p-3">
-        <div className="flex items-center justify-between text-xs">
-          <span className="font-semibold">예산 소진</span>
-          <span className="font-mono text-[var(--muted)]">1,240 / 2,000 EUR</span>
+      <div className="rounded-lg border border-line bg-surface p-3">
+        <div className="flex items-center justify-between text-[11px]">
+          <span className="font-medium">예산 소진</span>
+          <span className="num font-mono text-subtle">1,240 / 2,000 EUR</span>
         </div>
-        <div className="mt-2 h-2 rounded-full bg-black/10">
+        <div className="mt-2 h-1.5 rounded-full bg-surface-3">
           <div
-            className="h-2 rounded-full"
+            className="h-1.5 rounded-full"
             style={{ width: "62%", backgroundColor: accent }}
           />
         </div>
-        <div className="mt-3 flex items-center justify-between text-xs text-[var(--muted)]">
+        <div className="mt-2.5 flex items-center justify-between text-[11px] text-subtle">
           <span>준비물 6/8</span>
-          <span>예약 3건 확인 필요</span>
+          <span>예약 3건</span>
           <span>오프라인 캐시</span>
         </div>
       </div>
-    </div>
-  );
-}
-
-function CouponsVisual({ accent }: { accent: string }) {
-  const coupons = [
-    ["COFFEE", "D-3"],
-    ["CAKE", "D-8"],
-    ["MEAL", "D-14"],
-  ];
-
-  return (
-    <div className="flex h-full min-h-[180px] flex-col justify-between gap-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-semibold">coupon room</p>
-          <p className="text-xs text-[var(--muted)]">private image storage</p>
-        </div>
-        <span
-          className="rounded-full px-3 py-1 font-mono text-xs text-white"
-          style={{ backgroundColor: accent }}
-        >
-          09:00
-        </span>
-      </div>
-
-      <div className="grid gap-3">
-        {coupons.map(([name, day], index) => (
-          <div
-            className="grid grid-cols-[56px_1fr_auto] items-center gap-3 rounded-md border border-black/10 bg-white p-3 shadow-sm"
-            key={name}
-          >
-            <div
-              className="grid aspect-[4/3] place-items-center rounded-md text-[10px] font-semibold text-white"
-              style={{
-                backgroundColor: accent,
-                opacity: 0.68 + index * 0.1,
-              }}
-            >
-              IMG
-            </div>
-            <div className="min-w-0">
-              <p className="truncate font-mono text-sm font-semibold">{name}</p>
-              <div className="mt-2 h-1.5 rounded-full bg-black/10">
-                <div
-                  className="h-1.5 rounded-full"
-                  style={{
-                    width: `${76 - index * 18}%`,
-                    backgroundColor: accent,
-                  }}
-                />
-              </div>
-            </div>
-            <span className="rounded-full border border-black/10 px-2 py-1 font-mono text-xs">
-              {day}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex items-center justify-between rounded-md border border-black/10 bg-black/[0.03] px-3 py-2 text-xs text-[var(--muted)]">
-        <span>FCM ready</span>
-        <span>Blob private</span>
-        <span>ML Kit OCR</span>
-      </div>
-    </div>
+    </Frame>
   );
 }
