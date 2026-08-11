@@ -4,6 +4,7 @@ import {
   Gift,
   Gauge,
   MapPinned,
+  Plane,
   type LucideIcon,
 } from "lucide-react";
 import projectsData from "./projects.json";
@@ -14,8 +15,15 @@ export type ProjectVisual =
   | "calendar"
   | "location"
   | "alerts"
-  | "coupons";
-export type ProjectIcon = "bell" | "calendar" | "gauge" | "gift" | "map";
+  | "coupons"
+  | "travel";
+export type ProjectIcon =
+  | "bell"
+  | "calendar"
+  | "gauge"
+  | "gift"
+  | "map"
+  | "plane";
 
 export type Project = {
   slug: string;
@@ -56,6 +64,7 @@ const projectIcons = {
   gauge: Gauge,
   gift: Gift,
   map: MapPinned,
+  plane: Plane,
 } satisfies Record<ProjectIcon, LucideIcon>;
 
 export const projects: Project[] = (projectsData as ProjectData[]).map(

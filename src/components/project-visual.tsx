@@ -33,6 +33,7 @@ export function ProjectVisual({
           {type === "location" && <LocationVisual accent={accent} />}
           {type === "alerts" && <AlertsVisual accent={accent} />}
           {type === "coupons" && <CouponsVisual accent={accent} />}
+          {type === "travel" && <TravelVisual accent={accent} />}
         </>
       )}
     </div>
@@ -243,6 +244,69 @@ function AlertsVisual({ accent }: { accent: string }) {
             <span className="font-mono text-xs text-[var(--muted)]">{state}</span>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function TravelVisual({ accent }: { accent: string }) {
+  const schedule = [
+    ["09:30", "체크아웃", "예정"],
+    ["11:00", "구엘 공원", "진행 중"],
+    ["19:20", "야간열차", "예약 확인"],
+  ];
+
+  return (
+    <div className="flex h-full min-h-[180px] flex-col justify-between gap-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-semibold">오늘의 진료</p>
+          <p className="text-xs text-[var(--muted)]">2인 공유 여행 일기</p>
+        </div>
+        <span
+          className="rounded-full px-3 py-1 font-mono text-xs text-white"
+          style={{ backgroundColor: accent }}
+        >
+          D-12
+        </span>
+      </div>
+
+      <div className="grid gap-2">
+        {schedule.map(([time, place, state], index) => (
+          <div
+            className="grid grid-cols-[52px_1fr_auto] items-center gap-3 rounded-md border border-black/10 bg-white p-3 shadow-sm"
+            key={time}
+          >
+            <span
+              className="font-mono text-xs font-semibold"
+              style={{ color: accent, opacity: 0.72 + index * 0.14 }}
+            >
+              {time}
+            </span>
+            <p className="min-w-0 truncate text-sm">{place}</p>
+            <span className="rounded-full border border-black/10 px-2 py-1 font-mono text-xs text-[var(--muted)]">
+              {state}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="rounded-md border border-black/10 bg-black/[0.03] p-3">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-semibold">예산 소진</span>
+          <span className="font-mono text-[var(--muted)]">1,240 / 2,000 EUR</span>
+        </div>
+        <div className="mt-2 h-2 rounded-full bg-black/10">
+          <div
+            className="h-2 rounded-full"
+            style={{ width: "62%", backgroundColor: accent }}
+          />
+        </div>
+        <div className="mt-3 flex items-center justify-between text-xs text-[var(--muted)]">
+          <span>준비물 6/8</span>
+          <span>예약 3건 확인 필요</span>
+          <span>오프라인 캐시</span>
+        </div>
       </div>
     </div>
   );

@@ -32,6 +32,7 @@ Then commit and push `src/lib/projects.json`. Vercel deploys automatically from 
 
 - `location-widget`: 위치공유 앱 위젯
 - `gifticon-doctor`: 기프티콘닥터
+- `donghaeng-ilgi`: 동행일기 (`wjdals988/honeymoondoctor`, 저장소명은 옛 브랜드 유지)
 
 ## GitHub Actions Shape
 
