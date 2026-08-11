@@ -1,147 +1,217 @@
 import {
   ArrowDownToLine,
   ArrowUpRight,
-  Code2,
-  Mail,
-  NotebookText,
-  PanelsTopLeft,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
-import { ProjectCard } from "@/components/project-card";
-import { projects } from "@/lib/projects";
+import { GithubMark } from "@/components/github-mark";
+import { ProjectGrid } from "@/components/project-grid";
+import { ProjectIcon } from "@/components/project-icon";
+import { downloadableProjects, projectStats, projects } from "@/lib/projects";
+import { site } from "@/lib/site";
 
-const stats = [
-  { label: "운영 중", value: "2" },
-  { label: "구현 중", value: "2" },
-  { label: "전체", value: "5" },
+const capabilities = [
+  {
+    icon: Smartphone,
+    title: "Android 네이티브",
+    body: "Kotlin, Jetpack Compose, Firebase로 설계부터 서명 배포까지 직접 진행합니다.",
+  },
+  {
+    icon: Sparkles,
+    title: "웹 서비스",
+    body: "Next.js와 서버리스 백엔드로 운영 중인 서비스를 만들고 유지합니다.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "품질 검증",
+    body: "보안 규칙 테스트, 회귀 테스트, 수동 QA 체크리스트를 함께 남깁니다.",
+  },
 ];
 
-const downloadableProjects = projects.filter((project) => project.apk);
-
 export default function Home() {
+  const stats = projectStats();
+
   return (
     <main>
-      <section className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-10 pt-6 md:px-8 md:pt-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-        <div className="space-y-7">
-          <nav className="flex items-center justify-between gap-4">
-            <Link className="flex items-center gap-2 font-semibold" href="/">
-              <span className="grid size-9 place-items-center rounded-md bg-[var(--foreground)] text-sm text-white">
-                JM
-              </span>
-              프로젝트 보드
-            </Link>
-            <a
-              className="inline-flex h-10 items-center gap-2 rounded-md border border-black/10 bg-white/70 px-4 text-sm font-semibold"
-              href="#projects"
-            >
-              프로젝트
-              <ArrowUpRight aria-hidden="true" size={16} />
-            </a>
-          </nav>
-
+      <section className="relative overflow-hidden border-b border-line">
+        <div
+          aria-hidden="true"
+          className="grid-veil pointer-events-none absolute inset-0 opacity-50"
+        />
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-16 md:px-8 md:pb-20 md:pt-24">
           <div className="max-w-3xl space-y-6">
-            <p className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-sm font-semibold text-[var(--accent-strong)]">
-              <PanelsTopLeft aria-hidden="true" size={16} />
-              Project dashboard
+            <p className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
+              <span className="relative flex size-1.5">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
+              </span>
+              프로젝트 {stats.total}개 운영 · 마지막 갱신 {stats.lastUpdatedAt}
             </p>
-            <div className="space-y-4">
-              <h1 className="text-5xl font-semibold tracking-normal text-balance md:text-7xl">
-                JM 프로젝트 보드
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
-                직접 만들고 운영하거나 실험 중인 웹, 모바일, 자동화 프로젝트를
-                한곳에 정리한 개인 대시보드입니다.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <aside className="rounded-lg border border-black/10 bg-[var(--panel)] p-5 shadow-sm lg:mt-14">
-          <div className="grid grid-cols-3 gap-3">
-            {stats.map((item) => (
-              <div
-                className="rounded-md border border-black/10 bg-white/80 p-4"
-                key={item.label}
+            <h1 className="text-4xl font-medium leading-[1.1] tracking-[-0.03em] text-balance md:text-6xl">
+              {site.tagline}
+            </h1>
+
+            <p className="max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
+              {site.description}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Link
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
+                href="#projects"
               >
-                <p className="font-mono text-3xl font-semibold">{item.value}</p>
-                <p className="mt-1 text-sm text-[var(--muted)]">{item.label}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <ContactSlot icon={Code2} label="GitHub" value="준비 중" />
-            <ContactSlot icon={Mail} label="Email" value="준비 중" />
-            <ContactSlot icon={NotebookText} label="Blog" value="준비 중" />
-          </div>
-          <div className="mt-5 rounded-md border border-black/10 bg-white/70 p-4">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-semibold">APK 다운로드</p>
-                <p className="mt-1 text-xs text-[var(--muted)]">
-                  직접 설치 가능한 Android 릴리즈
-                </p>
-              </div>
-              <ArrowDownToLine
-                aria-hidden="true"
-                className="shrink-0 text-sky-900"
-                size={20}
-              />
+                프로젝트 보기
+                <ArrowUpRight aria-hidden="true" size={15} />
+              </Link>
+              <Link
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium transition hover:border-line-strong"
+                href="#downloads"
+              >
+                APK 다운로드
+                <ArrowDownToLine aria-hidden="true" size={15} />
+              </Link>
+              <a
+                className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition hover:text-fg"
+                href={site.github}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <GithubMark size={15} />
+                GitHub
+              </a>
             </div>
-            <div className="mt-4 grid gap-2">
-              {downloadableProjects.map((project) =>
-                project.apk ? (
+          </div>
+
+          <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
+            <Metric label="전체 프로젝트" value={stats.total} />
+            {stats.byStatus.map((item) => (
+              <Metric key={item.status} label={item.label} value={item.count} />
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section
+        className="border-b border-line px-5 py-14 md:px-8 md:py-16"
+        id="downloads"
+      >
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="space-y-3">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+              Direct install
+            </p>
+            <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
+              서명된 릴리스 APK
+            </h2>
+            <p className="max-w-md text-sm leading-6 text-muted">
+              Play Store를 거치지 않고 바로 설치할 수 있는 파일입니다. 버전,
+              용량, SHA-256 해시를 함께 공개하니 설치 전에 대조해 주세요.
+            </p>
+          </div>
+
+          <ul className="grid gap-2.5">
+            {downloadableProjects.map((project) =>
+              project.apk ? (
+                <li key={project.slug}>
                   <a
-                    className="flex min-h-12 items-center justify-between gap-3 rounded-md border border-sky-800/20 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-sky-800/45 hover:bg-sky-50"
+                    className="group flex items-center gap-4 rounded-xl border border-line bg-surface p-4 transition hover:border-line-strong hover:bg-surface-2"
+                    download
                     href={project.apk.url}
-                    key={project.slug}
                     rel="noreferrer"
                   >
-                    <span className="min-w-0">
-                      <span className="block truncate font-semibold text-sky-950">
+                    <span
+                      className="grid size-10 shrink-0 place-items-center rounded-lg text-white"
+                      style={{ backgroundColor: project.accent }}
+                    >
+                      <ProjectIcon name={project.icon} size={18} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-medium">
                         {project.title}
                       </span>
-                      <span className="block truncate font-mono text-xs text-[var(--muted)]">
+                      <span className="num mt-0.5 block truncate font-mono text-xs text-subtle">
                         v{project.apk.version} ({project.apk.versionCode}) ·{" "}
                         {project.apk.size}
                       </span>
                     </span>
                     <ArrowDownToLine
                       aria-hidden="true"
-                      className="shrink-0 text-sky-900"
-                      size={16}
+                      className="shrink-0 text-subtle transition group-hover:translate-y-0.5 group-hover:text-fg"
+                      size={17}
                     />
                   </a>
-                ) : null,
-              )}
-            </div>
-          </div>
-        </aside>
+                </li>
+              ) : null,
+            )}
+          </ul>
+        </div>
       </section>
 
-      <section
-        className="border-t border-black/10 bg-white/35 px-5 py-12 md:px-8"
-        id="projects"
-      >
-        <div className="mx-auto max-w-7xl space-y-6">
-          <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
-            <div>
-              <p className="text-sm font-semibold text-[var(--accent-strong)]">
-                Selected projects
+      <section className="px-5 py-14 md:px-8 md:py-20" id="projects">
+        <div className="mx-auto max-w-6xl space-y-8">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div className="space-y-3">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+                Selected work
               </p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-normal md:text-4xl">
+              <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
                 프로젝트 현황
               </h2>
             </div>
-            <p className="max-w-lg leading-7 text-[var(--muted)]">
-              운영 중인 서비스와 앱 프로토타입, 구현 중인 시스템을 같은 기준으로
-              볼 수 있게 정리했습니다.
+            <p className="max-w-lg text-sm leading-6 text-muted">
+              운영 중인 서비스와 구현 중인 시스템을 같은 기준으로 정리했습니다.
+              각 상세 화면에는 구현한 기능과 남은 과제를 그대로 적어 둡니다.
             </p>
           </div>
 
-          <div className="grid gap-5">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
+          <ProjectGrid projects={projects} />
+        </div>
+      </section>
+
+      <section className="border-t border-line px-5 py-14 md:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl space-y-8">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
+            {capabilities.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div className="bg-surface p-6" key={item.title}>
+                  <Icon
+                    aria-hidden="true"
+                    className="text-accent"
+                    size={19}
+                  />
+                  <h3 className="mt-4 text-base font-medium">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted">
+                    {item.body}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col items-start justify-between gap-5 rounded-2xl border border-line bg-surface p-6 md:flex-row md:items-center md:p-8">
+            <div className="space-y-2">
+              <h2 className="text-xl font-medium tracking-[-0.01em] md:text-2xl">
+                작업 방식이나 코드가 궁금하시면
+              </h2>
+              <p className="text-sm leading-6 text-muted">
+                모든 프로젝트의 소스와 릴리스는 GitHub에 공개해 두었습니다.
+              </p>
+            </div>
+            <a
+              className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
+              href={site.github}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <GithubMark size={15} />
+              GitHub에서 보기
+              <ArrowUpRight aria-hidden="true" size={14} />
+            </a>
           </div>
         </div>
       </section>
@@ -149,22 +219,13 @@ export default function Home() {
   );
 }
 
-function ContactSlot({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: typeof Code2;
-  label: string;
-  value: string;
-}) {
+function Metric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="flex min-w-0 items-center gap-3 rounded-md border border-black/10 bg-white/70 p-3">
-      <Icon aria-hidden="true" className="shrink-0 text-[var(--muted)]" size={18} />
-      <div className="min-w-0">
-        <p className="truncate text-sm font-semibold">{label}</p>
-        <p className="truncate text-xs text-[var(--muted)]">{value}</p>
-      </div>
+    <div className="bg-surface px-5 py-5">
+      <dt className="text-xs text-subtle">{label}</dt>
+      <dd className="num mt-1.5 text-3xl font-medium tracking-[-0.02em]">
+        {value}
+      </dd>
     </div>
   );
 }

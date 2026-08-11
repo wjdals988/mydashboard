@@ -1,92 +1,103 @@
 import { ArrowDownToLine, ArrowUpRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { ProjectIcon } from "@/components/project-icon";
 import { ProjectVisual } from "@/components/project-visual";
-import { type Project, statusTone } from "@/lib/projects";
+import { type Project, statusDot, statusTone } from "@/lib/projects";
 
-type ProjectCardProps = {
+export function ProjectCard({
+  project,
+  index = 0,
+}: {
   project: Project;
-};
-
-export function ProjectCard({ project }: ProjectCardProps) {
-  const Icon = project.icon;
-
+  index?: number;
+}) {
   return (
-    <article className="grid gap-5 rounded-lg border border-black/10 bg-[var(--panel)] p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:grid-cols-[minmax(0,0.95fr)_minmax(260px,1fr)]">
-      <div className="flex flex-col justify-between gap-6 p-1">
-        <div className="space-y-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <span
-              className={`rounded-full border px-3 py-1 text-xs font-semibold ${statusTone[project.status]}`}
-            >
-              {project.statusLabel}
-            </span>
-            <span className="font-mono text-xs text-[var(--muted)]">
-              {project.year}
-            </span>
-            <span className="font-mono text-xs text-[var(--muted)]">
-              최근 업데이트 {project.updatedAt}
-            </span>
-          </div>
-          <div className="space-y-2">
-            <p className="flex items-center gap-2 text-sm font-semibold text-[var(--muted)]">
-              <Icon aria-hidden="true" size={17} />
-              {project.eyebrow}
-            </p>
-            <h3 className="text-2xl font-semibold tracking-normal">
-              {project.title}
-            </h3>
-            <p className="max-w-xl leading-7 text-[var(--muted)]">
-              {project.summary}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                className="rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs text-[var(--ink)]"
-                key={tag}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+    <article
+      className="rise group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition duration-300 hover:border-line-strong hover:shadow-[var(--shadow-lift)]"
+      style={{ animationDelay: `${Math.min(index, 5) * 60}ms` }}
+    >
+      <div className="border-b border-line bg-surface-2 p-3">
+        <ProjectVisual
+          accent={project.accent}
+          title={project.title}
+          type={project.visual}
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col gap-4 p-5">
+        <div className="flex items-center justify-between gap-3">
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${statusTone[project.status]}`}
+          >
+            <span className={`size-1.5 rounded-full ${statusDot[project.status]}`} />
+            {project.statusLabel}
+          </span>
+          <span className="num font-mono text-xs text-subtle">
+            {project.updatedAt}
+          </span>
         </div>
-        <div className="flex flex-wrap gap-2">
+
+        <div className="space-y-2">
+          <p className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+            <ProjectIcon name={project.icon} size={13} />
+            {project.eyebrow}
+          </p>
+          <h3 className="text-xl font-medium tracking-[-0.01em]">
+            {project.title}
+          </h3>
+          <p className="text-sm leading-6 text-muted">{project.summary}</p>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {project.tags.map((tag) => (
+            <span
+              className="rounded-md border border-line bg-surface-2 px-2 py-0.5 font-mono text-[11px] text-muted"
+              key={tag}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
           <Link
-            className="inline-flex h-10 items-center gap-2 rounded-md bg-emerald-800 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-900"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full bg-fg px-4 text-sm font-medium text-bg transition hover:opacity-90"
             href={`/projects/${project.slug}`}
           >
             상세 보기
-            <ArrowUpRight aria-hidden="true" size={16} />
+            <ArrowUpRight
+              aria-hidden="true"
+              className="transition group-hover:translate-x-0.5"
+              size={14}
+            />
           </Link>
           {project.liveUrl && (
             <a
-              className="inline-flex h-10 items-center gap-2 rounded-md border border-emerald-800/25 bg-white px-4 text-sm font-semibold text-emerald-950 shadow-sm transition hover:border-emerald-800/45 hover:bg-emerald-50"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
               href={project.liveUrl}
               rel="noreferrer"
               target="_blank"
             >
               바로가기
-              <ExternalLink aria-hidden="true" size={16} />
+              <ExternalLink aria-hidden="true" size={14} />
             </a>
           )}
           {project.apk && (
             <a
-              className="inline-flex h-10 items-center gap-2 rounded-md border border-sky-800/25 bg-white px-4 text-sm font-semibold text-sky-950 shadow-sm transition hover:border-sky-800/45 hover:bg-sky-50"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
+              download
               href={project.apk.url}
               rel="noreferrer"
             >
-              APK 다운로드
-              <ArrowDownToLine aria-hidden="true" size={16} />
+              APK
+              <span className="num font-mono text-xs text-subtle">
+                v{project.apk.version}
+              </span>
+              <ArrowDownToLine aria-hidden="true" size={14} />
             </a>
           )}
         </div>
       </div>
-      <ProjectVisual
-        accent={project.accent}
-        liveUrl={project.liveUrl}
-        title={project.title}
-        type={project.visual}
-      />
     </article>
   );
 }
