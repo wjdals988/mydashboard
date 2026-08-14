@@ -129,7 +129,7 @@
     "title": "기프티콘닥터",
     "eyebrow": "Gifticon Doctor",
     "summary": "방 단위로 쿠폰 이미지를 공유하고 만료 전에 푸시 알림을 받는 Android 앱.",
-    "description": "현재 다운로드 가능한 배포 APK는 0.1.12 (13)이고, 최신 검증 소스는 0.1.17 (18, 4d7d6ee)입니다. Firebase 인증, 방 기반 쿠폰 공유, 비공개 이미지 저장, OCR, 만료 푸시를 묶어 기프티콘을 함께 관리하는 Android 앱입니다.",
+    "description": "현재 다운로드 가능한 배포 APK는 0.1.12 (13)이고, 최신 검증 소스는 0.1.18 (19, d125d74)입니다. Firebase 인증, 방 기반 쿠폰 공유, 비공개 이미지 저장, OCR, 만료 푸시를 묶어 기프티콘을 함께 관리하는 Android 앱입니다.",
     "status": "building",
     "statusLabel": "구현 중",
     "year": "2026",
@@ -161,14 +161,15 @@
       "신규 쿠폰은 512px 이하 비공개 WebP 썸네일을 목록에서 우선 사용하고, 기존 쿠폰도 첫 조회에서 인증된 썸네일을 자동 생성해 이후 재사용합니다.",
       "기존 쿠폰 썸네일 백필은 사용자당 시간당 100개로 제한하며, 실패하거나 한도를 넘으면 원본과 사용자별 4~24MB LRU 캐시로 안전하게 대체합니다.",
       "쿠폰 목록은 공개·본인 비공개 쿠폰을 각각 12개씩 불러오고 끝 4개 전에 다음 페이지를 선조회하며, 100개 기준 초기 표시 상한을 최대 24개로 줄였습니다.",
+      "Cron은 6분 실행 lease로 중복 실행을 차단하고, 수신자별 outbox를 2분 delivery lease로 처리해 일시적 FCM 오류를 최대 5회 재시도한 뒤 dead letter로 분리합니다.",
       "최대 10MB 이미지를 8KB 단위로 스트리밍하며 업로드·저장 단계를 표시하고, 상세는 최대 8MP 선명도에서 1~4배 핀치·더블탭 확대를 지원합니다.",
       "사용 완료·삭제 확인, 서버 성공 후 댓글·수정 상태 변경, 만료일 달력 선택으로 실수와 네트워크 실패 시 재입력 비용을 줄였습니다.",
-      "Backend 22개, Firestore Rules 12개, Android 28개 등 자동 테스트 62개와 PR/main CI를 운용하며 운영 API health와 Firestore 인덱스 5개를 배포했습니다."
+      "Backend 30개, Firestore Rules 13개, Android 28개 등 자동 테스트 71개와 PR/main CI를 운용하며 운영 API health, Firestore Rules와 인덱스 5개를 배포했습니다."
     ],
     "nextSteps": [
-      "유실된 v0.1.12 release keystore 대신 새 서명키 전환·재설치 공지를 확정하고 Firebase 인증서를 재등록해 v0.1.17 서명 APK를 발행합니다.",
+      "유실된 v0.1.12 release keystore 대신 새 서명키 전환·재설치 공지를 확정하고 Firebase 인증서를 재등록해 v0.1.18 서명 APK를 발행합니다.",
       "물리 디바이스에서 전경·백그라운드·종료 상태, 딥링크, A→B 계정 전환을 포함한 푸시 6개 시나리오를 검증합니다.",
-      "Cron lease/outbox와 삭제 cleanup 재시도를 추가해 중복 알림과 부분 실패를 복구 가능하게 만듭니다.",
+      "notificationOutbox의 retry/deadLetter 비율, 최장 대기시간과 FCM 응답 코드를 운영 지표·경보로 연결합니다.",
       "Firebase App Check, UID+IP 제한, 로그인 실패 잠금으로 다계정 abuse와 4자리 방 비밀번호 추측을 방어합니다.",
       "로그인된 고해상도 이미지·쿠폰 100개 fixture에서 Firestore 읽기 수, 첫 렌더, 메모리와 스크롤 프레임을 계측합니다.",
       "Android instrumented UI와 API route 통합 테스트를 추가하고 로그인·등록·삭제·알림 딥링크를 자동 회귀 검증합니다.",
