@@ -2,6 +2,22 @@
 
 Android app repositories should update this dashboard after uploading a signed release APK to GitHub Releases.
 
+The APK binary belongs in the app repository's GitHub Release, not in this
+dashboard repository. The dashboard stores only the verified download URL,
+version, byte size, SHA-256 digest, and release URL.
+
+Before publishing a replacement APK, verify all of the following:
+
+1. `apksigner verify --verbose --print-certs` succeeds.
+2. The signer certificate matches the previous public release when an in-place
+   Android update is required.
+3. `versionName` and `versionCode` both increase.
+4. The uploaded asset's byte size and SHA-256 match the dashboard metadata.
+5. The physical-device smoke test covers installation/update, launch, login,
+   and the feature changed by the release.
+
+Never link a debug or unsigned APK from the dashboard.
+
 ## Required Secret
 
 Add this secret to each Android app repository:
@@ -27,6 +43,11 @@ npm run update:apk -- \
 ```
 
 Then commit and push `src/lib/projects.json`. Vercel deploys automatically from `main`.
+
+Use `--dryRun` first when updating metadata manually. The updater rejects an
+invalid SHA-256, malformed size, mismatched release/download URLs, a version
+downgrade, or replacement of an existing version with different bytes. An
+exact retry of identical metadata is allowed.
 
 ## Project Slugs
 
