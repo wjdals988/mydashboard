@@ -8,7 +8,7 @@ Next.js App Router로 만들고 Vercel에서 `main` 브랜치를 자동 배포�
 - Next.js(App Router) · React · TypeScript
 - Tailwind CSS v4 (`@theme inline` 토큰)
 - 본문 글꼴: Pretendard Std Variable(self-host, SIL OFL 1.1)
-- 코드/숫자 글꼴: Geist Mono (`next/font/google`)
+- 코드/숫자 글꼴: 운영체제 기본 monospace(`SF Mono`, Menlo, Consolas fallback)
 
 ## 실행
 
@@ -53,6 +53,10 @@ npm run update:apk -- --slug <slug> --url <apk url> --fileName <name> \
   --version <x.y.z> --versionCode <n> --size "<n> bytes" --sha256 <hash> \
   --releaseUrl <release page url>
 ```
+
+실제 파일을 바꾸기 전 `--dryRun`을 붙이면 검증 결과만 출력합니다. APK 파일은
+대시보드 Git 저장소에 넣지 않고 앱 저장소의 GitHub Release asset으로 올립니다.
+대시보드에는 서명 검증을 마친 APK의 URL, 크기, SHA-256만 기록합니다.
 
 > 이 스크립트는 **이미 있는 `slug`만 갱신**합니다. 신규 프로젝트는
 > `projects.json`에 엔트리를 먼저 추가한 뒤 실행하세요.

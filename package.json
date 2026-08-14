@@ -7,24 +7,25 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "test": "node --test --experimental-test-coverage --test-coverage-include=scripts/update-project-apk.mjs --test-coverage-lines=90 --test-coverage-branches=75 --test-coverage-functions=100 scripts/*.test.mjs",
     "update:apk": "node scripts/update-project-apk.mjs"
   },
   "dependencies": {
-    "lucide-react": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "lucide-react": "1.11.0",
+    "next": "16.3.1",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "latest",
-    "@tailwindcss/postcss": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "es-abstract": "^1.24.2",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest"
+    "@eslint/eslintrc": "3.3.5",
+    "@tailwindcss/postcss": "4.2.4",
+    "@types/node": "25.6.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "es-abstract": "1.24.2",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.1",
+    "tailwindcss": "4.2.4",
+    "typescript": "6.0.3"
   }
 }

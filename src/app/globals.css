@@ -105,7 +105,8 @@
   --font-sans: "Pretendard Std Variable", "Pretendard", -apple-system,
     BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", ui-sans-serif,
     system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
+    monospace;
 }
 
 /* 이 블록은 반드시 @layer base 안에 있어야 한다. layer 밖의 `a { color: inherit }`는
