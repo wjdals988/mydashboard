@@ -36,6 +36,7 @@ export function ProjectVisual({
         <LivePreview accent={accent} title={title} url={liveUrl} />
       ) : (
         <>
+          {type === "currency" && <CurrencyVisual accent={accent} />}
           {type === "speed" && <SpeedVisual accent={accent} />}
           {type === "calendar" && <CalendarVisual accent={accent} />}
           {type === "location" && <LocationVisual accent={accent} />}
@@ -119,6 +120,47 @@ function Row({ children }: { children: React.ReactNode }) {
     <div className="rounded-lg border border-line bg-surface px-3 py-2.5">
       {children}
     </div>
+  );
+}
+
+function CurrencyVisual({ accent }: { accent: string }) {
+  const rates = [
+    { code: "USD", flag: "🇺🇸", value: "1,358.00" },
+    { code: "EUR", flag: "🇪🇺", value: "1,574.40" },
+    { code: "CZK", flag: "🇨🇿", value: "65.08" },
+  ];
+
+  return (
+    <Frame>
+      <div className="flex items-start justify-between">
+        <Caption sub="하나은행 매매기준율" title="현지 통화 → 원화" />
+        <Chip accent={accent}>CZK</Chip>
+      </div>
+      <Row>
+        <p className="text-[11px] text-subtle">1,000 CZK</p>
+        <p
+          className="mt-0.5 font-mono text-[20px] font-semibold"
+          style={{ color: accent }}
+        >
+          65,080원
+        </p>
+      </Row>
+      <div className="grid grid-cols-3 gap-1.5">
+        {rates.map((rate) => (
+          <div
+            className="rounded-lg border border-line bg-surface px-2 py-1.5"
+            key={rate.code}
+          >
+            <p className="text-[10px] text-subtle">
+              {rate.flag} {rate.code}
+            </p>
+            <p className="mt-0.5 font-mono text-[12px] font-medium">
+              {rate.value}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Frame>
   );
 }
 
