@@ -2,6 +2,7 @@ import projectsData from "./projects.json";
 
 export type ProjectStatus = "live" | "building" | "personal-use";
 export type ProjectVisual =
+  | "currency"
   | "speed"
   | "calendar"
   | "location"
@@ -10,6 +11,7 @@ export type ProjectVisual =
   | "travel";
 export type ProjectIcon =
   | "bell"
+  | "coins"
   | "calendar"
   | "gauge"
   | "gift"

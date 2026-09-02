@@ -273,5 +273,52 @@
     "visual": "alerts",
     "accent": "#b84f62",
     "icon": "bell"
+  },
+  {
+    "slug": "pricehere",
+    "title": "여긴얼마",
+    "eyebrow": "PriceHere",
+    "summary": "여행지에서 현지 통화를 원화로 바로 환산하는 안드로이드 앱.",
+    "description": "달러·유로·체코 코루나를 원화로 환산하는 안드로이드 앱입니다. 하나은행 매매기준율을 고시회차마다 조회하고, 네트워크가 끊기면 마지막으로 받아둔 환율로 계속 계산합니다. 홈 화면 위젯 안에서도 금액을 눌러 환산할 수 있습니다.",
+    "status": "personal-use",
+    "statusLabel": "개인 사용 중",
+    "year": "2026",
+    "updatedAt": "2026.09.03",
+    "tags": [
+      "Kotlin",
+      "Jetpack Compose",
+      "App Widget",
+      "Currency"
+    ],
+    "highlights": [
+      "하나은행 매매기준율 → ECB 기준환율 → 오프라인 캐시 순으로 자동 폴백합니다.",
+      "고시 시각을 초 단위로 표시해 은행이나 네이버 화면과 바로 대조할 수 있습니다.",
+      "매매기준율, 카드 결제, 현찰 구입 세 가지로 실제 부담액 추정을 전환합니다.",
+      "체코와 스페인의 부가세 환급 예상액과 최소 구매 금액을 계산합니다.",
+      "금액에 메모를 붙여 저장하고, 나중에 최신 환율과 저장 시점의 차이를 함께 봅니다.",
+      "홈 화면 위젯 3종을 제공하며, 키패드 위젯은 위젯 안에서 금액 입력까지 됩니다.",
+      "의존성을 최소화해 릴리스 APK가 약 1.2MB이고 권한은 INTERNET 하나뿐입니다."
+    ],
+    "nextSteps": [
+      "지원 통화를 엔, 파운드 등으로 넓히고 자주 쓰는 통화를 고정하는 기능을 검토합니다.",
+      "입력란에서 20*3 같은 간단한 계산식을 지원합니다.",
+      "저장한 항목에 목표 환율 알림을 붙일지 검토합니다.",
+      "환율 파싱과 세금 환급 계산에 단위 테스트를 추가합니다.",
+      "비공식 환율 엔드포인트가 막힐 경우를 대비해 공식 소스 전환 절차를 문서화합니다.",
+      "위젯 키패드의 입력 반응 지연을 측정하고 갱신 횟수를 줄입니다."
+    ],
+    "visual": "currency",
+    "accent": "#12897A",
+    "icon": "coins",
+    "apk": {
+      "url": "https://github.com/wjdals988/pricehere/releases/download/v1.4.0/pricehere-1.4.0-5-release-signed.apk",
+      "fileName": "pricehere-1.4.0-5-release-signed.apk",
+      "version": "1.4.0",
+      "versionCode": 5,
+      "size": "1,275,128 bytes",
+      "sha256": "f755181b425ce8ba24bb75f36d8fbaeb95d2aa7e18c8a9fbd37ef6c3ef1df24d",
+      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v1.4.0",
+      "label": "signed release APK"
+    }
   }
 ]

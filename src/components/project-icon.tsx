@@ -1,6 +1,7 @@
 import {
   BellRing,
   CalendarDays,
+  Coins,
   Gauge,
   Gift,
   MapPinned,
@@ -12,6 +13,7 @@ import type { ProjectIcon as ProjectIconName } from "@/lib/projects";
 const icons = {
   bell: BellRing,
   calendar: CalendarDays,
+  coins: Coins,
   gauge: Gauge,
   gift: Gift,
   map: MapPinned,
