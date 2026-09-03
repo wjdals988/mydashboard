@@ -276,7 +276,7 @@
   },
   {
     "slug": "pricehere",
-    "title": "여긴얼마",
+    "title": "여긴얼마?",
     "eyebrow": "PriceHere",
     "summary": "여행지에서 현지 통화를 원화로 바로 환산하는 안드로이드 앱.",
     "description": "달러·유로·엔·체코 코루나를 원화로 환산하는 안드로이드 앱입니다. 하나은행 매매기준율을 고시회차마다 조회하고, 네트워크가 끊기면 마지막으로 받아둔 환율로 계속 계산합니다. 홈 화면 위젯 안에서도 금액을 눌러 환산할 수 있습니다.",
@@ -314,13 +314,13 @@
     "accent": "#12897A",
     "icon": "coins",
     "apk": {
-      "url": "https://github.com/wjdals988/pricehere/releases/download/v1.7.0/pricehere-1.7.0-8-release-signed.apk",
-      "fileName": "pricehere-1.7.0-8-release-signed.apk",
-      "version": "1.7.0",
-      "versionCode": 8,
-      "size": "1,387,012 bytes",
-      "sha256": "25b57027c9280f225865b5f682f34721749542ac1d3abf3d5765ef12bae039ba",
-      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v1.7.0",
+      "url": "https://github.com/wjdals988/pricehere/releases/download/v1.8.0/pricehere-1.8.0-9-release-signed.apk",
+      "fileName": "pricehere-1.8.0-9-release-signed.apk",
+      "version": "1.8.0",
+      "versionCode": 9,
+      "size": "1,387,008 bytes",
+      "sha256": "af7465983bb7723a0bcae00758ebb95b614eb72629959df581d034dd274fe1f6",
+      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v1.8.0",
       "label": "signed release APK"
     }
   }
