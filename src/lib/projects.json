@@ -293,6 +293,7 @@
     "highlights": [
       "하나은행 매매기준율 → ECB 기준환율 → 오프라인 캐시 순으로 자동 폴백합니다.",
       "엔화는 은행 관행대로 100엔당으로 표기하되 1엔 단위 계산도 정확합니다.",
+      "7·30·90일 환율 추이 차트와 나라별 팁 계산기를 바텀시트로 제공합니다.",
       "고시 시각을 초 단위로 표시해 은행이나 네이버 화면과 바로 대조할 수 있습니다.",
       "매매기준율, 카드 결제, 현찰 구입 세 가지로 실제 부담액 추정을 전환합니다.",
       "체코·스페인 부가세 환급과 일본 면세를 계산하며, 2026년 11월 일본 제도 개편도 반영합니다.",
@@ -305,21 +306,21 @@
       "입력란에서 20*3 같은 간단한 계산식을 지원합니다.",
       "한 금액을 네 통화로 동시에 보여주는 모드를 검토합니다.",
       "최근 입력한 금액을 칩으로 다시 꺼내 쓰게 합니다.",
-      "7·30·90일 환율 추이 차트를 Canvas로 직접 그려 붙입니다.",
       "환율 파싱과 세금 환급 계산에 단위 테스트를 추가합니다.",
+      "TalkBack 레이블과 터치 영역을 점검해 접근성을 맞춥니다.",
       "릴리스와 대시보드 등재를 GitHub Actions로 자동화합니다."
     ],
     "visual": "currency",
     "accent": "#12897A",
     "icon": "coins",
     "apk": {
-      "url": "https://github.com/wjdals988/pricehere/releases/download/v1.6.0/pricehere-1.6.0-7-release-signed.apk",
-      "fileName": "pricehere-1.6.0-7-release-signed.apk",
-      "version": "1.6.0",
-      "versionCode": 7,
-      "size": "1,300,356 bytes",
-      "sha256": "c49e7be5997ce6b116800b1bb079f24a3859e668a7bb38928ff89fd64f70dfe9",
-      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v1.6.0",
+      "url": "https://github.com/wjdals988/pricehere/releases/download/v1.7.0/pricehere-1.7.0-8-release-signed.apk",
+      "fileName": "pricehere-1.7.0-8-release-signed.apk",
+      "version": "1.7.0",
+      "versionCode": 8,
+      "size": "1,387,012 bytes",
+      "sha256": "25b57027c9280f225865b5f682f34721749542ac1d3abf3d5765ef12bae039ba",
+      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v1.7.0",
       "label": "signed release APK"
     }
   }
