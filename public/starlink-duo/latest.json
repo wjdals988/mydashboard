@@ -1,12 +1,35 @@
 {
-  "version": "0.1.2",
-  "versionCode": 3,
+  "version": "0.1.3",
+  "versionCode": 4,
   "publishedAt": "2026-09-05",
   "downloadPageUrl": "https://coldbrewventi.vercel.app/projects/starlink-duo#release-notes",
-  "apkUrl": "https://github.com/wjdals988/starlinkduo/releases/download/v0.1.2/starlink-duo-debug.apk",
+  "apkUrl": "https://github.com/wjdals988/starlinkduo/releases/download/v0.1.3/starlink-duo-debug.apk",
   "notes": [
-    "메인 메뉴 현재 버전 표시",
-    "신규 버전 레드닷과 업데이트 안내 팝업",
-    "대시보드 APK 다운로드와 버전별 업데이트 노트 연결"
+    "카드 정보 위계와 가독성 개선",
+    "게임형 빠른 메시지 통신 휠",
+    "카드 더미 형태의 남은 덱 표시",
+    "게임 내 버전별 업데이트 기록"
+  ],
+  "releases": [
+    {
+      "version": "0.1.3",
+      "date": "2026.09.05",
+      "notes": ["카드 정보 위계 개선", "빠른 메시지 통신 휠", "카드 더미 덱 표시", "버전별 업데이트 기록"]
+    },
+    {
+      "version": "0.1.2",
+      "date": "2026.09.05",
+      "notes": ["현재 버전 표시", "업데이트 레드닷·안내", "대시보드 다운로드 연결"]
+    },
+    {
+      "version": "0.1.1",
+      "date": "2026.09.05",
+      "notes": ["첫 전투 뒤 4갈래 항로", "덱 최대 6열", "Android 화면 검증"]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026.09.04",
+      "notes": ["싱글 원정", "캐릭터 편성", "성계 지도·순차 카드 전투"]
+    }
   ]
 }
