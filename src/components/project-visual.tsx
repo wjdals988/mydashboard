@@ -42,9 +42,72 @@ export function ProjectVisual({
           {type === "location" && <LocationVisual accent={accent} />}
           {type === "alerts" && <AlertsVisual accent={accent} />}
           {type === "coupons" && <CouponsVisual accent={accent} />}
+          {type === "starlink" && <StarlinkVisual accent={accent} />}
           {type === "travel" && <TravelVisual accent={accent} />}
         </>
       )}
+    </div>
+  );
+}
+
+function StarlinkVisual({ accent }: { accent: string }) {
+  const nodes = [
+    { left: "5%", top: "48%", type: "start" },
+    { left: "24%", top: "22%", type: "combat" },
+    { left: "24%", top: "70%", type: "event" },
+    { left: "48%", top: "42%", type: "combat" },
+    { left: "70%", top: "20%", type: "shop" },
+    { left: "70%", top: "68%", type: "elite" },
+    { left: "90%", top: "44%", type: "key" },
+  ] as const;
+
+  return (
+    <div className="relative min-h-[180px] overflow-hidden rounded-lg bg-[#07101f]">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            "linear-gradient(30deg, transparent 48%, #62a8ff22 49%, #62a8ff22 51%, transparent 52%), linear-gradient(150deg, transparent 48%, #43dfd022 49%, #43dfd022 51%, transparent 52%)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <svg
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="none"
+        viewBox="0 0 100 100"
+      >
+        <g fill="none" stroke={`${accent}88`} strokeWidth="0.8">
+          <path d="M9 51 28 25M9 51l19 22M28 25l24 20M28 73l24-28M52 45l22-22M52 45l22 26M74 23l20 24M74 71l20-24" />
+        </g>
+      </svg>
+      {nodes.map((node) => (
+        <span
+          aria-hidden="true"
+          className="absolute grid size-8 -translate-x-1/2 -translate-y-1/2 rotate-45 place-items-center rounded-md border bg-[#101a31] shadow-[0_0_18px_rgba(67,223,208,0.18)]"
+          key={`${node.left}-${node.top}`}
+          style={{ borderColor: accent, left: node.left, top: node.top }}
+        >
+          <span className="-rotate-45 font-mono text-[10px] text-white">
+            {node.type === "combat"
+              ? "×"
+              : node.type === "event"
+                ? "?"
+                : node.type === "shop"
+                  ? "□"
+                  : node.type === "elite"
+                    ? "◆"
+                    : node.type === "key"
+                      ? "✦"
+                      : "●"}
+          </span>
+        </span>
+      ))}
+      <div className="absolute inset-x-4 bottom-3 flex items-end justify-between">
+        <Caption sub="2인 협동 덱빌더" title="STAR CHART · STAGE 1" />
+        <Chip accent={accent}>0 / 3 KEYS</Chip>
+      </div>
     </div>
   );
 }

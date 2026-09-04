@@ -8,6 +8,7 @@ export type ProjectVisual =
   | "location"
   | "alerts"
   | "coupons"
+  | "starlink"
   | "travel";
 export type ProjectIcon =
   | "bell"
@@ -15,6 +16,7 @@ export type ProjectIcon =
   | "calendar"
   | "gauge"
   | "gift"
+  | "gamepad"
   | "map"
   | "plane";
 

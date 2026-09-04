@@ -104,11 +104,11 @@ export default function Home() {
               Direct install
             </p>
             <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
-              서명된 릴리스 APK
+              Android APK 다운로드
             </h2>
             <p className="max-w-md text-sm leading-6 text-muted">
-              Play Store를 거치지 않고 바로 설치할 수 있는 파일입니다. 버전,
-              용량, SHA-256 해시를 함께 공개하니 설치 전에 대조해 주세요.
+              정식 서명 릴리스와 개발 미리보기를 구분해 제공합니다. 버전, 용량,
+              SHA-256 해시와 각 앱의 서명 상태를 설치 전에 확인해 주세요.
             </p>
           </div>
 

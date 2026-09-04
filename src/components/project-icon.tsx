@@ -3,6 +3,7 @@ import {
   CalendarDays,
   Coins,
   Gauge,
+  Gamepad2,
   Gift,
   MapPinned,
   Plane,
@@ -16,6 +17,7 @@ const icons = {
   coins: Coins,
   gauge: Gauge,
   gift: Gift,
+  gamepad: Gamepad2,
   map: MapPinned,
   plane: Plane,
 } satisfies Record<ProjectIconName, LucideIcon>;

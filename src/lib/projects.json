@@ -1,5 +1,52 @@
 [
   {
+    "slug": "starlink-duo",
+    "title": "Starlink Duo",
+    "eyebrow": "Co-op Deckbuilder",
+    "summary": "카드를 조합해 성계 항로를 개척하는 Android 1~2인 협동 덱빌더.",
+    "description": "현재 다운로드 가능한 개발 미리보기는 0.1.0 (1)입니다. Godot 4로 제작한 Android 덱빌더로, 싱글플레이에서는 두 대원을 지휘하고 멀티플레이에서는 Bluetooth Classic 기반 2인 협동 원정을 목표로 합니다.",
+    "status": "building",
+    "statusLabel": "개발 미리보기",
+    "year": "2026",
+    "updatedAt": "2026.09.04",
+    "apk": {
+      "url": "https://github.com/wjdals988/starlinkduo/releases/download/v0.1.0/starlink-duo-debug.apk",
+      "fileName": "starlink-duo-debug.apk",
+      "version": "0.1.0",
+      "versionCode": 1,
+      "size": "123,136,342 bytes",
+      "sha256": "68264fc0b5d1ca72b7f32ec9b6aff8914210a39bae13f94fb498353b6284496c",
+      "releaseUrl": "https://github.com/wjdals988/starlinkduo/releases/tag/v0.1.0",
+      "label": "development preview APK"
+    },
+    "tags": [
+      "Godot 4",
+      "Android",
+      "Deckbuilder",
+      "Bluetooth",
+      "Co-op"
+    ],
+    "highlights": [
+      "메인 메뉴에서 싱글플레이, Bluetooth 멀티플레이, 설정으로 진입합니다.",
+      "6명의 캐릭터를 전신 일러스트와 역할, 시작 덱 정보로 비교해 2명 편성합니다.",
+      "8구간 분기형 성계 지도에서 전투, 이벤트, 상점, 휴식, 엘리트, 열쇠 노드를 선택합니다.",
+      "전투에서는 최대 3장의 카드를 고르고 카드별 공격·방어·지원 효과를 순차 애니메이션으로 실행합니다.",
+      "전투 완료 후 보상 획득, 노드 선택, 다음 목적지 진입으로 이어지는 원정 흐름을 제공합니다.",
+      "진행 중 싱글 원정 이어하기와 새 원정 시작, 메인 메뉴 복귀를 지원합니다.",
+      "빠른 채팅 말풍선, 효과음, 햅틱, 모션 감소와 글자 크기 설정을 제공합니다."
+    ],
+    "nextSteps": [
+      "서로 다른 Android 실기기 2대에서 Bluetooth 연결, 재접속, 동시 항로 선택을 검증합니다.",
+      "개발용 디버그 서명을 정식 보관 키 기반 릴리스 서명으로 교체합니다.",
+      "APK 123MB 용량을 줄이기 위해 이미지 압축과 미사용 리소스 제외를 진행합니다.",
+      "화면 비율과 시스템 글꼴 배율이 다른 Android 기기에서 UI 회귀 테스트를 확대합니다.",
+      "전투 밸런스와 카드·캐릭터·노드 콘텐츠를 플레이테스트 데이터로 조정합니다."
+    ],
+    "visual": "starlink",
+    "accent": "#43dfd0",
+    "icon": "gamepad"
+  },
+  {
     "slug": "reaction-speed-test",
     "title": "반응속도 테스트",
     "eyebrow": "Speed Benchmark",
