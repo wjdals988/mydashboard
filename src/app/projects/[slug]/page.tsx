@@ -14,6 +14,7 @@ import { ProjectIcon } from "@/components/project-icon";
 import { ProjectVisual } from "@/components/project-visual";
 import {
   type ProjectApk,
+  type ProjectReleaseNote,
   getProject,
   projects,
   statusDot,
@@ -185,6 +186,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {project.apk && <ApkBlock apk={project.apk} />}
 
+        {project.releaseNotes && project.releaseNotes.length > 0 && (
+          <ReleaseNotes notes={project.releaseNotes} />
+        )}
+
         <section className="space-y-5 border-t border-line pt-10">
           <h2 className="text-lg font-medium">다른 프로젝트</h2>
           <div className="grid gap-2.5 md:grid-cols-3">
@@ -219,6 +224,44 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
       </div>
     </main>
+  );
+}
+
+function ReleaseNotes({ notes }: { notes: ProjectReleaseNote[] }) {
+  return (
+    <section className="space-y-5 border-t border-line pt-10" id="release-notes">
+      <div>
+        <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+          Version history
+        </p>
+        <h2 className="mt-2 text-xl font-medium">업데이트 노트</h2>
+      </div>
+      <div className="divide-y divide-[var(--line)] border-y border-line">
+        {notes.map((release, index) => (
+          <article className="grid gap-3 py-5 md:grid-cols-[150px_1fr]" key={release.version}>
+            <div>
+              <p className="font-mono text-sm font-medium text-fg">
+                v{release.version} <span className="text-subtle">({release.versionCode})</span>
+              </p>
+              <p className="num mt-1 font-mono text-xs text-subtle">{release.date}</p>
+              {index === 0 && (
+                <span className="mt-2 inline-flex rounded-full bg-[var(--live-soft)] px-2 py-0.5 text-[11px] font-medium text-[var(--live)]">
+                  최신
+                </span>
+              )}
+            </div>
+            <ul className="space-y-2">
+              {release.notes.map((note) => (
+                <li className="flex gap-2.5 text-sm leading-6 text-muted" key={note}>
+                  <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={14} />
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 

@@ -31,6 +31,13 @@ export type ProjectApk = {
   label: string;
 };
 
+export type ProjectReleaseNote = {
+  version: string;
+  versionCode: number;
+  date: string;
+  notes: string[];
+};
+
 // icon은 컴포넌트가 아니라 문자열 키로 둔다. 그래야 프로젝트 객체 전체가
 // 직렬화 가능해지고, 서버 컴포넌트에서 클라이언트 필터로 그대로 넘길 수 있다.
 export type Project = {
@@ -45,6 +52,7 @@ export type Project = {
   updatedAt: string;
   liveUrl?: string;
   apk?: ProjectApk;
+  releaseNotes?: ProjectReleaseNote[];
   tags: string[];
   highlights: string[];
   nextSteps: string[];

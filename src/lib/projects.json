@@ -4,21 +4,53 @@
     "title": "Starlink Duo",
     "eyebrow": "Co-op Deckbuilder",
     "summary": "카드를 조합해 성계 항로를 개척하는 Android 1~2인 협동 덱빌더.",
-    "description": "현재 다운로드 가능한 개발 미리보기는 0.1.1 (2)입니다. Godot 4로 제작한 Android 덱빌더로, 싱글플레이에서는 두 대원을 지휘하고 멀티플레이에서는 Bluetooth Classic 기반 2인 협동 원정을 목표로 합니다.",
+    "description": "현재 다운로드 가능한 개발 미리보기는 0.1.2 (3)입니다. Godot 4로 제작한 Android 덱빌더로, 싱글플레이에서는 두 대원을 지휘하고 멀티플레이에서는 Bluetooth Classic 기반 2인 협동 원정을 목표로 합니다.",
     "status": "building",
     "statusLabel": "개발 미리보기",
     "year": "2026",
     "updatedAt": "2026.09.05",
     "apk": {
-      "url": "https://github.com/wjdals988/starlinkduo/releases/download/v0.1.1/starlink-duo-debug.apk",
+      "url": "https://github.com/wjdals988/starlinkduo/releases/download/v0.1.2/starlink-duo-debug.apk",
       "fileName": "starlink-duo-debug.apk",
-      "version": "0.1.1",
-      "versionCode": 2,
-      "size": "123,136,446 bytes",
-      "sha256": "2d0e18f4e1c5ff98847e0d09343f22604df18192975e045d251f64091423a095",
-      "releaseUrl": "https://github.com/wjdals988/starlinkduo/releases/tag/v0.1.1",
+      "version": "0.1.2",
+      "versionCode": 3,
+      "size": "123,140,210 bytes",
+      "sha256": "71e9bf034ada95f8ac0319910d6f469e2eaafda4210693acb80574f8d2dc4ec6",
+      "releaseUrl": "https://github.com/wjdals988/starlinkduo/releases/tag/v0.1.2",
       "label": "development preview APK"
     },
+    "releaseNotes": [
+      {
+        "version": "0.1.2",
+        "versionCode": 3,
+        "date": "2026.09.05",
+        "notes": [
+          "메인 메뉴에서 현재 설치 버전을 바로 확인할 수 있습니다.",
+          "신규 버전이 있으면 레드닷과 최초 1회 안내 팝업으로 업데이트를 알립니다.",
+          "업데이트 안내에서 대시보드의 APK 다운로드와 버전별 변경 기록으로 이동할 수 있습니다."
+        ]
+      },
+      {
+        "version": "0.1.1",
+        "versionCode": 2,
+        "date": "2026.09.05",
+        "notes": [
+          "첫 전투를 공통 노드로 시작한 뒤 다음 구간에서 4갈래 항로를 선택하도록 변경했습니다.",
+          "현재 덱을 한 줄에 최대 6종씩 배치하고 카드가 늘어나면 아래로 스크롤하도록 개선했습니다.",
+          "맵과 덱 화면을 Android 에뮬레이터에서 검증했습니다."
+        ]
+      },
+      {
+        "version": "0.1.0",
+        "versionCode": 1,
+        "date": "2026.09.04",
+        "notes": [
+          "싱글플레이 원정, 캐릭터 선택, 분기형 성계 지도와 순차 카드 전투의 개발 미리보기를 공개했습니다.",
+          "Bluetooth 방 만들기·참가하기와 대기실 UI의 기반을 추가했습니다.",
+          "빠른 채팅, 효과음, 접근성 설정과 원정 저장·초기화를 추가했습니다."
+        ]
+      }
+    ],
     "tags": [
       "Godot 4",
       "Android",

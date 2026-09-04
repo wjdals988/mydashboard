@@ -1,0 +1,12 @@
+{
+  "version": "0.1.2",
+  "versionCode": 3,
+  "publishedAt": "2026-09-05",
+  "downloadPageUrl": "https://coldbrewventi.vercel.app/projects/starlink-duo#release-notes",
+  "apkUrl": "https://github.com/wjdals988/starlinkduo/releases/download/v0.1.2/starlink-duo-debug.apk",
+  "notes": [
+    "메인 메뉴 현재 버전 표시",
+    "신규 버전 레드닷과 업데이트 안내 팝업",
+    "대시보드 APK 다운로드와 버전별 업데이트 노트 연결"
+  ]
+}
