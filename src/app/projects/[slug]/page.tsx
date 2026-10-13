@@ -157,6 +157,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <ArrowDownToLine aria-hidden="true" size={15} />
                 </a>
               )}
+              {project.sourceUrl && (
+                <a
+                  className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium transition hover:border-line-strong"
+                  href={project.sourceUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  GitHub 소스
+                  <ExternalLink aria-hidden="true" size={15} />
+                </a>
+              )}
             </div>
           </div>
 

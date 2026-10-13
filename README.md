@@ -32,6 +32,7 @@ npm run build
 | `slug` | URL 경로(`/projects/<slug>`)이자 `update:apk`의 대상 키 |
 | `status` | `live` \| `building` \| `personal-use` — 필터와 배지 색을 결정 |
 | `liveUrl` | 있으면 "웹" 플랫폼으로 분류되고 상세 화면에 라이브 미리보기가 붙음 |
+| `sourceUrl` | 선택 항목. 상세 화면에 GitHub 소스 링크를 표시 |
 | `apk` | 있으면 "Android"로 분류되고 다운로드 영역·구조화 데이터에 포함 |
 | `visual` | 카드 미리보기 도식 종류. `src/components/project-visual.tsx`와 1:1 |
 | `icon` | lucide 아이콘 키. `src/components/project-icon.tsx`와 1:1 |
@@ -57,6 +58,9 @@ npm run update:apk -- --slug <slug> --url <apk url> --fileName <name> \
 실제 파일을 바꾸기 전 `--dryRun`을 붙이면 검증 결과만 출력합니다. APK 파일은
 대시보드 Git 저장소에 넣지 않고 앱 저장소의 GitHub Release asset으로 올립니다.
 대시보드에는 서명 검증을 마친 APK의 URL, 크기, SHA-256만 기록합니다.
+
+버전은 `0.1.1` 또는 `0.1.1-dev` 같은 SemVer를 받습니다. 같은 숫자 버전에서는
+개발 버전이 정식 버전보다 먼저이며, APK `versionCode`도 함께 증가해야 합니다.
 
 > 이 스크립트는 **이미 있는 `slug`만 갱신**합니다. 신규 프로젝트는
 > `projects.json`에 엔트리를 먼저 추가한 뒤 실행하세요.

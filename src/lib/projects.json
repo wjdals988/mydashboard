@@ -1,5 +1,44 @@
 [
   {
+    "slug": "runmoni",
+    "title": "런모니",
+    "eyebrow": "Runmoni",
+    "summary": "기기에 러닝을 기록하고 친구들과 크루·파티를 꾸리는 Android 개발 프리뷰.",
+    "description": "Android 네이티브 5개 탭(홈·탐색·러닝·크루·나)에서 GPS 러닝 기록, 크루·파티와 미니미 꾸미기를 제공합니다. 러닝 기록은 Room에 저장하며 커뮤니티 기능은 로컬 FastAPI·SQLite 서버가 필요합니다. NAVER Maps·LiveKit 클라우드는 미배포 상태이고 Firebase·Supabase 연동은 검토 단계입니다. 실제 기기 GPS·음성·DJ 음악 송출은 아직 검증하지 않았습니다.",
+    "status": "building",
+    "statusLabel": "개발 미리보기",
+    "year": "2026",
+    "updatedAt": "2026.10.13",
+    "sourceUrl": "https://github.com/wjdals988/runmoni",
+    "tags": [
+      "Android",
+      "Kotlin",
+      "Jetpack Compose",
+      "Room",
+      "FastAPI",
+      "SQLite"
+    ],
+    "highlights": [
+      "GPS foreground service로 거리·시간·페이스·1km 구간을 기록하고 기기 내 Room에 저장합니다.",
+      "러닝 일시정지·재개, 저장된 지점부터 중단 복구, GPX 내보내기와 기록 삭제를 지원합니다.",
+      "로컬 API에 연결해 크루 생성·가입, 2~20명 파티 생성·참가·취소, 공지와 채팅을 사용합니다.",
+      "초대된 성인 파일럿의 명시 동의 후 위치를 15초마다 공유하며 45초 후 만료합니다.",
+      "미니미 5개 슬롯×4종, 총 20종 아이템과 마일리지 구매·장착을 구현했습니다. 유료 결제는 없습니다.",
+      "자체 음악 파일 재생과 LiveKit 음성·DJ 음악 트랙 코드를 구현했습니다. 실제 클라우드와 2대 기기 송출은 미검증입니다.",
+      "자동 테스트 82건(JVM 6·API 23·오디오 브리지 32·Android 에뮬레이터 21)이 통과했으며 실기기 검증은 0건입니다."
+    ],
+    "nextSteps": [
+      "실제 Android 기기에서 APK 설치·실행, 야외 GPS 정확도, 화면 끔, 배터리와 중단 복구를 검증합니다.",
+      "NAVER Maps 인증, HTTPS API와 LiveKit을 배포하고 서로 다른 기기 2대에서 음성·DJ 음악을 검증합니다.",
+      "외부 음악 앱 6종의 캡처 허용 여부와 음성·음악 별도 음량이 실제 송출에 반영되는지 확인합니다.",
+      "파일럿 초대 가입 이후 기존 계정 복구 로그인과 위치 공유 운영 정책을 보강합니다.",
+      "기기 지갑과 서버 지갑의 연계, 운영 데이터 백업과 Firebase·Supabase 저장소 전환을 검토합니다."
+    ],
+    "visual": "running",
+    "accent": "#2d8a68",
+    "icon": "footprints"
+  },
+  {
     "slug": "starlink-duo",
     "title": "Starlink Duo",
     "eyebrow": "Co-op Deckbuilder",
