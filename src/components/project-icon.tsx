@@ -5,6 +5,7 @@ import {
   Gauge,
   Gamepad2,
   Gift,
+  Footprints,
   MapPinned,
   Plane,
   type LucideIcon,
@@ -20,6 +21,7 @@ const icons = {
   gamepad: Gamepad2,
   map: MapPinned,
   plane: Plane,
+  footprints: Footprints,
 } satisfies Record<ProjectIconName, LucideIcon>;
 
 export function ProjectIcon({

@@ -44,9 +44,37 @@ export function ProjectVisual({
           {type === "coupons" && <CouponsVisual accent={accent} />}
           {type === "starlink" && <StarlinkVisual accent={accent} />}
           {type === "travel" && <TravelVisual accent={accent} />}
+          {type === "running" && <RunningVisual accent={accent} />}
         </>
       )}
     </div>
+  );
+}
+
+function RunningVisual({ accent }: { accent: string }) {
+  return (
+    <Frame>
+      <div className="flex items-start justify-between gap-3">
+        <Caption sub="나의 러닝, 우리의 리듬" title="RUNMONI" />
+        <Chip accent={accent}>GPS · ROOM</Chip>
+      </div>
+      <div className="relative overflow-hidden rounded-lg border border-line bg-surface px-3 py-2">
+        <svg aria-hidden="true" className="h-20 w-full" viewBox="0 0 280 80">
+          <path d="M0 20h280M0 60h280M50 0v80M140 0v80M230 0v80" fill="none" stroke="var(--line)" />
+          <path d="M24 60C48 60 42 24 74 24S98 64 130 50 150 16 182 24s34 36 66 12" fill="none" stroke={accent} strokeLinecap="round" strokeWidth="4" />
+          <circle cx="24" cy="60" r="5" fill="var(--surface)" stroke={accent} strokeWidth="3" />
+          <circle cx="248" cy="36" r="5" fill={accent} />
+        </svg>
+        <p className="text-[10px] text-subtle">러닝 경로 도식 · 실제 기록 아님</p>
+      </div>
+      <div className="grid grid-cols-3 gap-1.5 text-center text-[11px]">
+        {["기기 내 기록", "크루 · 파티", "미니미 꾸미기"].map((label) => (
+          <div className="rounded-md border border-line bg-surface px-1.5 py-2" key={label}>
+            {label}
+          </div>
+        ))}
+      </div>
+    </Frame>
   );
 }
 

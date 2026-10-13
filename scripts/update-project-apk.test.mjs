@@ -31,6 +31,20 @@ test("accepts internally consistent APK metadata", () => {
   });
 });
 
+test("preserves a development version in the matching release and download URLs", () => {
+  const development = {
+    ...nextApk,
+    version: "0.1.13-dev",
+    fileName: nextApk.fileName.replace("0.1.13", "0.1.13-dev"),
+    url: nextApk.url.replaceAll("0.1.13", "0.1.13-dev"),
+    releaseUrl: nextApk.releaseUrl.replace("0.1.13", "0.1.13-dev"),
+  };
+  assert.equal(validateApkMetadata(development).version, "0.1.13-dev");
+  for (const version of ["v0.1.13", "0.1.13-01", "0.1.13-dev.", "0.1.13-dev_1"]) {
+    assert.throws(() => validateApkMetadata({ ...nextApk, version }), /SemVer/);
+  }
+});
+
 test("rejects a digest that is not SHA-256", () => {
   assert.throws(
     () => validateApkMetadata({ ...nextApk, sha256: "abc" }),
@@ -94,6 +108,22 @@ test("compares numeric SemVer components", () => {
   assert.equal(compareVersions("1.2.9", "1.10.0"), -1);
 });
 
+test("orders prereleases before stable releases with numeric identifier precedence", () => {
+  const ordered = ["1.0.0-alpha", "1.0.0-alpha.1", "1.0.0-alpha.beta", "1.0.0-beta", "1.0.0-beta.2", "1.0.0-beta.11", "1.0.0-rc.1", "1.0.0"];
+  for (let index = 1; index < ordered.length; index += 1) {
+    assert.equal(compareVersions(ordered[index - 1], ordered[index]), -1);
+    assert.equal(compareVersions(ordered[index], ordered[index - 1]), 1);
+  }
+  assert.equal(compareVersions("0.1.1-dev", "0.1.1-dev"), 0);
+  assert.equal(compareVersions("0.1.1-dev", "0.1.0"), 1);
+  assert.equal(compareVersions("1.0.0-dev.9007199254740993", "1.0.0-dev.9007199254740992"), 1);
+  assert.throws(() => compareVersions("1.0.0-01", "1.0.0"), /Invalid SemVer/);
+  assert.throws(
+    () => validateVersionProgression({ ...nextApk, version: "0.1.13" }, { ...nextApk, version: "0.1.13-dev", versionCode: 15 }),
+    /version must increase/,
+  );
+});
+
 test("reconciles the visible description when a pending source is released", () => {
   const description =
     "현재 다운로드 가능한 배포 APK는 0.1.12 (13)이고, 최신 검증 소스는 0.1.13 (14, ecea756)입니다. Firebase 기반 앱입니다.";
@@ -101,6 +131,13 @@ test("reconciles the visible description when a pending source is released", () 
   assert.equal(
     updateDescriptionVersion(description, "0.1.13", 14),
     "현재 버전은 0.1.13 (14)이며, Firebase 기반 앱입니다.",
+  );
+});
+
+test("reconciles an existing development version without losing its prerelease label", () => {
+  assert.equal(
+    updateDescriptionVersion("현재 버전은 0.1.0-dev (1)이며, 러닝 앱입니다.", "0.1.1-dev", 2),
+    "현재 버전은 0.1.1-dev (2)이며, 러닝 앱입니다.",
   );
 });
 

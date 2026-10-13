@@ -9,7 +9,8 @@ export type ProjectVisual =
   | "alerts"
   | "coupons"
   | "starlink"
-  | "travel";
+  | "travel"
+  | "running";
 export type ProjectIcon =
   | "bell"
   | "coins"
@@ -18,7 +19,8 @@ export type ProjectIcon =
   | "gift"
   | "gamepad"
   | "map"
-  | "plane";
+  | "plane"
+  | "footprints";
 
 export type ProjectApk = {
   url: string;
@@ -51,6 +53,7 @@ export type Project = {
   year: string;
   updatedAt: string;
   liveUrl?: string;
+  sourceUrl?: string;
   apk?: ProjectApk;
   releaseNotes?: ProjectReleaseNote[];
   tags: string[];

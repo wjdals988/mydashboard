@@ -54,6 +54,7 @@ exact retry of identical metadata is allowed.
 - `location-widget`: 위치공유 앱 위젯
 - `gifticon-doctor`: 기프티콘닥터
 - `donghaeng-ilgi`: 동행일기 (`wjdals988/honeymoondoctor`, 저장소명은 옛 브랜드 유지)
+- `runmoni`: 런모니 (`wjdals988/runmoni`, 서명된 개발 미리보기 APK)
 
 ## GitHub Actions Shape
 

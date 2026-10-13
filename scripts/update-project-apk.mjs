@@ -2,7 +2,9 @@ import { readFile, writeFile } from "node:fs/promises";
 import { parseArgs } from "node:util";
 import { pathToFileURL } from "node:url";
 
-const VERSION_PATTERN = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
+const PRERELEASE_IDENTIFIER = "(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)";
+const VERSION_SOURCE = `(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-(${PRERELEASE_IDENTIFIER}(?:\\.${PRERELEASE_IDENTIFIER})*))?`;
+const VERSION_PATTERN = new RegExp(`^${VERSION_SOURCE}$`);
 const SHA256_PATTERN = /^[0-9a-f]{64}$/i;
 const DATE_PATTERN = /^\d{4}\.\d{2}\.\d{2}$/;
 const SIZE_PATTERN = /^(?:[1-9]\d*|[1-9]\d{0,2}(?:,\d{3})* bytes)$/;
@@ -101,7 +103,7 @@ export function validateApkMetadata(input) {
   const sha256 = input.sha256.toLowerCase();
 
   if (!VERSION_PATTERN.test(input.version)) {
-    throw new Error("--version must use SemVer x.y.z without a prefix");
+    throw new Error("--version must use SemVer x.y.z with optional prerelease identifiers, without a prefix");
   }
 
   if (!Number.isSafeInteger(versionCode) || versionCode < 1) {
@@ -194,10 +196,32 @@ export function compareVersions(left, right) {
   const leftParts = parseVersion(left);
   const rightParts = parseVersion(right);
 
-  for (let index = 0; index < leftParts.length; index += 1) {
-    if (leftParts[index] !== rightParts[index]) {
-      return leftParts[index] > rightParts[index] ? 1 : -1;
+  for (let index = 0; index < leftParts.core.length; index += 1) {
+    if (leftParts.core[index] !== rightParts.core[index]) {
+      return leftParts.core[index] > rightParts.core[index] ? 1 : -1;
     }
+  }
+
+  const leftPre = leftParts.prerelease;
+  const rightPre = rightParts.prerelease;
+  if (leftPre.length === 0 && rightPre.length === 0) return 0;
+  if (leftPre.length === 0) return 1;
+  if (rightPre.length === 0) return -1;
+
+  for (let index = 0; index < Math.max(leftPre.length, rightPre.length); index += 1) {
+    const leftIdentifier = leftPre[index];
+    const rightIdentifier = rightPre[index];
+    if (leftIdentifier === undefined) return -1;
+    if (rightIdentifier === undefined) return 1;
+    if (leftIdentifier === rightIdentifier) continue;
+
+    const leftNumeric = /^\d+$/.test(leftIdentifier);
+    const rightNumeric = /^\d+$/.test(rightIdentifier);
+    if (leftNumeric && rightNumeric) {
+      return BigInt(leftIdentifier) > BigInt(rightIdentifier) ? 1 : -1;
+    }
+    if (leftNumeric !== rightNumeric) return leftNumeric ? -1 : 1;
+    return leftIdentifier > rightIdentifier ? 1 : -1;
   }
 
   return 0;
@@ -206,9 +230,11 @@ export function compareVersions(left, right) {
 export function updateDescriptionVersion(description, version, versionCode) {
   if (typeof description !== "string") return description;
 
-  const developmentPrefix =
-    /^현재 다운로드 가능한 배포 APK는 \d+\.\d+\.\d+ \(\d+\)이고, 최신 검증 소스는 \d+\.\d+\.\d+ \(\d+, [0-9a-f]{7,40}\)입니다\.\s*/i;
-  const releasedPrefix = /^현재 버전은 \d+\.\d+\.\d+(?: \(\d+\))?이며,\s*/;
+  const developmentPrefix = new RegExp(
+    `^현재 다운로드 가능한 배포 APK는 ${VERSION_SOURCE} \\(\\d+\\)이고, 최신 검증 소스는 ${VERSION_SOURCE} \\(\\d+, [0-9a-f]{7,40}\\)입니다\\.\\s*`,
+    "i",
+  );
+  const releasedPrefix = new RegExp(`^현재 버전은 ${VERSION_SOURCE}(?: \\(\\d+\\))?이며,\\s*`);
   const remainder = description.replace(developmentPrefix, "").replace(releasedPrefix, "");
 
   if (remainder === description) return description;
@@ -223,7 +249,10 @@ function parseVersion(version) {
     throw new Error(`Invalid SemVer: ${version}`);
   }
 
-  return match.slice(1).map(Number);
+  return {
+    core: match.slice(1, 4).map(Number),
+    prerelease: match[4]?.split(".") ?? [],
+  };
 }
 
 function parseHttpsUrl(value, optionName) {
