@@ -71,7 +71,7 @@ export function ThemeToggle() {
           <button
             aria-label={item.label}
             aria-pressed={active}
-            className={`grid size-7 place-items-center rounded-full transition ${
+            className={`grid size-9 place-items-center rounded-full transition ${
               active ? "bg-surface-3 text-fg" : "text-subtle hover:text-fg"
             }`}
             key={item.value}

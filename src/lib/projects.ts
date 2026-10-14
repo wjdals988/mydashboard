@@ -79,14 +79,22 @@ export function platformsOf(project: Project): ProjectPlatform[] {
     platforms.push("web");
   }
 
-  if (project.apk) {
+  if (
+    project.apk ||
+    project.tags.includes("Android") ||
+    project.tags.includes("Kotlin")
+  ) {
     platforms.push("android");
   }
 
   return platforms;
 }
 
-export const statusOrder: ProjectStatus[] = ["live", "building", "personal-use"];
+export const statusOrder: ProjectStatus[] = [
+  "live",
+  "building",
+  "personal-use",
+];
 
 export const statusLabels: Record<ProjectStatus, string> = {
   live: "운영 중",

@@ -33,7 +33,7 @@ npm run build
 | `status` | `live` \| `building` \| `personal-use` — 필터와 배지 색을 결정 |
 | `liveUrl` | 있으면 "웹" 플랫폼으로 분류되고 상세 화면에 라이브 미리보기가 붙음 |
 | `sourceUrl` | 선택 항목. 상세 화면에 GitHub 소스 링크를 표시 |
-| `apk` | 있으면 "Android"로 분류되고 다운로드 영역·구조화 데이터에 포함 |
+| `apk` | 있으면 다운로드 영역·구조화 데이터에 포함 (Android 플랫폼은 APK 또는 Android/Kotlin 태그로 판별) |
 | `visual` | 카드 미리보기 도식 종류. `src/components/project-visual.tsx`와 1:1 |
 | `icon` | lucide 아이콘 키. `src/components/project-icon.tsx`와 1:1 |
 | `accent` | 카드 상단 선, 아이콘 배경, 도식 강조에 쓰는 프로젝트 고유색 |

@@ -43,6 +43,23 @@ export function SiteHeader() {
           <ThemeToggle />
         </div>
       </div>
+      <nav
+        aria-label="모바일 주요 메뉴"
+        className="flex border-t border-line px-5 sm:hidden"
+      >
+        <Link
+          className="flex min-h-11 flex-1 items-center justify-center text-sm text-muted hover:text-fg"
+          href="/#projects"
+        >
+          프로젝트 탐색
+        </Link>
+        <Link
+          className="flex min-h-11 flex-1 items-center justify-center text-sm text-muted hover:text-fg"
+          href="/#downloads"
+        >
+          APK 다운로드
+        </Link>
+      </nav>
     </header>
   );
 }
