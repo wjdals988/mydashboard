@@ -63,20 +63,20 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap items-center gap-2.5">
-                <Link
+                <a
                   className="inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
                   href="#projects"
                 >
                   프로젝트 보기
                   <ArrowUpRight aria-hidden="true" size={15} />
-                </Link>
-                <Link
+                </a>
+                <a
                   className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium transition hover:border-line-strong"
                   href="#downloads"
                 >
                   APK 다운로드
                   <ArrowDownToLine aria-hidden="true" size={15} />
-                </Link>
+                </a>
                 <a
                   className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition hover:text-fg"
                   href={site.github}
