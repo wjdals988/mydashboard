@@ -19,7 +19,7 @@
   --line-strong: #2c333b;
   --fg: #f3f5f7;
   --fg-muted: #9aa4af;
-  --fg-subtle: #6c757f;
+  --fg-subtle: #939da8;
   --accent: #3ecf8e;
   --accent-ink: #04231a;
   --accent-soft: rgba(62, 207, 142, 0.14);
@@ -46,14 +46,14 @@
     --line-strong: #cdd2d9;
     --fg: #14171a;
     --fg-muted: #5a636d;
-    --fg-subtle: #838c96;
-    --accent: #0f8a5f;
+    --fg-subtle: #68727d;
+    --accent: #08754f;
     --accent-ink: #ffffff;
     --accent-soft: rgba(15, 138, 95, 0.1);
     --accent-line: rgba(15, 138, 95, 0.26);
-    --live: #0f8a5f;
+    --live: #08754f;
     --live-soft: rgba(15, 138, 95, 0.1);
-    --building: #a86a12;
+    --building: #8b560b;
     --building-soft: rgba(168, 106, 18, 0.11);
     --personal: #2a6fb0;
     --personal-soft: rgba(42, 111, 176, 0.1);
@@ -73,14 +73,14 @@
   --line-strong: #cdd2d9;
   --fg: #14171a;
   --fg-muted: #5a636d;
-  --fg-subtle: #838c96;
-  --accent: #0f8a5f;
+  --fg-subtle: #68727d;
+  --accent: #08754f;
   --accent-ink: #ffffff;
   --accent-soft: rgba(15, 138, 95, 0.1);
   --accent-line: rgba(15, 138, 95, 0.26);
-  --live: #0f8a5f;
+  --live: #08754f;
   --live-soft: rgba(15, 138, 95, 0.1);
-  --building: #a86a12;
+  --building: #8b560b;
   --building-soft: rgba(168, 106, 18, 0.11);
   --personal: #2a6fb0;
   --personal-soft: rgba(42, 111, 176, 0.1);
@@ -201,4 +201,10 @@
   *::after {
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Sticky navigation must not cover anchor destinations. */
+[id] { scroll-margin-top: 8rem; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
 }

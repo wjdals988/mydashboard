@@ -72,21 +72,13 @@ export function getProject(slug: string) {
 
 export type ProjectPlatform = "web" | "android";
 
-export function platformsOf(project: Project): ProjectPlatform[] {
-  const platforms: ProjectPlatform[] = [];
+export { platformsOf } from "./project-catalog.mjs";
 
-  if (project.liveUrl) {
-    platforms.push("web");
-  }
-
-  if (project.apk) {
-    platforms.push("android");
-  }
-
-  return platforms;
-}
-
-export const statusOrder: ProjectStatus[] = ["live", "building", "personal-use"];
+export const statusOrder: ProjectStatus[] = [
+  "live",
+  "building",
+  "personal-use",
+];
 
 export const statusLabels: Record<ProjectStatus, string> = {
   live: "운영 중",
