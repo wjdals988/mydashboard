@@ -454,13 +454,13 @@
     "accent": "#12897A",
     "icon": "coins",
     "apk": {
-      "url": "https://github.com/wjdals988/pricehere/releases/download/v2.5.2/pricehere-2.5.2-20-release-signed.apk",
-      "fileName": "pricehere-2.5.2-20-release-signed.apk",
-      "version": "2.5.2",
-      "versionCode": 20,
-      "size": "1,428,876 bytes",
-      "sha256": "935c86a6260538809061e8764a2982027e0a65225015ca0cf844320ac0c2a70c",
-      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v2.5.2",
+      "url": "https://github.com/wjdals988/pricehere/releases/download/v2.5.3/pricehere-2.5.3-21-release-signed.apk",
+      "fileName": "pricehere-2.5.3-21-release-signed.apk",
+      "version": "2.5.3",
+      "versionCode": 21,
+      "size": "1,453,804 bytes",
+      "sha256": "3539a4f155d025bc04550daf92d1bdfd2c66b09552c9a31641151dc57b138d00",
+      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v2.5.3",
       "label": "signed release APK"
     }
   }
