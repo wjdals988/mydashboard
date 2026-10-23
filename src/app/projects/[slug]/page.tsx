@@ -278,7 +278,7 @@ function ReleaseNotes({ notes }: { notes: ProjectReleaseNote[] }) {
 
 function ApkBlock({ apk }: { apk: ProjectApk }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-line bg-surface">
+    <section className="overflow-hidden rounded-2xl border border-line bg-surface" id="download">
       <div className="flex flex-col justify-between gap-4 border-b border-line p-6 md:flex-row md:items-center">
         <div className="min-w-0 space-y-2">
           <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">

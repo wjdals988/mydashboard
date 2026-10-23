@@ -2,7 +2,12 @@ import { ArrowDownToLine, ArrowUpRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { ProjectIcon } from "@/components/project-icon";
 import { ProjectVisual } from "@/components/project-visual";
-import { type Project, statusDot, statusTone } from "@/lib/projects";
+import {
+  type Project,
+  platformsOf,
+  statusDot,
+  statusTone,
+} from "@/lib/projects";
 
 export function ProjectCard({
   project,
@@ -29,7 +34,9 @@ export function ProjectCard({
           <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${statusTone[project.status]}`}
           >
-            <span className={`size-1.5 rounded-full ${statusDot[project.status]}`} />
+            <span
+              className={`size-1.5 rounded-full ${statusDot[project.status]}`}
+            />
             {project.statusLabel}
           </span>
           <span className="num font-mono text-xs text-subtle">
@@ -43,10 +50,26 @@ export function ProjectCard({
             {project.eyebrow}
           </p>
           <h3 className="text-xl font-medium tracking-[-0.01em]">
-            {project.title}
+            <Link
+              className="hover:text-accent"
+              href={`/projects/${project.slug}`}
+            >
+              {project.title}
+            </Link>
           </h3>
           <p className="text-sm leading-6 text-muted">{project.summary}</p>
         </div>
+
+        <p className="text-xs text-muted">
+          {platformsOf(project)
+            .map((platform) => (platform === "web" ? "웹" : "Android"))
+            .join(" · ")}
+          {platformsOf(project).includes("android") &&
+            !project.apk &&
+            " · APK 미공개"}
+          {project.apk &&
+            ` · ${project.apk.label === "signed release APK" ? "서명 릴리스" : "개발 미리보기"}`}
+        </p>
 
         <div className="flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
@@ -61,8 +84,9 @@ export function ProjectCard({
 
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
           <Link
-            className="inline-flex h-9 items-center gap-1.5 rounded-full bg-fg px-4 text-sm font-medium text-bg transition hover:opacity-90"
+            className="inline-flex h-11 items-center gap-1.5 rounded-full bg-fg px-4 text-sm font-medium text-bg transition hover:opacity-90"
             href={`/projects/${project.slug}`}
+            aria-label={`${project.title} 상세 보기`}
           >
             상세 보기
             <ArrowUpRight
@@ -73,7 +97,8 @@ export function ProjectCard({
           </Link>
           {project.liveUrl && (
             <a
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
+              className="inline-flex h-11 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
+              aria-label={`${project.title} 웹 서비스 열기 (새 탭)`}
               href={project.liveUrl}
               rel="noreferrer"
               target="_blank"
@@ -84,7 +109,8 @@ export function ProjectCard({
           )}
           {project.apk && (
             <a
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
+              className="inline-flex h-11 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
+              aria-label={`${project.title} APK v${project.apk.version} 다운로드`}
               download
               href={project.apk.url}
               rel="noreferrer"

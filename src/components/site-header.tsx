@@ -1,3 +1,5 @@
+/* Native home-section anchors intentionally preserve repeated hash navigation and scroll-margin. */
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Link from "next/link";
 import { GithubMark } from "@/components/github-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -19,18 +21,18 @@ export function SiteHeader() {
         </Link>
 
         <div className="flex items-center gap-2">
-          <Link
+          <a
             className="hidden h-8 items-center rounded-full px-3 text-sm text-muted transition hover:text-fg sm:inline-flex"
             href="/#projects"
           >
             프로젝트
-          </Link>
-          <Link
+          </a>
+          <a
             className="hidden h-8 items-center rounded-full px-3 text-sm text-muted transition hover:text-fg sm:inline-flex"
             href="/#downloads"
           >
             다운로드
-          </Link>
+          </a>
           <a
             aria-label="GitHub 프로필 열기"
             className="grid size-8 place-items-center rounded-full border border-line bg-surface text-muted transition hover:border-line-strong hover:text-fg"
@@ -43,6 +45,23 @@ export function SiteHeader() {
           <ThemeToggle />
         </div>
       </div>
+      <nav
+        aria-label="모바일 주요 메뉴"
+        className="flex border-t border-line px-5 sm:hidden"
+      >
+        <a
+          className="flex min-h-11 flex-1 items-center justify-center text-sm text-muted hover:text-fg"
+          href="/#projects"
+        >
+          프로젝트 탐색
+        </a>
+        <a
+          className="flex min-h-11 flex-1 items-center justify-center text-sm text-muted hover:text-fg"
+          href="/#downloads"
+        >
+          APK 다운로드
+        </a>
+      </nav>
     </header>
   );
 }

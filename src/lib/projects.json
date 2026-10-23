@@ -423,7 +423,7 @@
     "status": "personal-use",
     "statusLabel": "개인 사용 중",
     "year": "2026",
-    "updatedAt": "2026.09.07",
+    "updatedAt": "2026.10.23",
     "tags": [
       "Kotlin",
       "Jetpack Compose",
@@ -454,13 +454,13 @@
     "accent": "#12897A",
     "icon": "coins",
     "apk": {
-      "url": "https://github.com/wjdals988/pricehere/releases/download/v2.1.0/pricehere-2.1.0-13-release-signed.apk",
-      "fileName": "pricehere-2.1.0-13-release-signed.apk",
-      "version": "2.1.0",
-      "versionCode": 13,
-      "size": "1,387,056 bytes",
-      "sha256": "233eb335d213dbb52f38ffe688a851f6fbc0604cb61b1c1d84f422eb0e178916",
-      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v2.1.0",
+      "url": "https://github.com/wjdals988/pricehere/releases/download/v2.5.3/pricehere-2.5.3-21-release-signed.apk",
+      "fileName": "pricehere-2.5.3-21-release-signed.apk",
+      "version": "2.5.3",
+      "versionCode": 21,
+      "size": "1,453,804 bytes",
+      "sha256": "3539a4f155d025bc04550daf92d1bdfd2c66b09552c9a31641151dc57b138d00",
+      "releaseUrl": "https://github.com/wjdals988/pricehere/releases/tag/v2.5.3",
       "label": "signed release APK"
     }
   }

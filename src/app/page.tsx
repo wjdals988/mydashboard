@@ -32,6 +32,9 @@ const capabilities = [
 
 export default function Home() {
   const stats = projectStats();
+  const recent = [...projects]
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+    .slice(0, 3);
 
   return (
     <main>
@@ -40,57 +43,126 @@ export default function Home() {
           aria-hidden="true"
           className="grid-veil pointer-events-none absolute inset-0 opacity-50"
         />
-        <div className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-16 md:px-8 md:pb-20 md:pt-24">
-          <div className="max-w-3xl space-y-6">
-            <p className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
-              <span className="relative flex size-1.5">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
-              </span>
-              프로젝트 {stats.total}개 운영 · 마지막 갱신 {stats.lastUpdatedAt}
-            </p>
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-8 pt-10 md:px-8 md:pb-10 md:pt-14">
+          <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-center">
+            <div className="space-y-5">
+              <p className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
+                <span className="relative flex size-1.5">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
+                  <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
+                </span>
+                프로젝트 {stats.total}개 · 마지막 갱신 {stats.lastUpdatedAt}
+              </p>
 
-            <h1 className="text-4xl font-medium leading-[1.1] tracking-[-0.03em] text-balance md:text-6xl">
-              {site.tagline}
-            </h1>
+              <h1 className="text-4xl font-medium leading-[1.2] tracking-[-0.04em] text-balance md:text-5xl">
+                {site.tagline}
+              </h1>
 
-            <p className="max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
-              {site.description}
-            </p>
+              <p className="max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
+                {site.description}
+              </p>
 
-            <div className="flex flex-wrap items-center gap-2.5">
-              <Link
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
-                href="#projects"
-              >
-                프로젝트 보기
-                <ArrowUpRight aria-hidden="true" size={15} />
-              </Link>
-              <Link
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium transition hover:border-line-strong"
-                href="#downloads"
-              >
-                APK 다운로드
-                <ArrowDownToLine aria-hidden="true" size={15} />
-              </Link>
-              <a
-                className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition hover:text-fg"
-                href={site.github}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <GithubMark size={15} />
-                GitHub
-              </a>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <a
+                  className="inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
+                  href="#projects"
+                >
+                  프로젝트 보기
+                  <ArrowUpRight aria-hidden="true" size={15} />
+                </a>
+                <a
+                  className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium transition hover:border-line-strong"
+                  href="#downloads"
+                >
+                  APK 다운로드
+                  <ArrowDownToLine aria-hidden="true" size={15} />
+                </a>
+                <a
+                  className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition hover:text-fg"
+                  href={site.github}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <GithubMark size={15} />
+                  GitHub
+                </a>
+              </div>
             </div>
+
+            <aside
+              aria-label="최근 프로젝트 업데이트"
+              className="rounded-2xl border border-line bg-surface p-5 md:p-6"
+            >
+              <div className="mb-5 flex items-center justify-between">
+                <h2 className="text-sm font-medium">최근 업데이트</h2>
+                <span className="font-mono text-xs tracking-wider text-accent">
+                  CHANGELOG
+                </span>
+              </div>
+              <ul className="space-y-1">
+                {recent.map((project) => (
+                  <li key={project.slug}>
+                    <Link
+                      className="group flex min-h-20 items-center gap-3 rounded-xl p-2 transition hover:bg-surface-2"
+                      href={`/projects/${project.slug}`}
+                    >
+                      <span
+                        className="grid size-10 shrink-0 place-items-center rounded-xl text-white"
+                        style={{ backgroundColor: project.accent }}
+                      >
+                        <ProjectIcon name={project.icon} size={19} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-medium">
+                          {project.title}
+                        </span>
+                        <span className="mt-1 block text-xs text-muted">
+                          {project.statusLabel} · {project.updatedAt}
+                        </span>
+                      </span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="text-muted transition group-hover:text-accent"
+                        size={17}
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 border-t border-line pt-4 text-xs leading-5 text-muted">
+                업데이트 날짜 기준 · 상세 페이지에서 구현 범위와 남은 과제를
+                확인하세요.
+              </p>
+            </aside>
           </div>
 
-          <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
+          <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
             <Metric label="전체 프로젝트" value={stats.total} />
             {stats.byStatus.map((item) => (
               <Metric key={item.status} label={item.label} value={item.count} />
             ))}
           </dl>
+        </div>
+      </section>
+
+      <section className="px-5 py-10 md:px-8 md:py-14" id="projects">
+        <div className="mx-auto max-w-6xl space-y-8">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div className="space-y-3">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+                Explore projects
+              </p>
+              <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
+                프로젝트 탐색
+              </h2>
+            </div>
+            <p className="max-w-lg text-sm leading-6 text-muted">
+              운영 중인 서비스와 구현 중인 시스템을 같은 기준으로 정리했습니다.
+              각 상세 화면에는 구현한 기능과 남은 과제를 그대로 적어 둡니다.
+            </p>
+          </div>
+
+          <ProjectGrid projects={projects} />
         </div>
       </section>
 
@@ -116,58 +188,56 @@ export default function Home() {
             {downloadableProjects.map((project) =>
               project.apk ? (
                 <li key={project.slug}>
-                  <a
-                    className="group flex items-center gap-4 rounded-xl border border-line bg-surface p-4 transition hover:border-line-strong hover:bg-surface-2"
-                    download
-                    href={project.apk.url}
-                    rel="noreferrer"
-                  >
+                  <div className="flex flex-wrap items-center gap-3 rounded-xl border border-line bg-surface p-4">
                     <span
                       className="grid size-10 shrink-0 place-items-center rounded-lg text-white"
                       style={{ backgroundColor: project.accent }}
                     >
                       <ProjectIcon name={project.icon} size={18} />
                     </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-medium">
+                    <div className="min-w-0 flex-1">
+                      <Link
+                        className="text-sm font-medium hover:text-accent"
+                        href={`/projects/${project.slug}`}
+                      >
                         {project.title}
-                      </span>
-                      <span className="num mt-0.5 block truncate font-mono text-xs text-subtle">
+                      </Link>
+                      <p className="mt-1 text-xs text-muted">
                         v{project.apk.version} ({project.apk.versionCode}) ·{" "}
                         {project.apk.size}
+                      </p>
+                      <span
+                        className={`mt-2 inline-flex rounded-md px-2 py-1 text-xs ${project.apk.label === "signed release APK" ? "bg-accent-soft text-accent" : "bg-[var(--building-soft)] text-[var(--building)]"}`}
+                      >
+                        {project.apk.label === "signed release APK"
+                          ? "서명 릴리스"
+                          : "개발 미리보기 · 디버그 APK"}
                       </span>
-                    </span>
-                    <ArrowDownToLine
-                      aria-hidden="true"
-                      className="shrink-0 text-subtle transition group-hover:translate-y-0.5 group-hover:text-fg"
-                      size={17}
-                    />
-                  </a>
+                    </div>
+                    <div className="flex w-full gap-2 pl-[52px] sm:w-auto sm:pl-0">
+                      <Link
+                        aria-label={`${project.title} 설치 정보 확인`}
+                        className="inline-flex min-h-11 items-center rounded-lg border border-line px-3 text-xs text-muted hover:text-fg"
+                        href={`/projects/${project.slug}#download`}
+                      >
+                        설치 정보
+                      </Link>
+                      <a
+                        aria-label={`${project.title} APK 다운로드`}
+                        className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-fg px-3 text-xs font-medium text-bg hover:opacity-90"
+                        download
+                        href={project.apk.url}
+                        rel="noreferrer"
+                      >
+                        APK
+                        <ArrowDownToLine aria-hidden="true" size={15} />
+                      </a>
+                    </div>
+                  </div>
                 </li>
               ) : null,
             )}
           </ul>
-        </div>
-      </section>
-
-      <section className="px-5 py-14 md:px-8 md:py-20" id="projects">
-        <div className="mx-auto max-w-6xl space-y-8">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div className="space-y-3">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
-                Selected work
-              </p>
-              <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
-                프로젝트 현황
-              </h2>
-            </div>
-            <p className="max-w-lg text-sm leading-6 text-muted">
-              운영 중인 서비스와 구현 중인 시스템을 같은 기준으로 정리했습니다.
-              각 상세 화면에는 구현한 기능과 남은 과제를 그대로 적어 둡니다.
-            </p>
-          </div>
-
-          <ProjectGrid projects={projects} />
         </div>
       </section>
 
@@ -179,11 +249,7 @@ export default function Home() {
 
               return (
                 <div className="bg-surface p-6" key={item.title}>
-                  <Icon
-                    aria-hidden="true"
-                    className="text-accent"
-                    size={19}
-                  />
+                  <Icon aria-hidden="true" className="text-accent" size={19} />
                   <h3 className="mt-4 text-base font-medium">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted">
                     {item.body}
@@ -221,7 +287,7 @@ export default function Home() {
 
 function Metric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="bg-surface px-5 py-5">
+    <div className="bg-surface px-5 py-4">
       <dt className="text-xs text-subtle">{label}</dt>
       <dd className="num mt-1.5 text-3xl font-medium tracking-[-0.02em]">
         {value}
