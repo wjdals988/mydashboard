@@ -48,9 +48,9 @@ test("Android includes unpublished APK projects", () => {
 });
 test("APK availability is independent of platform and development status", () => {
   const downloadable = run({ platform: "android", downloadOnly: true });
-  assert.equal(downloadable.length, 5);
+  assert.equal(downloadable.length, 6);
   assert.ok(downloadable.every((p) => p.apk));
-  assert.ok(!downloadable.some((p) => p.slug === "runmoni"));
+  assert.ok(downloadable.some((p) => p.slug === "runmoni"));
 });
 test("status and platform filters intersect", () => {
   assert.equal(run({ platform: "android", status: "building" }).length, 5);

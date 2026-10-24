@@ -4,11 +4,11 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "기기에 러닝을 기록하고 친구들과 크루·파티를 꾸리는 Android 개발 프리뷰.",
-    "description": "Android 네이티브 5개 탭(홈·탐색·러닝·크루·나)에서 GPS 러닝 기록, 크루·파티와 미니미 꾸미기를 제공합니다. 러닝 기록은 Room에 저장하며 커뮤니티 기능은 로컬 FastAPI·SQLite 서버가 필요합니다. NAVER Maps·LiveKit 클라우드는 미배포 상태이고 Firebase·Supabase 연동은 검토 단계입니다. 실제 기기 GPS·음성·DJ 음악 송출은 아직 검증하지 않았습니다.",
+    "description": "현재 공개 APK는 0.1.1-dev (2)이며 Firebase SDK가 포함되지 않습니다. Android 네이티브 5개 탭(홈·탐색·러닝·크루·나)에서 GPS 러닝 기록, 크루·파티와 미니미 꾸미기를 제공합니다. 러닝 기록은 Room에 저장하며 커뮤니티 기능은 로컬 FastAPI·SQLite 서버가 필요합니다. NAVER Maps·LiveKit 클라우드는 미배포 상태이고, 실제 기기 GPS·음성·DJ 음악 송출은 아직 검증하지 않았습니다. 최신 0.1.2-dev 소스는 JVM 15개·UI 17개와 로컬 빌드를 통과했지만 실제 Firebase 설정·Google 로그인·원격 백업은 미검증입니다.",
     "status": "building",
     "statusLabel": "개발 미리보기",
     "year": "2026",
-    "updatedAt": "2026.10.13",
+    "updatedAt": "2026.10.24",
     "sourceUrl": "https://github.com/wjdals988/runmoni",
     "tags": [
       "Android",
@@ -32,11 +32,34 @@
       "NAVER Maps 인증, HTTPS API와 LiveKit을 배포하고 서로 다른 기기 2대에서 음성·DJ 음악을 검증합니다.",
       "외부 음악 앱 6종의 캡처 허용 여부와 음성·음악 별도 음량이 실제 송출에 반영되는지 확인합니다.",
       "파일럿 초대 가입 이후 기존 계정 복구 로그인과 위치 공유 운영 정책을 보강합니다.",
-      "기기 지갑과 서버 지갑의 연계, 운영 데이터 백업과 Firebase·Supabase 저장소 전환을 검토합니다."
+      "Firebase 무료 플랜의 Google 로그인·선택한 러닝 요약 백업을 별도로 검증합니다. 현재 APK의 Room·로컬 API 저장 구조와 기기·서버 지갑은 유지합니다."
+    ],
+    "releaseNotes": [
+      {
+        "version": "0.1.1-dev",
+        "versionCode": 2,
+        "date": "2026.10.24",
+        "notes": [
+          "서명된 Android 개발 프리뷰 APK를 처음 공개했습니다. Android 10(API 29) 이상이 필요합니다.",
+          "릴리스 JVM 테스트 6개, lint 오류 0개·경고 17개, APK 서명과 SDK 36 에뮬레이터 설치·실행을 확인했습니다. 실기기 검증은 0건입니다.",
+          "Firebase SDK·Google 로그인·원격 백업은 이 APK에 포함되지 않습니다. 관련 최신 소스 0.1.2-dev는 JVM 15개·UI 17개·로컬 빌드를 통과했으며 실제 Firebase 연결은 별도 검증이 필요합니다.",
+          "0.1.0-dev 디버그 APK와 인증서가 다릅니다. 이전 테스트 앱은 필요한 GPX를 내보낸 뒤 제거하고 설치해야 합니다."
+        ]
+      }
     ],
     "visual": "running",
     "accent": "#2d8a68",
-    "icon": "footprints"
+    "icon": "footprints",
+    "apk": {
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.1.1-dev/runmoni-0.1.1-dev.apk",
+      "fileName": "runmoni-0.1.1-dev.apk",
+      "version": "0.1.1-dev",
+      "versionCode": 2,
+      "size": "200,693,280 bytes",
+      "sha256": "25772671956108deed9bde887104d83b4b7eefd7d2dbd5c7b4223d143db78de9",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.1.1-dev",
+      "label": "signed release APK"
+    }
   },
   {
     "slug": "starlink-duo",
