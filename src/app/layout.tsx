@@ -80,7 +80,7 @@ const jsonLd = {
         name: project.title,
         description: project.summary,
         applicationCategory: "MobileApplication",
-        operatingSystem: "Android 8.0+",
+        operatingSystem: project.operatingSystem ?? "Android 8.0+",
         softwareVersion: project.apk?.version,
         downloadUrl: project.apk?.url,
         url: `${siteUrl}/projects/${project.slug}`,

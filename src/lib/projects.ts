@@ -54,6 +54,7 @@ export type Project = {
   updatedAt: string;
   liveUrl?: string;
   sourceUrl?: string;
+  operatingSystem?: string;
   apk?: ProjectApk;
   releaseNotes?: ProjectReleaseNote[];
   tags: string[];
