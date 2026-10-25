@@ -4,11 +4,11 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "기기에 러닝을 기록하고 친구들과 크루·파티를 꾸리는 Android 개발 프리뷰.",
-    "description": "현재 공개 APK는 0.1.1-dev (2)이며 Firebase SDK가 포함되지 않습니다. Android 네이티브 5개 탭(홈·탐색·러닝·크루·나)에서 GPS 러닝 기록, 크루·파티와 미니미 꾸미기를 제공합니다. 러닝 기록은 Room에 저장하며 커뮤니티 기능은 로컬 FastAPI·SQLite 서버가 필요합니다. NAVER Maps·LiveKit 클라우드는 미배포 상태이고, 실제 기기 GPS·음성·DJ 음악 송출은 아직 검증하지 않았습니다. 최신 0.1.2-dev 소스는 JVM 15개·UI 17개와 로컬 빌드를 통과했지만 실제 Firebase 설정·Google 로그인·원격 백업은 미검증입니다.",
+    "description": "현재 공개 APK는 0.1.1-dev (2)이며 Firebase SDK가 포함되지 않습니다. GPS 기록은 기기에 저장하고 크루·파티·채팅은 별도 로컬 FastAPI·SQLite 서버가 필요합니다. 최신 소스에는 러닝 시작 중심의 화면 개편, 원화 PNG 63개 부품과 8프레임 미니미, Google 계정 추가·기록 요약 백업, 앱 정보·변경 내역·업데이트 확인이 포함됩니다. 로컬 0.1.5-dev 서명본은 JVM 30/30·lint 오류 0·경고 26개와 APK 내 원화 해시를 확인했습니다. 이전 0.1.4의 실제 UI 검사 38개는 신규 원화의 Android 재생 검증과 구분합니다. Firebase 기본 설정은 공식 API로 확인했지만 실제 로그인·원격 백업은 아직 0회이며, 실기기 GPS·음성·DJ와 NAVER Maps·LiveKit 클라우드도 추가 검증이 필요합니다.",
     "status": "building",
     "statusLabel": "개발 미리보기",
     "year": "2026",
-    "updatedAt": "2026.10.24",
+    "updatedAt": "2026.10.25",
     "sourceUrl": "https://github.com/wjdals988/runmoni",
     "tags": [
       "Android",
