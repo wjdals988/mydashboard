@@ -57,6 +57,9 @@ export type Project = {
   operatingSystem?: string;
   apk?: ProjectApk;
   releaseNotes?: ProjectReleaseNote[];
+  screenshots?: { src: string; alt: string; caption: string; width: number; height: number }[];
+  screenshotsNote?: string;
+  screenshotsReviewUrl?: string;
   tags: string[];
   highlights: string[];
   nextSteps: string[];
