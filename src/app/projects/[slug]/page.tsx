@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CopyButton } from "@/components/copy-button";
 import { ProjectIcon } from "@/components/project-icon";
@@ -70,6 +71,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const others = projects.filter((item) => item.slug !== project.slug).slice(0, 3);
+  const cover = project.screenshots?.[0];
 
   return (
     <main className="px-5 py-8 md:px-8 md:py-12">
@@ -171,14 +173,47 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          <ProjectVisual
-            accent={project.accent}
-            live
-            liveUrl={project.liveUrl}
-            title={project.title}
-            type={project.visual}
-          />
+          {cover ? (
+            <figure className="space-y-4 rounded-3xl border border-line bg-surface-2 p-6 text-center">
+              <a className="inline-block rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4" href={cover.src} target="_blank" rel="noreferrer" aria-label={`${cover.alt} 원본 보기`}>
+                <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} className="mx-auto h-auto max-h-[540px] w-auto rounded-3xl border border-line" sizes="(min-width: 1024px) 304px, 280px" priority />
+              </a>
+              <figcaption className="text-sm leading-6 text-muted">{cover.caption}</figcaption>
+            </figure>
+          ) : (
+            <ProjectVisual
+              accent={project.accent}
+              live
+              liveUrl={project.liveUrl}
+              title={project.title}
+              type={project.visual}
+            />
+          )}
         </section>
+
+        {project.screenshots && project.screenshots.length > 0 && (
+          <section className="space-y-5" aria-labelledby="app-screenshots-heading">
+            <div className="space-y-2">
+              <h2 className="text-lg font-medium" id="app-screenshots-heading">앱 화면 둘러보기</h2>
+              <p className="text-sm leading-6 text-muted">{project.screenshotsNote ?? "앱 검토 화면입니다. 화면을 선택하면 원본을 볼 수 있습니다."}</p>
+            </div>
+            <div className="flex snap-x gap-5 overflow-x-auto pb-5">
+              {project.screenshots.map((shot) => (
+                <figure className="w-60 shrink-0 snap-start space-y-3" key={shot.src}>
+                  <a className="block overflow-hidden rounded-3xl border border-line bg-surface focus-visible:outline-2 focus-visible:outline-offset-4" href={shot.src} target="_blank" rel="noreferrer" aria-label={`${shot.alt} 원본 보기`}>
+                    <Image src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} className="h-auto w-full" sizes="240px" />
+                  </a>
+                  <figcaption className="text-sm leading-6 text-muted">{shot.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+            {project.screenshotsReviewUrl && (
+              <a className="inline-flex min-h-11 items-center gap-2 text-sm font-medium underline underline-offset-4" href={project.screenshotsReviewUrl} target="_blank" rel="noreferrer">
+                화면 개편 PR 보기 <ExternalLink aria-hidden="true" size={14} />
+              </a>
+            )}
+          </section>
+        )}
 
         <section className="grid gap-5 lg:grid-cols-2">
           <DetailBlock
