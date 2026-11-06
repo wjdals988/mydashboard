@@ -4,11 +4,11 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "러닝을 기록하고 크루별 파티에 참가하는 Android 앱 개발 프리뷰.",
-    "description": "런모니0.3.6-dev(18)는 실기기 검증 전 Android 개발 프리뷰입니다. 처음에는 Google 로그인 또는 게스트를 선택하고, 기존 사용자는 바로 시작합니다. 기기의 기록·포인트·꾸미기는 유지하며 게스트 선택으로 백업이나 크루 계정을 자동 생성하지 않습니다. 실제 휴대폰·Google 인증·운영 쓰기 검증은 남아 있습니다.",
+    "description": "런모니0.3.7-dev(19)는 실기기 검증 전 Android 개발 프리뷰입니다. 홈·탐색·러닝·크루·프로필과 옷장·설정의 정보와 조작을 정리했습니다. 배경 러닝 기록과 알림 조작을 보강하며, 기존 기록·포인트·미니미 꾸미기를 유지합니다. 휴대폰·Google 로그인·장시간 절전 정책 검증은 남아 있습니다.",
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
-    "updatedAt": "2026.11.06",
+    "updatedAt": "2026.11.07",
     "sourceUrl": "https://github.com/wjdals988/runmoni",
     "operatingSystem": "Android 10+",
     "tags": [
@@ -20,13 +20,14 @@
       "Firestore"
     ],
     "highlights": [
-      "처음 실행하면 Google 로그인과 게스트 중 하나를 선택합니다. 선택을 마친 기기와 기존 사용자는 앱으로 바로 들어갑니다.",
-      "Google 로그인을 취소하거나 연결하지 못해도 게스트로 시작할 수 있습니다. 기기의 러닝 기록·포인트·꾸미기 데이터는 유지합니다.",
-      "게스트는 기기에서 오프라인으로 사용하는 선택입니다. 크루 계정·백업·기록 업로드를 자동으로 만들거나 실행하지 않습니다.",
-      "기존 로고 시작 화면과 설정의 Google 계정 연결·요약 백업 기능을 유지합니다. 실제 Google 인증과 기존 크루 UID 연결은 별도 흐름입니다.",
-      "승인 미니미·36개 표시 품목·0P·성별과 기존 데이터는 유지합니다. 미준비22개 원화와 사용자 시각 승인은 별도입니다."
+      "화면별 제목·목록·주요 행동의 크기와 간격, 버튼 모서리를 통일했습니다.",
+      "홈의 러닝 시작, 탐색의 검색·목록, 크루와 소속 파티, 프로필의 기록을 정리했습니다.",
+      "옷장·설정·앱 정보와 대화상자를 정돈하고 큰 글씨·키보드에서 조작에 접근할 수 있도록 개선했습니다.",
+      "화면을 껐을 때의 러닝 기록과 알림의 일시정지·재개를 보강했습니다. 종료는 앱에서 다시 확인합니다.",
+      "승인 미니미와 기존 기록·포인트·옷장, Google/게스트 진입을 유지합니다. 새 Rules·서명키 변경은 없습니다."
     ],
     "nextSteps": [
+      "휴대폰의 화면 끔·잠금·알림·위치 권한·장시간 러닝과 Google 로그인, 수정 화면의 사용자 확인을 진행합니다.",
       "실제 휴대폰에서 첫 Google/게스트 선택·취소 후 게스트 진입·재실행과 기존 데이터 보존을 확인합니다.",
       "실제 휴대폰과 Android12이상에서 시작 화면·화면 복귀·큰 글씨를 확인하고 새 화면을 시각 검토합니다.",
       "새 의복·장비를 사용자 시각 검토하고 미준비22개(헤어·표정·양말·모자·세트·수영복 등)의 원화를 승인 원본의 비율과 얼굴에 맞춰 제작합니다.",
@@ -36,6 +37,18 @@
       "지도 인증/마커 준비·다운로드 크기·Firestore 조회·배터리를 실측하고 개선합니다."
     ],
     "releaseNotes": [
+      {
+        "version": "0.3.7-dev",
+        "versionCode": 19,
+        "date": "2026.11.07",
+        "notes": [
+          "화면별 제목·목록·주요 행동의 크기와 간격, 버튼 모서리를 통일했습니다.",
+          "홈의 러닝 시작, 탐색의 검색·목록, 크루와 소속 파티, 프로필의 기록을 정리했습니다.",
+          "옷장·설정·앱 정보와 대화상자를 정돈하고 큰 글씨·키보드에서 조작에 접근할 수 있도록 개선했습니다.",
+          "화면을 껐을 때의 러닝 기록과 알림의 일시정지·재개를 보강했습니다. 종료는 앱에서 다시 확인합니다.",
+          "실기기 검증 전 개발 프리뷰입니다. 클라우드 API29·합성 GPS 검토와 휴대폰·장시간 절전·제조사 정책·Google 로그인 검증은 별도입니다."
+        ]
+      },
       {
         "version": "0.3.6-dev",
         "versionCode": 18,
@@ -174,43 +187,43 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.3.6-dev/runmoni-0.3.6-dev.apk",
-      "fileName": "runmoni-0.3.6-dev.apk",
-      "version": "0.3.6-dev",
-      "versionCode": 18,
-      "size": "219,066,718 bytes",
-      "sha256": "e05bc3be0fa4d4a4120ac2d01aea993662fb8abdcd647da4c094de3f838e61b1",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.3.6-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.3.7-dev/runmoni-0.3.7-dev.apk",
+      "fileName": "runmoni-0.3.7-dev.apk",
+      "version": "0.3.7-dev",
+      "versionCode": 19,
+      "size": "219,246,942 bytes",
+      "sha256": "a864ed8cb0df6444a8074368a21892a8b6f46e97e1432ba2936360f3b0525a53",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.3.7-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "0.3.6-dev의 실제 MainActivity에서 촬영한 클라우드 Android API29/AOSP/TCG 화면입니다. TEST 서명·Firebase 미설정 debug의 로컬 검토 프로필이며 공개 서명 APK·휴대폰·실제 Google 인증 성공 사진이 아닙니다. 새 화면의 사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/33",
+    "screenshotsNote": "실제 MainActivity3장과 Android SystemUI 알림1장의 클라우드 API29/AOSP/TCG 검토입니다. 로컬 TEST 서명 debug와 합성 GPS를 사용했습니다. 공개 서명 APK·야외 GPS·휴대폰·Google·운영 쓰기·Android12이상·Doze/제조사 절전 검증 사진이 아닙니다. OS 다크 설정 검토와 별도 다크 테마 구현은 다르며 사용자 시각 승인은 별도입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/35",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.3.6-dev/entry.png",
-        "alt": "런모니0.3.6 개발본 시작 선택 · 클라우드 Android debug MainActivity",
-        "caption": "시작 선택",
-        "width": 480,
-        "height": 854
-      },
-      {
-        "src": "/reviews/runmoni/0.3.6-dev/home.png",
-        "alt": "런모니0.3.6 개발본 홈 · 클라우드 Android debug MainActivity",
+        "src": "/reviews/runmoni/0.3.7-dev/home.png",
+        "alt": "런모니0.3.7 홈 · 클라우드 Android 앱 화면",
         "caption": "홈",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.6-dev/profile.png",
-        "alt": "런모니0.3.6 개발본 나 · 클라우드 Android debug MainActivity",
-        "caption": "나",
+        "src": "/reviews/runmoni/0.3.7-dev/closet.png",
+        "alt": "런모니0.3.7 옷장 · 클라우드 Android 앱 화면",
+        "caption": "옷장",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.6-dev/app-info.png",
-        "alt": "런모니0.3.6 개발본 앱 정보 · 클라우드 Android debug MainActivity",
-        "caption": "앱 정보",
+        "src": "/reviews/runmoni/0.3.7-dev/running.png",
+        "alt": "런모니0.3.7 러닝 · 클라우드 Android 앱 화면",
+        "caption": "러닝",
+        "width": 480,
+        "height": 854
+      },
+      {
+        "src": "/reviews/runmoni/0.3.7-dev/notification.png",
+        "alt": "런모니0.3.7 OS 러닝 알림 · 클라우드 Android Android 알림창",
+        "caption": "OS 러닝 알림",
         "width": 480,
         "height": 854
       }
