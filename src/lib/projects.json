@@ -4,7 +4,7 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "러닝을 기록하고 크루별 파티에 참가하는 Android 앱 개발 프리뷰.",
-    "description": "런모니0.3.7-dev(19)는 실기기 검증 전 Android 개발 프리뷰입니다. 홈·탐색·러닝·크루·프로필과 옷장·설정의 정보와 조작을 정리했습니다. 배경 러닝 기록과 알림 조작을 보강하며, 기존 기록·포인트·미니미 꾸미기를 유지합니다. 휴대폰·Google 로그인·장시간 절전 정책 검증은 남아 있습니다.",
+    "description": "런모니0.3.8-dev(20)는 실기기 검증 전 Android 개발 프리뷰입니다. 우상단 새 버전 표시의 겹침을 수정했습니다. 러닝 기록·크루별 파티·미니미 꾸미기와 Google/게스트 진입을 유지합니다. 휴대폰·Google 로그인·장시간 절전 정책 검증은 남아 있습니다.",
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
@@ -20,11 +20,10 @@
       "Firestore"
     ],
     "highlights": [
-      "화면별 제목·목록·주요 행동의 크기와 간격, 버튼 모서리를 통일했습니다.",
-      "홈의 러닝 시작, 탐색의 검색·목록, 크루와 소속 파티, 프로필의 기록을 정리했습니다.",
-      "옷장·설정·앱 정보와 대화상자를 정돈하고 큰 글씨·키보드에서 조작에 접근할 수 있도록 개선했습니다.",
-      "화면을 껐을 때의 러닝 기록과 알림의 일시정지·재개를 보강했습니다. 종료는 앱에서 다시 확인합니다.",
-      "승인 미니미와 기존 기록·포인트·옷장, Google/게스트 진입을 유지합니다. 새 Rules·서명키 변경은 없습니다."
+      "우상단 새 버전 표시가 버전 글자·설정 버튼과 겹치지 않도록 간격을 확보했습니다.",
+      "글씨를 크게 설정해도 버전과 업데이트 표시를 함께 볼 수 있도록 확인했습니다. 버전 영역에서 확인 후 다운로드할 수 있습니다.",
+      "러닝 기록·크루와 소속 파티·미니미/옷장·Google/게스트 진입을 제공합니다.",
+      "화면 끔 기록과 알림 일시정지·재개·확인 후 종료를 유지합니다."
     ],
     "nextSteps": [
       "휴대폰의 화면 끔·잠금·알림·위치 권한·장시간 러닝과 Google 로그인, 수정 화면의 사용자 확인을 진행합니다.",
@@ -37,6 +36,16 @@
       "지도 인증/마커 준비·다운로드 크기·Firestore 조회·배터리를 실측하고 개선합니다."
     ],
     "releaseNotes": [
+      {
+        "version": "0.3.8-dev",
+        "versionCode": 20,
+        "date": "2026.11.07",
+        "notes": [
+          "우상단 새 버전 표시가 버전 글자·설정 버튼과 겹치지 않도록 간격을 확보했습니다.",
+          "글씨를 크게 설정해도 버전과 업데이트 표시를 함께 볼 수 있도록 확인했습니다. 버전 영역에서 확인 후 다운로드할 수 있습니다.",
+          "기존 기록·포인트·꾸미기·로그인·백그라운드 러닝을 유지합니다. 실기기 검증 전 개발 프리뷰입니다."
+        ]
+      },
       {
         "version": "0.3.7-dev",
         "versionCode": 19,
@@ -187,43 +196,43 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.3.7-dev/runmoni-0.3.7-dev.apk",
-      "fileName": "runmoni-0.3.7-dev.apk",
-      "version": "0.3.7-dev",
-      "versionCode": 19,
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.3.8-dev/runmoni-0.3.8-dev.apk",
+      "fileName": "runmoni-0.3.8-dev.apk",
+      "version": "0.3.8-dev",
+      "versionCode": 20,
       "size": "219,246,942 bytes",
-      "sha256": "a864ed8cb0df6444a8074368a21892a8b6f46e97e1432ba2936360f3b0525a53",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.3.7-dev",
+      "sha256": "c4b484900795defb6d2d5b47d7f9b3545ed99174a07445c2e52edf51937ac76c",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.3.8-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "실제 MainActivity3장과 Android SystemUI 알림1장의 클라우드 API29/AOSP/TCG 검토입니다. 로컬 TEST 서명 debug와 합성 GPS를 사용했습니다. 공개 서명 APK·야외 GPS·휴대폰·Google·운영 쓰기·Android12이상·Doze/제조사 절전 검증 사진이 아닙니다. OS 다크 설정 검토와 별도 다크 테마 구현은 다르며 사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/35",
+    "screenshotsNote": "클라우드 Android API29/AOSP/TCG에서 촬영한0.3.8-dev UI 검토 화면입니다. TEST 서명 debug의 ComponentActivity 픽스처이며 실제 MainActivity 사진은 아닙니다.99.0.0-dev는 업데이트 표시·확인 동작을 검사하는 합성 정보로 실제 공개 릴리스가 아닙니다. 휴대폰·Google·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/37",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.3.7-dev/home.png",
-        "alt": "런모니0.3.7 홈 · 클라우드 Android 앱 화면",
-        "caption": "홈",
+        "src": "/reviews/runmoni/0.3.8-dev/home.png",
+        "alt": "런모니0.3.8 업데이트 표시 · Android UI 검토용 합성 업데이트",
+        "caption": "업데이트 표시",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.7-dev/closet.png",
-        "alt": "런모니0.3.7 옷장 · 클라우드 Android 앱 화면",
-        "caption": "옷장",
+        "src": "/reviews/runmoni/0.3.8-dev/large.png",
+        "alt": "런모니0.3.8 글씨 2배 · Android UI 검토용 합성 업데이트",
+        "caption": "글씨 2배",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.7-dev/running.png",
-        "alt": "런모니0.3.7 러닝 · 클라우드 Android 앱 화면",
-        "caption": "러닝",
+        "src": "/reviews/runmoni/0.3.8-dev/rtl.png",
+        "alt": "런모니0.3.8 RTL 배치 · Android UI 검토용 합성 업데이트",
+        "caption": "RTL 배치",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.7-dev/notification.png",
-        "alt": "런모니0.3.7 OS 러닝 알림 · 클라우드 Android Android 알림창",
-        "caption": "OS 러닝 알림",
+        "src": "/reviews/runmoni/0.3.8-dev/confirmation.png",
+        "alt": "런모니0.3.8 다운로드 확인 · Android UI 검토용 합성 업데이트",
+        "caption": "다운로드 확인",
         "width": 480,
         "height": 854
       }
