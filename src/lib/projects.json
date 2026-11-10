@@ -4,7 +4,7 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "러닝을 기록하고 크루별 파티에 참가하는 Android 앱 개발 프리뷰.",
-    "description": "달리기 기록과 GPS 경로, 크루·파티, 미니미 꾸미기를 함께 사용하는 Android 러닝 앱입니다.",
+    "description": "러닝 기록과 미니미 꾸미기, 크루와 파티를 함께 쓰는 Android 앱입니다. 홈의 시각·날씨, 지도 중심 탐색과 한곳에 모은 프로필 편집을 추가했습니다.",
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
@@ -20,16 +20,32 @@
       "Firestore"
     ],
     "highlights": [
-      "홈 화면 위젯에서 진행 중 거리·시간 확인과 일시정지·재개, 종료는 앱에서 확인",
-      "전체 페이지로 여는 러닝 기록과 실제 경로 지도·GPX 내보내기·요약 백업",
-      "민트와 짙은 녹색으로 정리한 홈·기록 요약, 작은 화면과 큰 글씨의 조작 영역 개선"
+      "앱 정보·긴 양식의 고정 닫기와 안전영역, 원래 화면으로 돌아가는 흐름 정리",
+      "날짜 옆 현재시각·기온 요약과 MET Norway 예보·옷차림 안내",
+      "핀치·드래그 지도에서 동의한 러너의 약100m 위치 표시; 크루·파티는 크루 탭",
+      "프로필 편집 통합·온라인 닉네임 예약; 기존 기록·보유권·미니미 원본 유지"
     ],
     "nextSteps": [
-      "실제 휴대폰에서 위젯·알림 제어, 화면 끔 GPS와 장시간 절전 확인",
-      "Google 로그인과 실제 두 기기의 크루·파티 사용 확인",
-      "승인 원본을 보존한 남은 의복 준비와 크루 운영 기능 개선"
+      "새 Firestore 규칙·색인 게시 후 실제 두 기기 닉네임·공유·만료 검증",
+      "휴대폰 장시간 GPS·화면 끔·알림/위젯·Doze/OEM·Android12이상·Google 로그인 확인",
+      "남은22개 원화와 크루장 승계·신고/차단을 독립 진행",
+      "지도·날씨 제공자 요청량과 실제 APK 크기를 측정해 개선"
     ],
     "releaseNotes": [
+      {
+        "version": "0.4.0-dev",
+        "versionCode": 22,
+        "date": "2026.11.10",
+        "notes": [
+          "상단48dp 닫기와 키보드·큰 글씨 대응, 설정/정보의 부모 화면·스크롤 복귀를 정리했습니다.",
+          "홈 날짜·현재시각·유효한 예보 기온, 조건별 옷차림과 제공자·예보 시각을 표시합니다. 실측 기온·대기질·안전 보장은 아닙니다.",
+          "탐색을 지도 중심으로 바꾸고 핀치·드래그와 접근성용 지도 옵션을 추가했습니다. 크루와 소속 파티는 크루 탭에서 찾습니다.",
+          "프로필 편집을 모으고 온라인 닉네임은 저장 transaction으로 중복을 검사합니다. 과거 모든 메시지/멤버 이름 재작성이나 Google 계정 자동 병합은 포함하지 않습니다.",
+          "위치 공유는 매회 동의한 현재 러닝의 약100m 격자만 사용합니다. 정지/종료/해제/계정·서버 변경 때 중단하며 오프라인 철회 지연 시 공개 읽기는 최장75초 내 만료합니다.",
+          "새 Firestore 규칙·색인 게시와 두 기기의 실제 운영 연결이 필요합니다. 개발 프리뷰의 클라우드 TEST debug 검토를 휴대폰·Google 로그인·운영 쓰기 성공으로 표시하지 않습니다.",
+          "기존 UID/크루 권한·기록·포인트·58개 아이템 ID/0P·성별·승인 원본·보관 서명키를 유지합니다."
+        ]
+      },
       {
         "version": "0.3.9-dev",
         "versionCode": 21,
@@ -201,43 +217,43 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.3.9-dev/runmoni-0.3.9-dev.apk",
-      "fileName": "runmoni-0.3.9-dev.apk",
-      "version": "0.3.9-dev",
-      "versionCode": 21,
-      "size": "219,456,174 bytes",
-      "sha256": "57895b0237d09ba91b6c73a47da42e67bd8485ccd31f0406cb0ea0a8c1d965a3",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.3.9-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.4.0-dev/runmoni-0.4.0-dev.apk",
+      "fileName": "runmoni-0.4.0-dev.apk",
+      "version": "0.4.0-dev",
+      "versionCode": 22,
+      "size": "219,652,782 bytes",
+      "sha256": "85abeb65917612d31e6ce8d5650df53f6a17b1495c4205297ff1dd38cc475ffb",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.4.0-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29/AOSP/TCG에서 촬영한0.3.9-dev UI 검토 화면입니다. TEST 서명 debug이며 홈 · 실제 앱: 실제 MainActivity · 기록 지도·하단 조작 · 실제 앱 / 합성 GPS: 실제 MainActivity · 러닝 위젯 · 실제 Android 홈 화면: 실제 런처 위젯 · 러닝 알림 · 실제 시스템 화면: 실제 시스템 알림입니다. GPS는 공개 장소의 합성 경로입니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/39",
+    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.0-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 시각·기온·예보: 실제 MainActivity · 탐색 지도: 실제 MainActivity · 통합 프로필: 실제 MainActivity · 앱 정보·닫기: 실제 MainActivity입니다. 위치·러너 상태에는 테스트 위치와 합성 데이터가 포함됩니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/41",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.3.9-dev/home.png",
-        "alt": "홈 · 실제 앱",
-        "caption": "홈 · 실제 앱",
+        "src": "/reviews/runmoni/0.4.0-dev/home-weather.png",
+        "alt": "서울 테스트 위치의 날짜·시각·기온과 MET 예보·옷차림이 보이는 실제 홈 화면",
+        "caption": "홈 시각·기온·예보",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.9-dev/record.png",
-        "alt": "기록 지도·하단 조작 · 실제 앱 / 합성 GPS",
-        "caption": "기록 지도·하단 조작 · 실제 앱 / 합성 GPS",
+        "src": "/reviews/runmoni/0.4.0-dev/explore-map.png",
+        "alt": "서울 테스트 위치와 OSM 출처가 보이는 실제 탐색 지도, 크루 목록은 크루 탭으로 이동",
+        "caption": "탐색 지도",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.9-dev/widget.png",
-        "alt": "러닝 위젯 · 실제 Android 홈 화면",
-        "caption": "러닝 위젯 · 실제 Android 홈 화면",
+        "src": "/reviews/runmoni/0.4.0-dev/unified-profile.png",
+        "alt": "테스트 게스트 RunnerReview의 닉네임을 편집하는 실제 통합 프로필 화면",
+        "caption": "통합 프로필",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.3.9-dev/notification.png",
-        "alt": "러닝 알림 · 실제 시스템 화면",
-        "caption": "러닝 알림 · 실제 시스템 화면",
+        "src": "/reviews/runmoni/0.4.0-dev/app-information.png",
+        "alt": "0.4.0-dev 버전명과 상단 닫기가 보이는 실제 앱 정보 화면",
+        "caption": "앱 정보·닫기",
         "width": 480,
         "height": 854
       }
