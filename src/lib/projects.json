@@ -4,7 +4,7 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "러닝을 기록하고 크루별 파티에 참가하는 Android 앱 개발 프리뷰.",
-    "description": "러닝 기록과 미니미 꾸미기, 크루와 파티를 함께 쓰는 Android 앱입니다. 미니미 옆 날씨 요약, 위젯 가독성과 새 양말·쇼츠를 개선했습니다.",
+    "description": "달린 경로와 기록을 남기고, 미니미를 꾸미며 크루·파티와 함께 달리는 Android 앱입니다.",
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
@@ -20,18 +20,26 @@
       "Firestore"
     ],
     "highlights": [
-      "위젯 폭·높이·글자 크기에 맞춘 정보·조작 배치와 한글 잘림 개선",
-      "홈 미니미 옆 기온·바람·강수·옷차림, 큰 글씨에서는 세로 배치",
-      "크루 양말·니삭스와 남자 그린·코랄 쇼츠의 실제 착용·무료 선택",
-      "승인 원본 얼굴·체형·8프레임과 기존 기록·아이템·포인트 보존"
+      "프로필 연결 실패 시 입력을 유지하고 같은 계정으로 재시도",
+      "홈 날씨 옆과 탐색 지도에서 현재 위치 부근 확인",
+      "백그라운드 러닝 기록·알림/위젯 조작·기록 지도·무료 미니미 꾸미기"
     ],
     "nextSteps": [
-      "실제 휴대폰 런처에서 위젯 크기·글자 설정·기존 데이터 유지 확인",
-      "새 양말·쇼츠의 실제 앱 시각 검토와 남은 성별별 원화 제작",
-      "장시간 GPS·화면 끔·Doze/OEM·Google·운영 두 기기 검증",
-      "크루 승계·신고/차단, 지도·날씨 운영 용량과 APK 크기 실측"
+      "운영 Firebase 규칙의 communityNicknames 경로와 새 버전 휴대폰 프로필 연결 확인",
+      "실기기에서 같은 키 업데이트·현재 지역명·Google 연결/복원·야외 GPS/절전 확인",
+      "승인 원본을 유지하는 남은 미니미 의복과 크루 운영 기능 개선"
     ],
     "releaseNotes": [
+      {
+        "version": "0.4.2-dev",
+        "versionCode": 24,
+        "date": "2026.11.11",
+        "notes": [
+          "프로필 연결은 서버의 닉네임 저장 확인 뒤 완료하며 실패 안내를 편집창 안에 표시합니다. 기기 이름 저장과 온라인 연결을 구분하고 기존 UID·기록·포인트·아이템을 유지합니다.",
+          "홈 미니미 옆과 탐색 지도 위에 현재 지역명을 표시합니다. 기기에서 지역명 조회가 되지 않으면 근처 좌표를 표시하고 예보 지역과 현재 위치를 구분합니다.",
+          "실기기 검증 전 개발 프리뷰입니다. 운영 Firebase 규칙의 닉네임 예약 경로 게시 여부와 실제 휴대폰·Google 로그인은 별도 확인이 필요합니다."
+        ]
+      },
       {
         "version": "0.4.1-dev",
         "versionCode": 23,
@@ -230,43 +238,43 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.4.1-dev/runmoni-0.4.1-dev.apk",
-      "fileName": "runmoni-0.4.1-dev.apk",
-      "version": "0.4.1-dev",
-      "versionCode": 23,
-      "size": "219,772,021 bytes",
-      "sha256": "4866a905339fe50763a30bbfe9df4954cbf74cbfbdbc2be112bd25bef9e7614b",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.4.1-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.4.2-dev/runmoni-0.4.2-dev.apk",
+      "fileName": "runmoni-0.4.2-dev.apk",
+      "version": "0.4.2-dev",
+      "versionCode": 24,
+      "size": "219,821,173 bytes",
+      "sha256": "2cd7bd0a865ed75af64a6bf30b5e93e7e92259b7eb9467b0f06adb91c415b046",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.4.2-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.1-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 미니미 옆 날씨: 실제 MainActivity · 크루 양말·그린 쇼츠: 실제 MainActivity · 여자 니삭스: 실제 MainActivity · 코랄 쇼츠: 실제 MainActivity입니다. 위치·러너 상태에는 테스트 위치와 합성 데이터가 포함됩니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/43",
+    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.2-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 현재 위치와 날씨: 실제 MainActivity · 탐색 · 현재 위치와 지도: 실제 MainActivity · 프로필 · 연결 안내 (검토 설정): 실제 MainActivity · 프로필 · 기기 이름 저장: 실제 MainActivity입니다. 위치·러너 상태에는 테스트 위치와 합성 데이터가 포함됩니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/45",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.4.1-dev/home-weather.png",
-        "alt": "기온·바람·강수·옷차림이 미니미 옆에 보이는 실제 홈, 서울 합성 위치와 UTC 시각",
-        "caption": "미니미 옆 날씨",
+        "src": "/reviews/runmoni/0.4.2-dev/home-current-area.png",
+        "alt": "합성 GPS를 사용한 실제 홈 화면. 미니미 옆 현재 위치의 근처 좌표·기온·바람·옷차림 안내.",
+        "caption": "홈 · 현재 위치와 날씨",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.4.1-dev/male-crew.png",
-        "alt": "선택한 크루 양말과 남자 그린 쇼츠가 미니미에 반영된 실제 옷장",
-        "caption": "크루 양말·그린 쇼츠",
+        "src": "/reviews/runmoni/0.4.2-dev/explore-current-area.png",
+        "alt": "실제 탐색 화면의 현재 위치 좌표 fallback과 OpenStreetMap 출처. 다른 러너의 실제 위치를 표시한 검증이 아닙니다.",
+        "caption": "탐색 · 현재 위치와 지도",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.4.1-dev/female-knee.png",
-        "alt": "기존 여자 타이츠 위 니삭스와 선택행이 보이는 실제 옷장",
-        "caption": "여자 니삭스",
+        "src": "/reviews/runmoni/0.4.2-dev/profile-inline-retry.png",
+        "alt": "Firebase 비활성 로컬 TEST 설정에서 연결 안내를 창 안에 표시하고 입력과 재시도를 유지한 실제 화면. 운영 연결 성공 사진이 아닙니다.",
+        "caption": "프로필 · 연결 안내 (검토 설정)",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.4.1-dev/male-coral.png",
-        "alt": "니삭스를 유지하면서 남자 코랄 쇼츠를 선택한 실제 옷장",
-        "caption": "코랄 쇼츠",
+        "src": "/reviews/runmoni/0.4.2-dev/me-local-name.png",
+        "alt": "실제 저장 버튼으로 합성 기기 이름 AreaRunner24를 저장한 뒤 나 화면. 온라인 닉네임 등록과 다릅니다.",
+        "caption": "프로필 · 기기 이름 저장",
         "width": 480,
         "height": 854
       }
