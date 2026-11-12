@@ -267,7 +267,7 @@
       "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.4.4-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.4-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 트랙과 러닝 시작: 실제 MainActivity · 옷장 · 선택한 분류 강조: 실제 MainActivity · 기록 공유 · 기본1:1 유지: 실제 MainActivity · 탐색 · 위치 확인 전: 실제 MainActivity입니다. 공유 화면은 검토용 기록·사진을 사용하고 지도는 위치 권한을 끈 상태입니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
+    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.4-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 트랙과 러닝 시작: 실제 MainActivity · 옷장 · 선택한 분류 강조: 실제 MainActivity · 기록 공유 · 기본1:1 유지: 실제 MainActivity · 탐색 · 위치 확인 전: 실제 MainActivity입니다. 기록은 합성 검토용이며 지도는 위치 권한을 끈 상태입니다. 이번 검토에서 사진 선택·갤러리 저장·SNS 전송을 재실행한 것은 아닙니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
     "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/51",
     "screenshots": [
       {
