@@ -20,9 +20,9 @@
       "Firestore"
     ],
     "highlights": [
-      "홈·옷장·기록·크루·설정까지 화면과 탐색 흐름 정리",
-      "러닝 결과의 공유 버튼과 기본1:1 사진·기록·미니미 카드",
-      "큰 글씨·닫기·키보드 동선과 지도 밖 조작 메뉴"
+      "미니미와 옷장에 민트·라임·러닝 트랙 배경",
+      "홈 러닝 영역의 색상 포인트와 선택한 분류 강조",
+      "러닝 기록·사진·본인 미니미로 만드는 기본1:1 공유"
     ],
     "nextSteps": [
       "휴대폰에서 사진 선택·1:1 PNG 저장·카카오톡/Instagram 등 실제 공유 대상 앱 확인",
@@ -30,6 +30,16 @@
       "운영 닉네임 예약 규칙·Google 연결과 남은 미니미 의복/크루 운영 기능 개선"
     ],
     "releaseNotes": [
+      {
+        "version": "0.4.4-dev",
+        "versionCode": 26,
+        "date": "2026.11.12",
+        "notes": [
+          "미니미 주변에 민트·라임과 클레이색 러닝 트랙을 더했습니다. 승인 캐릭터 픽셀과 의복은 그대로 사용합니다.",
+          "홈 러닝 영역에는 색상 포인트, 옷장과 분류 탭에는 선택 배경과 짧은 색상 전환을 적용했습니다.",
+          "실기기 검증 전 개발 프리뷰입니다. 클라우드 Android 검증과 실제 휴대폰·Google 로그인·SNS 전송·야외 러닝은 구분합니다."
+        ]
+      },
       {
         "version": "0.4.3-dev",
         "versionCode": 25,
@@ -248,42 +258,42 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.4.3-dev/runmoni-0.4.3-dev.apk",
-      "fileName": "runmoni-0.4.3-dev.apk",
-      "version": "0.4.3-dev",
-      "versionCode": 25,
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.4.4-dev/runmoni-0.4.4-dev.apk",
+      "fileName": "runmoni-0.4.4-dev.apk",
+      "version": "0.4.4-dev",
+      "versionCode": 26,
       "size": "220,148,853 bytes",
-      "sha256": "47f0f70a18a64ba84fe59f7d7a6466287721b29ee77bc2fccf1fb3c60f1f9c07",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.4.3-dev",
+      "sha256": "5302f2a8275ac5e32533d7ca18d6b23033ef97a06d506042e9a63a84413ba48f",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.4.4-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.3-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 검토용 기록: 실제 MainActivity · 옷장 · 미니미와 착용 목록: 실제 MainActivity · 기록 공유 · 기본1:1: 실제 MainActivity · 탐색 · 위치 확인 전: 실제 MainActivity입니다. 공유 화면은 검토용 기록·사진을 사용하고 지도는 위치 권한을 끈 상태입니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/49",
+    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.4.4-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 트랙과 러닝 시작: 실제 MainActivity · 옷장 · 선택한 분류 강조: 실제 MainActivity · 기록 공유 · 기본1:1 유지: 실제 MainActivity · 탐색 · 위치 확인 전: 실제 MainActivity입니다. 공유 화면은 검토용 기록·사진을 사용하고 지도는 위치 권한을 끈 상태입니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/51",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.4.3-dev/studio-studio-home.png",
-        "alt": "홈의 승인 미니미와 러닝 시작. 수치는 합성 검토 기록입니다.",
-        "caption": "홈 · 검토용 기록",
+        "src": "/reviews/runmoni/0.4.4-dev/studio-home.png",
+        "alt": "실제 홈의 미니미 트랙과 러닝 시작. 수치는 합성 검토용 기록입니다.",
+        "caption": "홈 · 트랙과 러닝 시작",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.4.3-dev/studio-studio-closet.png",
-        "alt": "실제 앱 옷장의 캐릭터 미리보기, 분류 탭과 무료 아이템 목록입니다.",
-        "caption": "옷장 · 미니미와 착용 목록",
+        "src": "/reviews/runmoni/0.4.4-dev/studio-closet.png",
+        "alt": "실제 옷장의 미니미 트랙과 상의 탭 선택 색면·아이템 목록입니다.",
+        "caption": "옷장 · 선택한 분류 강조",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.4.3-dev/studio-default-card.png",
-        "alt": "합성 검토 기록과 현재 미니미를 담은 기본1:1 공유 편집 화면입니다.",
-        "caption": "기록 공유 · 기본1:1",
+        "src": "/reviews/runmoni/0.4.4-dev/default-card.png",
+        "alt": "합성 검토 기록과 미니미의 기본1:1 공유 편집 화면입니다.",
+        "caption": "기록 공유 · 기본1:1 유지",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.4.3-dev/studio-map-clean.png",
-        "alt": "현재 위치 확인 전 탐색 지도와 지도 아래 조작 메뉴입니다. 실제 다른 러너 위치가 아닙니다.",
+        "src": "/reviews/runmoni/0.4.4-dev/map-clean.png",
+        "alt": "위치 확인 전 탐색 지도와 지도 아래 조작 메뉴입니다.",
         "caption": "탐색 · 위치 확인 전",
         "width": 480,
         "height": 854
