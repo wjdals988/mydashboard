@@ -8,7 +8,7 @@
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
-    "updatedAt": "2026.11.13",
+    "updatedAt": "2026.11.14",
     "sourceUrl": "https://github.com/wjdals988/runmoni",
     "operatingSystem": "Android 10+",
     "tags": [
@@ -20,16 +20,29 @@
       "Firestore"
     ],
     "highlights": [
-      "홈의 출발 준비와 독립 러닝 시작, 수치·지도·고정 제어를 나눈 러닝 화면",
-      "미니미 미리보기와 품목·색상을 한 작업 영역에 모은 옷장",
-      "크루 소속과 날짜별 파티 일정, 결과·경로 중심 기록과 기본1:1 공유 편집"
+      "설정·프로필·앱 정보·크루/파티를 독립 페이지로 연결",
+      "초안·선택 탭·읽던 위치를 보존하는 뒤로가기",
+      "짙은 녹색·큰 거리·라임색 제어와 균형 잡힌 위젯 여백",
+      "실제 최근7일 기록, 옷장 비교와 코랄 공유 테마"
     ],
     "nextSteps": [
-      "같은 키로 휴대폰 업데이트 후 기존 기록·아이템, 작은 화면·큰 글씨·키보드와 주요 이동 확인",
-      "휴대폰에서 사진 선택·1:1 PNG 저장·실제 공유 대상 앱, 위젯·야외GPS·절전 동작 확인",
-      "운영 프로필·닉네임 예약·Google·네이버 연결, 나머지 미니미 의복과 크루 기능 지속 개선"
+      "옷장 검사에서 관측된 간헐 스레드 충돌의 원인 추적과 실기기 재현 확인",
+      "휴대폰에서 기존 기록·아이템을 유지한 업데이트와 페이지 복귀·글씨 확대 확인",
+      "실제 위젯·백그라운드 GPS·절전 환경에서 러닝 제어 확인",
+      "Google 로그인·운영 프로필·사진 선택과 저장·실제 SNS 전달 확인"
     ],
     "releaseNotes": [
+      {
+        "version": "0.6.0-dev",
+        "versionCode": 28,
+        "date": "2026.11.14",
+        "notes": [
+          "페이지 이동과 뒤로가기를 중심으로 화면을 정리하고, 위젯에 선명한 러닝 수치와 색을 적용했습니다.",
+          "뒤로가면 같은 파티·탭·스크롤과 작성 중인 내용을 이어갈 수 있습니다. 큰 글씨와 키보드, 위젯 호스트 높이에 따라 선택 영역을 조정합니다.",
+          "실제 휴대폰 검증 전 개발 프리뷰입니다. 승인 캐릭터와 기존 기록·옷장·지갑·위치 공유 동의를 유지합니다.",
+          "클라우드 옷장 검사에서 간헐 충돌이 관측됐습니다. 동일 APK 재검사는 통과했으나 원인은 미확정이며 실기기 확인이 필요합니다."
+        ]
+      },
       {
         "version": "0.5.0-dev",
         "versionCode": 27,
@@ -268,43 +281,43 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.5.0-dev/runmoni-0.5.0-dev.apk",
-      "fileName": "runmoni-0.5.0-dev.apk",
-      "version": "0.5.0-dev",
-      "versionCode": 27,
-      "size": "220,181,621 bytes",
-      "sha256": "006086f4786e209bcce46d4815ad9ee8891ca5b9d2ac108c56b946ce25f813c5",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.5.0-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.6.0-dev/runmoni-0.6.0-dev.apk",
+      "fileName": "runmoni-0.6.0-dev.apk",
+      "version": "0.6.0-dev",
+      "versionCode": 28,
+      "size": "220,284,077 bytes",
+      "sha256": "3d444a4e9ca7873e5d7104292b417b9e67281e15d0e9d0c02cd3b93f03096364",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.6.0-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.5.0-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 출발 준비와 러닝 시작: 실제 MainActivity · 옷장 · 미리보기와 품목 선택: 실제 MainActivity · 러닝 기록 · 결과와 경로: 실제 MainActivity · 기록 공유 · 기본1:1 편집: 실제 MainActivity입니다. 기록은 합성 검토용이며 지도는 위치 권한을 끈 상태입니다. 이번 검토에서 사진 선택·갤러리 저장·SNS 전송을 재실행한 것은 아닙니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/54",
+    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.6.0-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 검토용 최근 기록과 미니미: 실제 MainActivity · 옷장 · 현재 착용과 의상 비교: 실제 MainActivity · 러닝 기록 · 검토용 수치와 공유: 실제 MainActivity · 기록 공유 · 기본 1:1 편집과 저장 동작: 실제 MainActivity입니다. 기록은 합성 검토용이며 지도는 위치 권한을 끈 상태입니다. 이번 검토에서 사진 선택·갤러리 저장·SNS 전송을 재실행한 것은 아닙니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/56",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.5.0-dev/home.png",
-        "alt": "실제 홈의 미니미·독립 시작 버튼과 합성 검토용 최근 기록입니다.",
-        "caption": "홈 · 출발 준비와 러닝 시작",
+        "src": "/reviews/runmoni/0.6.0-dev/home.png",
+        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 홈 · 검토용 최근 기록과 미니미",
+        "caption": "홈 · 검토용 최근 기록과 미니미",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.5.0-dev/closet.png",
-        "alt": "실제 옷장의 통합 피팅 영역·분류·현재 착용과 품목 비교 목록입니다.",
-        "caption": "옷장 · 미리보기와 품목 선택",
+        "src": "/reviews/runmoni/0.6.0-dev/closet.png",
+        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 옷장 · 현재 착용과 의상 비교",
+        "caption": "옷장 · 현재 착용과 의상 비교",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.5.0-dev/record.png",
-        "alt": "합성 검토용 러닝 결과 요약과 경로 영역입니다. 이 기록에는 GPS 좌표가 없습니다.",
-        "caption": "러닝 기록 · 결과와 경로",
+        "src": "/reviews/runmoni/0.6.0-dev/record.png",
+        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 러닝 기록 · 검토용 수치와 공유",
+        "caption": "러닝 기록 · 검토용 수치와 공유",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.5.0-dev/share.png",
-        "alt": "실제 공유 편집의 기본1:1 미리보기·꾸미기 도구·저장과 공유 영역입니다.",
-        "caption": "기록 공유 · 기본1:1 편집",
+        "src": "/reviews/runmoni/0.6.0-dev/share.png",
+        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 기록 공유 · 기본 1:1 편집과 저장 동작",
+        "caption": "기록 공유 · 기본 1:1 편집과 저장 동작",
         "width": 480,
         "height": 854
       }
