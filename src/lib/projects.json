@@ -4,11 +4,11 @@
     "title": "런모니",
     "eyebrow": "Runmoni",
     "summary": "러닝을 기록하고 크루별 파티에 참가하는 Android 앱 개발 프리뷰.",
-    "description": "달린 경로와 기록을 남기고, 미니미를 꾸미며 크루·파티와 함께 달리는 Android 앱입니다.",
+    "description": "달린 경로와 기록을 남기고, 미니미를 꾸미며 크루·파티와 함께 달리는 Android 앱 개발 프리뷰입니다.",
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
-    "updatedAt": "2026.11.14",
+    "updatedAt": "2026.11.16",
     "sourceUrl": "https://github.com/wjdals988/runmoni",
     "operatingSystem": "Android 10+",
     "tags": [
@@ -20,18 +20,30 @@
       "Firestore"
     ],
     "highlights": [
-      "설정·프로필·앱 정보·크루/파티를 독립 페이지로 연결",
-      "초안·선택 탭·읽던 위치를 보존하는 뒤로가기",
-      "짙은 녹색·큰 거리·라임색 제어와 균형 잡힌 위젯 여백",
-      "실제 최근7일 기록, 옷장 비교와 코랄 공유 테마"
+      "차분한 청록색과 넓어진 여백, 읽기 쉬운 아이콘으로 앱과 위젯 정리",
+      "동일 계정의 서버 확인 연결을 복원하고 저장된 연결과 이번 온라인 확인을 구분",
+      "출발 전에 약100m 위치 공유를 선택하고 실제 러닝 중에만 전송",
+      "MapLibre/OpenFreeMap 벡터 지도와 지도 밖 조작·출처·오류 안내 제공",
+      "승인 포즈의 산타·곰·골든 의복 레이어3종 연결"
     ],
     "nextSteps": [
-      "옷장 검사에서 관측된 간헐 스레드 충돌의 원인 추적과 실기기 재현 확인",
-      "휴대폰에서 기존 기록·아이템을 유지한 업데이트와 페이지 복귀·글씨 확대 확인",
-      "실제 위젯·백그라운드 GPS·절전 환경에서 러닝 제어 확인",
-      "Google 로그인·운영 프로필·사진 선택과 저장·실제 SNS 전달 확인"
+      "실제 휴대폰에서 업데이트·큰 글씨·위젯 배치와 Google 로그인·닉네임 저장 확인",
+      "야외 GPS·장시간 백그라운드·절전 및 운영 위치 공유 시작/종료 확인",
+      "새 의복 조합의 사용자 시각 검토와 미승인 수영복 후속 원화 검토"
     ],
     "releaseNotes": [
+      {
+        "version": "0.7.0-dev",
+        "versionCode": 29,
+        "date": "2026.11.16",
+        "notes": [
+          "0.7.0-dev/code29: 밝은 표면과 차분한 청록색, 넓은 구역 간격으로 앱·위젯의 정보와 조작을 정리했습니다.",
+          "동일 UID의 서버 확인 프로필 연결을 보존하고 출발 전 위치 공유를 선택하도록 연결했습니다.",
+          "지도는 MapLibre/OpenFreeMap으로 전환했고 미니미 의상 교체 시 이미지 갱신·가림 순서를 보강했습니다.",
+          "산타·곰·골든 세트의 의복 레이어를 연결했습니다. 승인 원본·기존 아이템 ID·지갑·저장 데이터는 유지하며 미승인 수영복은 포함하지 않습니다.",
+          "실제 휴대폰 검증 전 개발 프리뷰입니다. Google 로그인·운영 프로필/위치 공유 쓰기·공개 서명 APK 실행·야외 GPS·SNS 전달·사용자 시각 승인은 별도 확인이 필요합니다."
+        ]
+      },
       {
         "version": "0.6.0-dev",
         "versionCode": 28,
@@ -281,43 +293,43 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.6.0-dev/runmoni-0.6.0-dev.apk",
-      "fileName": "runmoni-0.6.0-dev.apk",
-      "version": "0.6.0-dev",
-      "versionCode": 28,
-      "size": "220,284,077 bytes",
-      "sha256": "3d444a4e9ca7873e5d7104292b417b9e67281e15d0e9d0c02cd3b93f03096364",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.6.0-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.7.0-dev/runmoni-0.7.0-dev.apk",
+      "fileName": "runmoni-0.7.0-dev.apk",
+      "version": "0.7.0-dev",
+      "versionCode": 29,
+      "size": "172,509,168 bytes",
+      "sha256": "79d006bffacec3adc377476d97de6881424cfba48fc7b41b677f6b991228a152",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.7.0-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.6.0-dev UI 검토 화면입니다. 로컬 TEST 서명 debug이며 홈 · 검토용 최근 기록과 미니미: 실제 MainActivity · 옷장 · 현재 착용과 의상 비교: 실제 MainActivity · 러닝 기록 · 검토용 수치와 공유: 실제 MainActivity · 기록 공유 · 기본 1:1 편집과 저장 동작: 실제 MainActivity입니다. 기록은 합성 검토용이며 지도는 위치 권한을 끈 상태입니다. 이번 검토에서 사진 선택·갤러리 저장·SNS 전송을 재실행한 것은 아닙니다. 공개 서명 APK 실행·휴대폰·Google 로그인·운영 쓰기·야외 GPS·Doze/OEM·Android12이상·사용자 시각 승인은 별도입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/56",
+    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.7.0-dev 실제 MainActivity 원본4장입니다. 로컬 TEST 서명 debug 화면이며 공개 서명 APK 실행 증거가 아닙니다. 표시된 5.24km 기록과 프로필 별칭은 검토용 합성 데이터이며 GPS 좌표는 없습니다. 지도는 위치 미확인 상태의 서울 기본 영역이며 실제 러너 표시·현재 위치 확인 증거가 아닙니다. 사진을 적용하지 않은 정사각 공유 카드입니다. 실제 휴대폰 검증 전 개발 프리뷰입니다. Google 로그인·운영 프로필/위치 공유 쓰기·공개 서명 APK 실행·야외 GPS·SNS 전달·사용자 시각 승인은 별도 확인이 필요합니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/58",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.6.0-dev/home.png",
-        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 홈 · 검토용 최근 기록과 미니미",
-        "caption": "홈 · 검토용 최근 기록과 미니미",
+        "src": "/reviews/runmoni/0.7.0-dev/home.png",
+        "alt": "홈 · 출발 전 미니미와 날씨 안내 실제 Android 앱 화면",
+        "caption": "홈 · 출발 전 미니미와 날씨 안내",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.6.0-dev/closet.png",
-        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 옷장 · 현재 착용과 의상 비교",
-        "caption": "옷장 · 현재 착용과 의상 비교",
+        "src": "/reviews/runmoni/0.7.0-dev/closet.png",
+        "alt": "옷장 · 산타 세트 선택 실제 Android 앱 화면",
+        "caption": "옷장 · 산타 세트 선택",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.6.0-dev/record.png",
-        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 러닝 기록 · 검토용 수치와 공유",
-        "caption": "러닝 기록 · 검토용 수치와 공유",
+        "src": "/reviews/runmoni/0.7.0-dev/explore.png",
+        "alt": "탐색 · 한국어 벡터 지도 실제 Android 앱 화면",
+        "caption": "탐색 · 한국어 벡터 지도",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.6.0-dev/share.png",
-        "alt": "클라우드 Android TEST debug 실제 MainActivity 화면: 기록 공유 · 기본 1:1 편집과 저장 동작",
-        "caption": "기록 공유 · 기본 1:1 편집과 저장 동작",
+        "src": "/reviews/runmoni/0.7.0-dev/share.png",
+        "alt": "공유 · 미니미가 들어간 정사각 기록 카드 실제 Android 앱 화면",
+        "caption": "공유 · 미니미가 들어간 정사각 기록 카드",
         "width": 480,
         "height": 854
       }
