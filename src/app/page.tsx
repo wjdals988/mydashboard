@@ -1,297 +1,265 @@
 import {
+  ArrowDown,
   ArrowDownToLine,
   ArrowUpRight,
-  ShieldCheck,
+  ChevronRight,
+  Code2,
+  ExternalLink,
   Smartphone,
-  Sparkles,
 } from "lucide-react";
+import { Suspense } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { GithubMark } from "@/components/github-mark";
-import { ProjectGrid } from "@/components/project-grid";
+import { ProjectGrid, ProjectGridFallback } from "@/components/project-grid";
 import { ProjectIcon } from "@/components/project-icon";
 import { downloadableProjects, projectStats, projects } from "@/lib/projects";
 import { site } from "@/lib/site";
 
-const capabilities = [
-  {
-    icon: Smartphone,
-    title: "Android 네이티브",
-    body: "Kotlin, Jetpack Compose, Firebase로 설계부터 서명 배포까지 직접 진행합니다.",
-  },
-  {
-    icon: Sparkles,
-    title: "웹 서비스",
-    body: "Next.js와 서버리스 백엔드로 운영 중인 서비스를 만들고 유지합니다.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "품질 검증",
-    body: "보안 규칙 테스트, 회귀 테스트, 수동 QA 체크리스트를 함께 남깁니다.",
-  },
-];
-
 export default function Home() {
   const stats = projectStats();
-  const recent = [...projects]
-    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
-    .slice(0, 3);
+  const recent = [...projects].sort((a, b) =>
+    b.updatedAt.localeCompare(a.updatedAt),
+  );
+  const featured = recent[0];
+  const shots = featured.screenshots?.slice(0, 2);
 
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-line">
-        <div
-          aria-hidden="true"
-          className="grid-veil pointer-events-none absolute inset-0 opacity-50"
-        />
-        <div className="relative mx-auto w-full max-w-6xl px-5 pb-8 pt-10 md:px-8 md:pb-10 md:pt-14">
-          <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-center">
-            <div className="space-y-5">
-              <p className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
-                <span className="relative flex size-1.5">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
-                  <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
-                </span>
-                프로젝트 {stats.total}개 · 마지막 갱신 {stats.lastUpdatedAt}
-              </p>
-
-              <h1 className="text-4xl font-medium leading-[1.2] tracking-[-0.04em] text-balance md:text-5xl">
-                {site.tagline}
-              </h1>
-
-              <p className="max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
-                {site.description}
-              </p>
-
-              <div className="flex flex-wrap items-center gap-2.5">
-                <a
-                  className="inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
-                  href="#projects"
-                >
-                  프로젝트 보기
-                  <ArrowUpRight aria-hidden="true" size={15} />
-                </a>
-                <a
-                  className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium transition hover:border-line-strong"
-                  href="#downloads"
-                >
-                  APK 다운로드
-                  <ArrowDownToLine aria-hidden="true" size={15} />
-                </a>
-                <a
-                  className="inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted transition hover:text-fg"
-                  href={site.github}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <GithubMark size={15} />
-                  GitHub
-                </a>
-              </div>
-            </div>
-
-            <aside
-              aria-label="최근 프로젝트 업데이트"
-              className="rounded-2xl border border-line bg-surface p-5 md:p-6"
-            >
-              <div className="mb-5 flex items-center justify-between">
-                <h2 className="text-sm font-medium">최근 업데이트</h2>
-                <span className="font-mono text-xs tracking-wider text-accent">
-                  CHANGELOG
-                </span>
-              </div>
-              <ul className="space-y-1">
-                {recent.map((project) => (
-                  <li key={project.slug}>
-                    <Link
-                      className="group flex min-h-20 items-center gap-3 rounded-xl p-2 transition hover:bg-surface-2"
-                      href={`/projects/${project.slug}`}
-                    >
-                      <span
-                        className="grid size-10 shrink-0 place-items-center rounded-xl text-white"
-                        style={{ backgroundColor: project.accent }}
-                      >
-                        <ProjectIcon name={project.icon} size={19} />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-sm font-medium">
-                          {project.title}
-                        </span>
-                        <span className="mt-1 block text-xs text-muted">
-                          {project.statusLabel} · {project.updatedAt}
-                        </span>
-                      </span>
-                      <ArrowUpRight
-                        aria-hidden="true"
-                        className="text-muted transition group-hover:text-accent"
-                        size={17}
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 border-t border-line pt-4 text-xs leading-5 text-muted">
-                업데이트 날짜 기준 · 상세 페이지에서 구현 범위와 남은 과제를
-                확인하세요.
-              </p>
-            </aside>
+      <section className="shell hero" aria-labelledby="intro-title">
+        <div className="entry">
+          <p className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-muted">
+            <span
+              aria-hidden="true"
+              className="size-2 rounded-full bg-accent"
+            />
+            JM의 프로젝트 작업실
+          </p>
+          <h1 className="hero-title" id="intro-title">
+            작은 아이디어가,
+            <br />
+            쓸모 있는 제품으로.
+          </h1>
+          <p className="hero-intro">
+            직접 만들고 다듬어 가는 웹 서비스와 Android 앱입니다. 마음에 드는
+            프로젝트를 열어 보고, 그 안의 이야기도 살펴보세요.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-2">
+            <a className="button button-primary" href="#projects">
+              프로젝트 둘러보기 <ArrowDown aria-hidden="true" size={17} />
+            </a>
+            <a className="button button-quiet" href="#downloads">
+              <Smartphone aria-hidden="true" size={17} /> 앱 다운로드
+            </a>
           </div>
-
-          <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
-            <Metric label="전체 프로젝트" value={stats.total} />
-            {stats.byStatus.map((item) => (
-              <Metric key={item.status} label={item.label} value={item.count} />
-            ))}
+          <dl className="hero-stat">
+            <div>
+              <dt>만든 프로젝트</dt>
+              <dd className="num">
+                {stats.total}
+                <span className="ml-1 text-sm font-normal text-muted">개</span>
+              </dd>
+            </div>
+            <div>
+              <dt>열어 볼 웹 서비스</dt>
+              <dd className="num">
+                {stats.liveServices}
+                <span className="ml-1 text-sm font-normal text-muted">개</span>
+              </dd>
+            </div>
+            <div>
+              <dt>설치 가능한 앱</dt>
+              <dd className="num">
+                {stats.downloads}
+                <span className="ml-1 text-sm font-normal text-muted">개</span>
+              </dd>
+            </div>
           </dl>
         </div>
-      </section>
 
-      <section className="px-5 py-10 md:px-8 md:py-14" id="projects">
-        <div className="mx-auto max-w-6xl space-y-8">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div className="space-y-3">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
-                Explore projects
-              </p>
-              <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
-                프로젝트 탐색
-              </h2>
-            </div>
-            <p className="max-w-lg text-sm leading-6 text-muted">
-              운영 중인 서비스와 구현 중인 시스템을 같은 기준으로 정리했습니다.
-              각 상세 화면에는 구현한 기능과 남은 과제를 그대로 적어 둡니다.
-            </p>
+        <Link
+          className="featured-project entry entry-preview"
+          href={`/projects/${featured.slug}`}
+          aria-label={`최근 업데이트: ${featured.title} 상세 보기`}
+        >
+          <div className="flex items-center justify-between gap-3 text-[13px] font-medium">
+            <span>최근에 다듬은 프로젝트</span>
+            <time dateTime={featured.updatedAt.replaceAll(".", "-")}>
+              {featured.updatedAt}
+            </time>
           </div>
-
-          <ProjectGrid projects={projects} />
-        </div>
+          <div className="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-semibold tracking-tight">
+                {featured.title}
+              </h2>
+              <p className="mt-2 max-w-[30ch] text-sm leading-6">
+                {featured.summary}
+              </p>
+            </div>
+            <span className="grid size-11 shrink-0 place-items-center rounded-full border border-current/25">
+              <ArrowUpRight aria-hidden="true" size={20} />
+            </span>
+          </div>
+          {shots?.length ? (
+            <div className="featured-stage" aria-hidden="true">
+              {shots.map((shot, index) => (
+                <Image
+                  key={shot.src}
+                  src={shot.src}
+                  alt=""
+                  width={shot.width}
+                  height={shot.height}
+                  sizes="160px"
+                  priority
+                  className={`featured-phone ${index === 0 ? "featured-phone-first" : "featured-phone-second"}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="my-8">
+              <ProjectIcon name={featured.icon} size={64} />
+            </div>
+          )}
+          <div className="featured-footer">
+            <span>
+              {featured.apk ? `v${featured.apk.version}` : "최근 업데이트"}
+              <span className="mt-1 block text-xs font-normal">
+                {featured.statusLabel}
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-1">
+              자세히 보기 <ChevronRight aria-hidden="true" size={17} />
+            </span>
+          </div>
+        </Link>
       </section>
 
       <section
-        className="border-b border-line px-5 py-14 md:px-8 md:py-16"
-        id="downloads"
+        className="shell pb-16 pt-4 md:pb-24 md:pt-8"
+        id="projects"
+        aria-labelledby="projects-title"
       >
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div className="space-y-3">
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
-              Direct install
-            </p>
-            <h2 className="text-2xl font-medium tracking-[-0.02em] md:text-3xl">
-              Android APK 다운로드
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 className="section-title" id="projects-title">
+              어떤 프로젝트가 궁금하세요?
             </h2>
-            <p className="max-w-md text-sm leading-6 text-muted">
-              정식 서명 릴리스와 개발 미리보기를 구분해 제공합니다. 버전, 용량,
-              SHA-256 해시와 각 앱의 서명 상태를 설치 전에 확인해 주세요.
+            <p className="section-description mt-3">
+              일상의 도구부터 작은 게임까지. 직접 써 보고, 만드는 과정도
+              확인하세요.
             </p>
           </div>
+          <span className="text-[13px] text-subtle">
+            마지막 갱신{" "}
+            <time
+              className="num"
+              dateTime={stats.lastUpdatedAt?.replaceAll(".", "-")}
+            >
+              {stats.lastUpdatedAt}
+            </time>
+          </span>
+        </div>
+        <Suspense fallback={<ProjectGridFallback projects={projects} />}>
+          <ProjectGrid projects={projects} />
+        </Suspense>
+      </section>
 
-          <ul className="grid gap-2.5">
+      <section
+        className="border-y border-line bg-surface-2 py-14 md:py-20"
+        id="downloads"
+        aria-labelledby="downloads-title"
+      >
+        <div className="shell">
+          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h2 className="section-title" id="downloads-title">
+                내 폰에서 직접 써 보세요.
+              </h2>
+              <p className="section-description mt-3">
+                Android 설치 파일을 모았습니다. 정식 서명 릴리스와 개발 프리뷰를
+                구분해서 확인하세요.
+              </p>
+            </div>
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-line-strong px-3 py-1.5 text-[13px] text-muted">
+              <Smartphone aria-hidden="true" size={15} /> Android 전용
+            </span>
+          </div>
+          <ul className="grid gap-3 lg:grid-cols-2">
             {downloadableProjects.map((project) =>
               project.apk ? (
-                <li key={project.slug}>
-                  <div className="flex flex-wrap items-center gap-3 rounded-xl border border-line bg-surface p-4">
-                    <span
-                      className="grid size-10 shrink-0 place-items-center rounded-lg text-white"
-                      style={{ backgroundColor: project.accent }}
-                    >
-                      <ProjectIcon name={project.icon} size={18} />
+                <li className="download-row" key={project.slug}>
+                  <div className="flex min-w-0 items-start gap-3.5">
+                    <span className="grid size-12 shrink-0 place-items-center rounded-2xl border border-line bg-surface-2 text-fg">
+                      <ProjectIcon name={project.icon} size={23} />
                     </span>
-                    <div className="min-w-0 flex-1">
+                    <div className="min-w-0">
                       <Link
-                        className="text-sm font-medium hover:text-accent"
-                        href={`/projects/${project.slug}`}
+                        className="text-base font-semibold hover:text-accent"
+                        href={`/projects/${project.slug}#download`}
                       >
                         {project.title}
                       </Link>
-                      <p className="mt-1 text-xs text-muted">
-                        v{project.apk.version} ({project.apk.versionCode}) ·{" "}
+                      <p className="num mt-1 text-[13px] text-muted">
+                        v{project.apk.version} <span className="mx-1">/</span>{" "}
                         {project.apk.size}
                       </p>
-                      <span
-                        className={`mt-2 inline-flex rounded-md px-2 py-1 text-xs ${project.apk.label === "signed release APK" ? "bg-accent-soft text-accent" : "bg-[var(--building-soft)] text-[var(--building)]"}`}
+                      <p
+                        className={`mt-2 text-[12px] font-medium ${project.apk.label === "signed release APK" ? "text-[var(--live)]" : "text-[var(--building)]"}`}
                       >
                         {project.apk.label === "signed release APK"
-                          ? "서명 릴리스"
-                          : "개발 미리보기 · 디버그 APK"}
-                      </span>
+                          ? "정식 서명 릴리스"
+                          : "개발 프리뷰 · 검증 상태 확인 필요"}
+                      </p>
                     </div>
-                    <div className="flex w-full gap-2 pl-[52px] sm:w-auto sm:pl-0">
-                      <Link
-                        aria-label={`${project.title} 설치 정보 확인`}
-                        className="inline-flex min-h-11 items-center rounded-lg border border-line px-3 text-xs text-muted hover:text-fg"
-                        href={`/projects/${project.slug}#download`}
-                      >
-                        설치 정보
-                      </Link>
-                      <a
-                        aria-label={`${project.title} APK 다운로드`}
-                        className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-fg px-3 text-xs font-medium text-bg hover:opacity-90"
-                        download
-                        href={project.apk.url}
-                        rel="noreferrer"
-                      >
-                        APK
-                        <ArrowDownToLine aria-hidden="true" size={15} />
-                      </a>
-                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Link
+                      aria-label={`${project.title} 설치 안내`}
+                      className="button button-secondary"
+                      href={`/projects/${project.slug}#download`}
+                    >
+                      설치 안내
+                    </Link>
+                    <a
+                      aria-label={`${project.title} APK 다운로드`}
+                      className="button button-primary"
+                      href={project.apk.url}
+                      download
+                      rel="noreferrer"
+                    >
+                      <ArrowDownToLine aria-hidden="true" size={17} /> APK
+                    </a>
                   </div>
                 </li>
               ) : null,
             )}
           </ul>
+          <p className="mt-5 text-sm leading-7 text-muted">
+            Play Store를 통한 설치가 아닙니다. 설치 안내에서 지원 기기, 서명
+            상태와 파일 검증 정보를 확인할 수 있어요.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-line px-5 py-14 md:px-8 md:py-16">
-        <div className="mx-auto max-w-6xl space-y-8">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
-            {capabilities.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div className="bg-surface p-6" key={item.title}>
-                  <Icon aria-hidden="true" className="text-accent" size={19} />
-                  <h3 className="mt-4 text-base font-medium">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {item.body}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-col items-start justify-between gap-5 rounded-2xl border border-line bg-surface p-6 md:flex-row md:items-center md:p-8">
-            <div className="space-y-2">
-              <h2 className="text-xl font-medium tracking-[-0.01em] md:text-2xl">
-                작업 방식이나 코드가 궁금하시면
-              </h2>
-              <p className="text-sm leading-6 text-muted">
-                모든 프로젝트의 소스와 릴리스는 GitHub에 공개해 두었습니다.
-              </p>
-            </div>
-            <a
-              className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition hover:opacity-90"
-              href={site.github}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <GithubMark size={15} />
-              GitHub에서 보기
-              <ArrowUpRight aria-hidden="true" size={14} />
-            </a>
-          </div>
+      <section className="shell flex flex-col justify-between gap-7 py-14 md:flex-row md:items-center md:py-20">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            만드는 과정도 열어 두었습니다.
+          </h2>
+          <p className="section-description mt-3">
+            각 프로젝트의 코드, 구현한 기능과 남은 과제를 확인해 보세요.
+          </p>
         </div>
+        <a
+          className="button button-secondary shrink-0 self-start"
+          href={site.github}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Code2 aria-hidden="true" size={18} /> GitHub에서 코드 보기{" "}
+          <ExternalLink aria-hidden="true" size={15} />
+        </a>
       </section>
     </main>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="bg-surface px-5 py-4">
-      <dt className="text-xs text-subtle">{label}</dt>
-      <dd className="num mt-1.5 text-3xl font-medium tracking-[-0.02em]">
-        {value}
-      </dd>
-    </div>
   );
 }

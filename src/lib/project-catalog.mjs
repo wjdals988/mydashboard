@@ -34,6 +34,9 @@ export function filterProjects(projects, filters) {
       project.eyebrow,
       project.summary,
       ...project.tags,
+      ...platformsOf(project).map((platform) =>
+        platform === "android" ? "Android 안드로이드" : "web 웹",
+      ),
     ]
       .join(" ")
       .toLocaleLowerCase();

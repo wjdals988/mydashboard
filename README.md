@@ -27,16 +27,16 @@ npm run build
 프로젝트 정보의 단일 원천은 `src/lib/projects.json` 하나입니다. 배열 순서가
 화면 표시 순서이고, 타입은 `src/lib/projects.ts`의 `Project`가 정의합니다.
 
-| 필드 | 설명 |
-|---|---|
-| `slug` | URL 경로(`/projects/<slug>`)이자 `update:apk`의 대상 키 |
-| `status` | `live` \| `building` \| `personal-use` — 필터와 배지 색을 결정 |
-| `liveUrl` | 있으면 "웹" 플랫폼으로 분류되고 상세 화면에 라이브 미리보기가 붙음 |
-| `sourceUrl` | 선택 항목. 상세 화면에 GitHub 소스 링크를 표시 |
-| `apk` | 있으면 다운로드 영역·구조화 데이터에 포함 (Android 플랫폼은 APK 또는 Android/Kotlin 태그로 판별) |
-| `visual` | 카드 미리보기 도식 종류. `src/components/project-visual.tsx`와 1:1 |
-| `icon` | lucide 아이콘 키. `src/components/project-icon.tsx`와 1:1 |
-| `accent` | 카드 상단 선, 아이콘 배경, 도식 강조에 쓰는 프로젝트 고유색 |
+| 필드        | 설명                                                                                             |
+| ----------- | ------------------------------------------------------------------------------------------------ |
+| `slug`      | URL 경로(`/projects/<slug>`)이자 `update:apk`의 대상 키                                          |
+| `status`    | `live` \| `building` \| `personal-use` — 필터와 배지 색을 결정                                   |
+| `liveUrl`   | 있으면 "웹" 플랫폼으로 분류되고 상세 화면에 라이브 미리보기가 붙음                               |
+| `sourceUrl` | 선택 항목. 상세 화면에 GitHub 소스 링크를 표시                                                   |
+| `apk`       | 있으면 다운로드 영역·구조화 데이터에 포함 (Android 플랫폼은 APK 또는 Android/Kotlin 태그로 판별) |
+| `visual`    | 카드 미리보기 도식 종류. `src/components/project-visual.tsx`와 1:1                               |
+| `icon`      | lucide 아이콘 키. `src/components/project-icon.tsx`와 1:1                                        |
+| `accent`    | 카드 상단 선, 아이콘 배경, 도식 강조에 쓰는 프로젝트 고유색                                      |
 
 홈 상단 지표는 `projectStats()`가 이 파일에서 매번 계산합니다. 숫자를 따로
 적어 두지 않으므로 프로젝트를 추가·수정하면 자동으로 맞습니다.
@@ -67,8 +67,8 @@ npm run update:apk -- --slug <slug> --url <apk url> --fileName <name> \
 
 ## 환경변수
 
-| 이름 | 필수 | 설명 |
-|---|---|---|
+| 이름                   | 필수 | 설명                                                                                                                                                                                                                  |
+| ---------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL` | 선택 | 사이트 절대 URL. 지정하지 않으면 Vercel이 주입하는 `VERCEL_PROJECT_PRODUCTION_URL`을 쓰고, 그것도 없으면 `http://localhost:3000`을 씁니다. `sitemap.xml`, `robots.txt`, OG 이미지 URL, 구조화 데이터의 기준이 됩니다. |
 
 커스텀 도메인을 붙였다면 Vercel 프로젝트 환경변수에 `NEXT_PUBLIC_SITE_URL`을
@@ -76,7 +76,8 @@ npm run update:apk -- --slug <slug> --url <apk url> --fileName <name> \
 
 ## 화면 테마
 
-다크를 기본값으로 두고 시스템 설정(`prefers-color-scheme`)을 따릅니다. 헤더의
+시스템 설정(`prefers-color-scheme`)에 따라 라이트·다크 테마를 적용합니다.
+시스템에서 선호 테마를 지정하지 않으면 라이트 테마를 사용합니다. 헤더의
 토글로 시스템·라이트·다크를 고를 수 있고 선택값은 `localStorage`에 남습니다.
 첫 페인트 전에 인라인 스크립트가 `data-theme`을 적용해 화면 깜빡임이 없습니다.
 
@@ -96,3 +97,11 @@ npm run update:apk -- --slug <slug> --url <apk url> --fileName <name> \
 포함했습니다. 상업적 사용이 허용되며, 재배포 시 이 라이선스 파일을 함께
 유지해야 합니다. KS X 1001 음절 집합을 담은 판본이라 아주 드문 한글 음절은
 시스템 글꼴로 대체될 수 있습니다.
+
+## 프로젝트 라이브러리 UI
+
+홈·프로젝트 카드·상세 페이지는 공통 색상과 모션 토큰을 사용합니다.
+디자인 방향과 접근성 기준은 [디자인 문서](docs/design/project-library.md)에 있습니다.
+검색어(`q`), 상태(`status`), 플랫폼(`platform`), 설치 파일(`download=1`),
+정렬(`sort=updated`)은 URL에 저장합니다. 카드에서 상세 페이지로 이동하면
+`from` 파라미터가 목록 복귀 시 검색 조건을 복원합니다.

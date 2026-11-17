@@ -1,4 +1,4 @@
-/* Native home-section anchors intentionally preserve repeated hash navigation and scroll-margin. */
+/* Native anchors keep repeated section navigation predictable. */
 /* eslint-disable @next/next/no-html-link-for-pages */
 import Link from "next/link";
 import { GithubMark } from "@/components/github-mark";
@@ -7,59 +7,51 @@ import { site } from "@/lib/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-[color-mix(in_srgb,var(--bg)_86%,transparent)] backdrop-blur-md">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-4 px-5 md:px-8">
+    <header className="sticky top-0 z-40 border-b border-line bg-bg/95 backdrop-blur-lg">
+      <div className="shell flex min-h-20 items-center justify-between gap-3 py-3">
         <Link
-          className="flex items-center gap-2.5 text-sm font-medium"
           href="/"
+          className="flex shrink-0 items-center gap-3"
+          aria-label="JM 프로젝트 작업실 홈"
         >
-          <span className="grid size-7 place-items-center rounded-md bg-fg text-[11px] font-semibold text-bg">
-            JM
+          <span className="brand-mark">JM</span>
+          <span className="hidden text-base font-semibold tracking-tight sm:block">
+            프로젝트 작업실
           </span>
-          <span className="hidden sm:inline">{site.name}</span>
-          <span className="sm:hidden">{site.shortName}</span>
         </Link>
-
-        <div className="flex items-center gap-2">
-          <a
-            className="hidden h-8 items-center rounded-full px-3 text-sm text-muted transition hover:text-fg sm:inline-flex"
-            href="/#projects"
-          >
+        <nav
+          aria-label="주요 메뉴"
+          className="hidden items-center gap-1 md:flex"
+        >
+          <a href="/#projects" className="nav-link">
             프로젝트
           </a>
-          <a
-            className="hidden h-8 items-center rounded-full px-3 text-sm text-muted transition hover:text-fg sm:inline-flex"
-            href="/#downloads"
-          >
-            다운로드
+          <a href="/#downloads" className="nav-link">
+            앱 다운로드
           </a>
-          <a
-            aria-label="GitHub 프로필 열기"
-            className="grid size-8 place-items-center rounded-full border border-line bg-surface text-muted transition hover:border-line-strong hover:text-fg"
-            href={site.github}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <GithubMark size={15} />
-          </a>
+        </nav>
+        <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
+          <a
+            className="grid size-11 place-items-center rounded-xl border border-line bg-surface text-muted transition-colors hover:border-line-strong hover:text-fg"
+            aria-label="GitHub 프로필 열기 (새 탭)"
+            href={site.github}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <GithubMark size={19} />
+          </a>
         </div>
       </div>
       <nav
         aria-label="모바일 주요 메뉴"
-        className="flex border-t border-line px-5 sm:hidden"
+        className="shell flex gap-1 border-t border-line pb-2 pt-1 md:hidden"
       >
-        <a
-          className="flex min-h-11 flex-1 items-center justify-center text-sm text-muted hover:text-fg"
-          href="/#projects"
-        >
-          프로젝트 탐색
+        <a href="/#projects" className="nav-link flex-1 justify-center">
+          프로젝트
         </a>
-        <a
-          className="flex min-h-11 flex-1 items-center justify-center text-sm text-muted hover:text-fg"
-          href="/#downloads"
-        >
-          APK 다운로드
+        <a href="/#downloads" className="nav-link flex-1 justify-center">
+          앱 다운로드
         </a>
       </nav>
     </header>
