@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteMotion } from "@/components/site-motion";
 import { SiteHeader } from "@/components/site-header";
 import { projects } from "@/lib/projects";
 import { site, siteUrl } from "@/lib/site";
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f7fb" },
+    { media: "(prefers-color-scheme: light)", color: "#f8f9fb" },
     { media: "(prefers-color-scheme: dark)", color: "#101827" },
   ],
 };
@@ -122,6 +123,7 @@ export default function RootLayout({
         >
           본문으로 건너뛰기
         </a>
+        <SiteMotion />
         <SiteHeader />
         <div id="main">{children}</div>
         <SiteFooter />

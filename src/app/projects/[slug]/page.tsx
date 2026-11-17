@@ -15,6 +15,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CopyButton } from "@/components/copy-button";
 import { ProjectIcon } from "@/components/project-icon";
+import { ProjectArtwork } from "@/components/project-artwork";
 import { ProjectVisual } from "@/components/project-visual";
 import {
   type ProjectApk,
@@ -174,7 +175,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {cover ? (
             <figure className="space-y-4 rounded-3xl border border-line bg-surface-2 p-6 text-center">
               <a
-                className="inline-block rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4"
+                className="screenshot-link inline-block rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4"
                 href={cover.src}
                 target="_blank"
                 rel="noreferrer"
@@ -194,7 +195,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {cover.caption}
               </figcaption>
             </figure>
-          ) : (
+          ) : project.liveUrl ? (
             <ProjectVisual
               accent={project.accent}
               live
@@ -202,6 +203,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               title={project.title}
               type={project.visual}
             />
+          ) : (
+            <div className="detail-artwork">
+              <ProjectArtwork project={project} />
+            </div>
           )}
         </section>
 
@@ -237,7 +242,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.screenshots.map((shot) => (
                 <figure className="space-y-3" key={shot.src}>
                   <a
-                    className="block overflow-hidden rounded-2xl border border-line bg-surface-2 p-3 focus-visible:outline-2 focus-visible:outline-offset-4"
+                    className="screenshot-link block overflow-hidden rounded-2xl border border-line bg-surface-2 p-3 focus-visible:outline-2 focus-visible:outline-offset-4"
                     href={shot.src}
                     target="_blank"
                     rel="noreferrer"

@@ -4,6 +4,7 @@ import { useDeferredValue, useId, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ChevronDown, RotateCcw, Search, X } from "lucide-react";
 import { filterProjects } from "@/lib/project-catalog.mjs";
+import { useCatalogMotion } from "@/components/use-catalog-motion";
 import { ProjectCard } from "@/components/project-card";
 import {
   type Project,
@@ -57,6 +58,9 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
     downloadOnly,
     sort,
   });
+  const { root: catalogRef, capture: captureMotion } = useCatalogMotion(
+    visible.map((project) => project.slug).join("|"),
+  );
   const active = Boolean(
     query ||
       status !== "all" ||
@@ -68,6 +72,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
   const catalogHref = `/${params.size ? `?${params.toString()}` : ""}#projects`;
 
   function update(key: string, value: string) {
+    captureMotion();
     const next = new URLSearchParams(window.location.search);
     if (!value || value === "all" || value === "curated") next.delete(key);
     else next.set(key, value);
@@ -79,6 +84,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
     );
   }
   function reset() {
+    captureMotion();
     const next = new URLSearchParams(window.location.search);
     ["q", "status", "platform", "download", "sort"].forEach((key) =>
       next.delete(key),
@@ -254,7 +260,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
           {sort === "updated" ? "최근 업데이트순" : "기본 순서"}
         </p>
       </div>
-      <div aria-busy={query !== deferredQuery}>
+      <div ref={catalogRef} aria-busy={query !== deferredQuery}>
         {visible.length > 0 ? (
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {visible.map((project) => (

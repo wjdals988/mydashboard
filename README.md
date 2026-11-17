@@ -34,7 +34,7 @@ npm run build
 | `liveUrl`   | 있으면 "웹" 플랫폼으로 분류되고 상세 화면에 라이브 미리보기가 붙음                               |
 | `sourceUrl` | 선택 항목. 상세 화면에 GitHub 소스 링크를 표시                                                   |
 | `apk`       | 있으면 다운로드 영역·구조화 데이터에 포함 (Android 플랫폼은 APK 또는 Android/Kotlin 태그로 판별) |
-| `visual`    | 카드 미리보기 도식 종류. `src/components/project-visual.tsx`와 1:1                               |
+| `visual`    | 프로젝트 그림 종류. 목록·앱 상세는 `project-artwork.tsx`, 웹 상세 미리보기는 `project-visual.tsx`에서 사용                               |
 | `icon`      | lucide 아이콘 키. `src/components/project-icon.tsx`와 1:1                                        |
 | `accent`    | 카드 상단 선, 아이콘 배경, 도식 강조에 쓰는 프로젝트 고유색                                      |
 
@@ -105,3 +105,8 @@ npm run update:apk -- --slug <slug> --url <apk url> --fileName <name> \
 검색어(`q`), 상태(`status`), 플랫폼(`platform`), 설치 파일(`download=1`),
 정렬(`sort=updated`)은 URL에 저장합니다. 카드에서 상세 페이지로 이동하면
 `from` 파라미터가 목록 복귀 시 검색 조건을 복원합니다.
+
+최근 프로젝트 미리보기는 키보드 방향키와 Home/End를 지원합니다. 목록 재배치,
+그림과 포인터 반응, 테마 전환은 CSS 및 Web Animations API로 처리하며
+`prefers-reduced-motion`을 따릅니다. [2차 수정 기록](docs/changes/2026-11-17-workshop-motion.md)에
+구현 범위와 검증 내용을 정리했습니다.

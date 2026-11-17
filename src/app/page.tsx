@@ -2,13 +2,12 @@ import {
   ArrowDown,
   ArrowDownToLine,
   ArrowUpRight,
-  ChevronRight,
   Code2,
   ExternalLink,
   Smartphone,
 } from "lucide-react";
 import { Suspense } from "react";
-import Image from "next/image";
+import { WorkshopFeature } from "@/components/workshop-feature";
 import Link from "next/link";
 import { ProjectGrid, ProjectGridFallback } from "@/components/project-grid";
 import { ProjectIcon } from "@/components/project-icon";
@@ -20,118 +19,49 @@ export default function Home() {
   const recent = [...projects].sort((a, b) =>
     b.updatedAt.localeCompare(a.updatedAt),
   );
-  const featured = recent[0];
-  const shots = featured.screenshots?.slice(0, 2);
+  const previews = recent.slice(0, 3).map((project) => ({
+    slug: project.slug,
+    title: project.title,
+    summary: project.summary,
+    statusLabel: project.statusLabel,
+    visual: project.visual,
+    accent: project.accent,
+    screenshots: project.screenshots,
+    version: project.apk?.version,
+  }));
 
   return (
     <main>
       <section className="shell hero" aria-labelledby="intro-title">
-        <div className="entry">
-          <p className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-muted">
-            <span
-              aria-hidden="true"
-              className="size-2 rounded-full bg-accent"
-            />
-            JM의 프로젝트 작업실
-          </p>
+        <div className="hero-note">
+          <p className="hero-byline">JM의 개인 프로젝트</p>
           <h1 className="hero-title" id="intro-title">
-            작은 아이디어가,
-            <br />
-            쓸모 있는 제품으로.
+            <span>만든 것들.</span>
           </h1>
           <p className="hero-intro">
-            직접 만들고 다듬어 가는 웹 서비스와 Android 앱입니다. 마음에 드는
-            프로젝트를 열어 보고, 그 안의 이야기도 살펴보세요.
+            달리기 기록, 여행 준비, 반응속도 게임.
+            <br />
+            만들어 놓은 것과 만들고 있는 것을 모았습니다.
           </p>
-          <div className="mt-7 flex flex-wrap gap-2">
-            <a className="button button-primary" href="#projects">
-              프로젝트 둘러보기 <ArrowDown aria-hidden="true" size={17} />
+          <div className="hero-links">
+            <a className="text-link" href="#projects">
+              프로젝트 {stats.total}개 보기{" "}
+              <ArrowDown aria-hidden="true" size={17} />
             </a>
-            <a className="button button-quiet" href="#downloads">
-              <Smartphone aria-hidden="true" size={17} /> 앱 다운로드
+            <a
+              className="text-link text-muted"
+              href={site.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <ArrowUpRight aria-hidden="true" size={16} />
             </a>
           </div>
-          <dl className="hero-stat">
-            <div>
-              <dt>만든 프로젝트</dt>
-              <dd className="num">
-                {stats.total}
-                <span className="ml-1 text-sm font-normal text-muted">개</span>
-              </dd>
-            </div>
-            <div>
-              <dt>열어 볼 웹 서비스</dt>
-              <dd className="num">
-                {stats.liveServices}
-                <span className="ml-1 text-sm font-normal text-muted">개</span>
-              </dd>
-            </div>
-            <div>
-              <dt>설치 가능한 앱</dt>
-              <dd className="num">
-                {stats.downloads}
-                <span className="ml-1 text-sm font-normal text-muted">개</span>
-              </dd>
-            </div>
-          </dl>
+          <p className="hero-footnote">
+            웹 서비스 {stats.liveServices}개 / 설치 파일 {stats.downloads}개
+          </p>
         </div>
-
-        <Link
-          className="featured-project entry entry-preview"
-          href={`/projects/${featured.slug}`}
-          aria-label={`최근 업데이트: ${featured.title} 상세 보기`}
-        >
-          <div className="flex items-center justify-between gap-3 text-[13px] font-medium">
-            <span>최근에 다듬은 프로젝트</span>
-            <time dateTime={featured.updatedAt.replaceAll(".", "-")}>
-              {featured.updatedAt}
-            </time>
-          </div>
-          <div className="mt-5 flex items-start justify-between gap-4">
-            <div>
-              <h2 className="text-3xl font-semibold tracking-tight">
-                {featured.title}
-              </h2>
-              <p className="mt-2 max-w-[30ch] text-sm leading-6">
-                {featured.summary}
-              </p>
-            </div>
-            <span className="grid size-11 shrink-0 place-items-center rounded-full border border-current/25">
-              <ArrowUpRight aria-hidden="true" size={20} />
-            </span>
-          </div>
-          {shots?.length ? (
-            <div className="featured-stage" aria-hidden="true">
-              {shots.map((shot, index) => (
-                <Image
-                  key={shot.src}
-                  src={shot.src}
-                  alt=""
-                  width={shot.width}
-                  height={shot.height}
-                  sizes="160px"
-                  priority
-                  className={`featured-phone ${index === 0 ? "featured-phone-first" : "featured-phone-second"}`}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="my-8">
-              <ProjectIcon name={featured.icon} size={64} />
-            </div>
-          )}
-          <div className="featured-footer">
-            <span>
-              {featured.apk ? `v${featured.apk.version}` : "최근 업데이트"}
-              <span className="mt-1 block text-xs font-normal">
-                {featured.statusLabel}
-              </span>
-            </span>
-            <span className="inline-flex items-center gap-1">
-              자세히 보기 <ChevronRight aria-hidden="true" size={17} />
-            </span>
-          </div>
-        </Link>
+        <WorkshopFeature projects={previews} />
       </section>
 
       <section
@@ -141,12 +71,11 @@ export default function Home() {
       >
         <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="section-title" id="projects-title">
-              어떤 프로젝트가 궁금하세요?
+            <h2 className="section-title" id="projects-title" data-draw>
+              프로젝트
             </h2>
             <p className="section-description mt-3">
-              일상의 도구부터 작은 게임까지. 직접 써 보고, 만드는 과정도
-              확인하세요.
+              운영 중인 서비스와 개발 중인 앱을 함께 모아 두었습니다.
             </p>
           </div>
           <span className="text-[13px] text-subtle">
@@ -172,8 +101,8 @@ export default function Home() {
         <div className="shell">
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <h2 className="section-title" id="downloads-title">
-                내 폰에서 직접 써 보세요.
+              <h2 className="section-title" id="downloads-title" data-draw>
+                Android 설치 파일
               </h2>
               <p className="section-description mt-3">
                 Android 설치 파일을 모았습니다. 정식 서명 릴리스와 개발 프리뷰를
@@ -244,10 +173,10 @@ export default function Home() {
       <section className="shell flex flex-col justify-between gap-7 py-14 md:flex-row md:items-center md:py-20">
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">
-            만드는 과정도 열어 두었습니다.
+            코드와 릴리스
           </h2>
           <p className="section-description mt-3">
-            각 프로젝트의 코드, 구현한 기능과 남은 과제를 확인해 보세요.
+            소스 코드와 개발 기록은 GitHub에 공개합니다.
           </p>
         </div>
         <a

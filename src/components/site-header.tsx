@@ -14,9 +14,9 @@ export function SiteHeader() {
           className="flex shrink-0 items-center gap-3"
           aria-label="JM 프로젝트 작업실 홈"
         >
-          <span className="brand-mark">JM</span>
+          <span className="brand-mark">jm.</span>
           <span className="hidden text-base font-semibold tracking-tight sm:block">
-            프로젝트 작업실
+            개인 작업실
           </span>
         </Link>
         <nav

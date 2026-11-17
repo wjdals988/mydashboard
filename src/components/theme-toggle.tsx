@@ -1,7 +1,7 @@
 "use client";
 
 import { Monitor, Moon, Sun } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 
 type Mode = "system" | "light" | "dark";
 
@@ -44,7 +44,10 @@ function getServerSnapshot(): Mode {
 export function ThemeToggle() {
   const mode = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  function pick(next: Mode) {
+  const transition = useRef<ViewTransition | null>(null);
+  useEffect(() => () => transition.current?.skipTransition(), []);
+
+  function apply(next: Mode) {
     const root = document.documentElement;
 
     try {
@@ -59,6 +62,27 @@ export function ThemeToggle() {
       // Theme changes still work when browser storage is unavailable.
     }
     window.dispatchEvent(new Event(EVENT));
+  }
+
+  function pick(next: Mode) {
+    if (next === mode && !transition.current) return;
+    transition.current?.skipTransition();
+    if (
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      apply(next);
+      return;
+    }
+    const current = document.startViewTransition(() => apply(next));
+    transition.current = current;
+    current.ready.catch(() => undefined);
+    current.finished.then(
+      () => {
+        if (transition.current === current) transition.current = null;
+      },
+      () => undefined,
+    );
   }
 
   return (
