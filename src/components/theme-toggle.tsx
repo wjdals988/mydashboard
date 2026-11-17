@@ -1,7 +1,7 @@
 "use client";
 
 import { Monitor, Moon, Sun } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 
 type Mode = "system" | "light" | "dark";
 
@@ -32,7 +32,8 @@ function getSnapshot(): Mode {
 
     return stored === "light" || stored === "dark" ? stored : "system";
   } catch {
-    return "system";
+    const applied = document.documentElement.getAttribute("data-theme");
+    return applied === "light" || applied === "dark" ? applied : "system";
   }
 }
 
@@ -43,24 +44,51 @@ function getServerSnapshot(): Mode {
 export function ThemeToggle() {
   const mode = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  function pick(next: Mode) {
+  const transition = useRef<ViewTransition | null>(null);
+  useEffect(() => () => transition.current?.skipTransition(), []);
+
+  function apply(next: Mode) {
     const root = document.documentElement;
 
-    if (next === "system") {
-      root.removeAttribute("data-theme");
-      window.localStorage.removeItem("theme");
-    } else {
-      root.setAttribute("data-theme", next);
-      window.localStorage.setItem("theme", next);
+    try {
+      if (next === "system") {
+        root.removeAttribute("data-theme");
+        window.localStorage.removeItem("theme");
+      } else {
+        root.setAttribute("data-theme", next);
+        window.localStorage.setItem("theme", next);
+      }
+    } catch {
+      // Theme changes still work when browser storage is unavailable.
     }
-
     window.dispatchEvent(new Event(EVENT));
+  }
+
+  function pick(next: Mode) {
+    if (next === mode && !transition.current) return;
+    transition.current?.skipTransition();
+    if (
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      apply(next);
+      return;
+    }
+    const current = document.startViewTransition(() => apply(next));
+    transition.current = current;
+    current.ready.catch(() => undefined);
+    current.finished.then(
+      () => {
+        if (transition.current === current) transition.current = null;
+      },
+      () => undefined,
+    );
   }
 
   return (
     <div
       aria-label="화면 테마"
-      className="flex items-center gap-0.5 rounded-full border border-line bg-surface p-0.5"
+      className="flex items-center gap-0.5 rounded-xl border border-line bg-surface p-0.5"
       role="group"
     >
       {modes.map((item) => {
@@ -71,15 +99,17 @@ export function ThemeToggle() {
           <button
             aria-label={item.label}
             aria-pressed={active}
-            className={`grid size-9 place-items-center rounded-full transition ${
-              active ? "bg-surface-3 text-fg" : "text-subtle hover:text-fg"
+            className={`grid size-11 place-items-center rounded-lg transition-colors ${
+              active
+                ? "bg-accent-soft text-accent"
+                : "text-subtle hover:text-fg"
             }`}
             key={item.value}
             onClick={() => pick(item.value)}
             title={item.label}
             type="button"
           >
-            <Icon aria-hidden="true" size={14} />
+            <Icon aria-hidden="true" size={17} />
           </button>
         );
       })}

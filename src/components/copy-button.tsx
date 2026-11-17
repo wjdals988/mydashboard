@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function CopyButton({
   value,
@@ -10,30 +10,45 @@ export function CopyButton({
   value: string;
   label?: string;
 }) {
-  const [copied, setCopied] = useState(false);
-
+  const [state, setState] = useState<"idle" | "copied" | "error">("idle");
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const request = useRef(0);
+  useEffect(
+    () => () => {
+      request.current += 1;
+      if (timeout.current) clearTimeout(timeout.current);
+    },
+    [],
+  );
   async function copy() {
+    const current = ++request.current;
+    if (timeout.current) clearTimeout(timeout.current);
     try {
       await navigator.clipboard.writeText(value);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
+      if (current !== request.current) return;
+      setState("copied");
+      timeout.current = setTimeout(() => setState("idle"), 2000);
     } catch {
-      setCopied(false);
+      if (current === request.current) setState("error");
     }
   }
-
   return (
-    <button
-      className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-3 text-xs font-medium text-muted transition hover:border-line-strong hover:text-fg"
-      onClick={copy}
-      type="button"
-    >
-      {copied ? (
-        <Check aria-hidden="true" className="text-accent" size={13} />
-      ) : (
-        <Copy aria-hidden="true" size={13} />
-      )}
-      {copied ? "복사됨" : label}
-    </button>
+    <span className="inline-flex flex-wrap items-center gap-2">
+      <button className="button button-secondary" onClick={copy} type="button">
+        {state === "copied" ? (
+          <Check aria-hidden="true" size={16} />
+        ) : (
+          <Copy aria-hidden="true" size={16} />
+        )}
+        {label}
+      </button>
+      <span role="status" className="text-xs text-muted">
+        {state === "copied"
+          ? "복사했어요"
+          : state === "error"
+            ? "복사하지 못했어요. 해시를 직접 선택해 복사해 주세요."
+            : ""}
+      </span>
+    </span>
   );
 }

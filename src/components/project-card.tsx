@@ -1,7 +1,13 @@
-import { ArrowDownToLine, ArrowUpRight, ExternalLink } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowUpRight,
+  ChevronRight,
+  Globe,
+  Smartphone,
+} from "lucide-react";
+
 import Link from "next/link";
-import { ProjectIcon } from "@/components/project-icon";
-import { ProjectVisual } from "@/components/project-visual";
+import { ProjectArtwork } from "@/components/project-artwork";
 import {
   type Project,
   platformsOf,
@@ -11,118 +17,99 @@ import {
 
 export function ProjectCard({
   project,
-  index = 0,
+  catalogHref = "/#projects",
 }: {
   project: Project;
-  index?: number;
+  catalogHref?: string;
 }) {
-  return (
-    <article
-      className="rise group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition duration-300 hover:border-line-strong hover:shadow-[var(--shadow-lift)]"
-      style={{ animationDelay: `${Math.min(index, 5) * 60}ms` }}
-    >
-      <div className="border-b border-line bg-surface-2 p-3">
-        <ProjectVisual
-          accent={project.accent}
-          title={project.title}
-          type={project.visual}
-        />
-      </div>
+  const detailHref = `/projects/${project.slug}?from=${encodeURIComponent(catalogHref)}`;
+  const platforms = platformsOf(project);
+  const action = project.liveUrl
+    ? { href: project.liveUrl, label: "서비스 열기", icon: ArrowUpRight }
+    : project.apk
+      ? { href: project.apk.url, label: "앱 다운로드", icon: ArrowDownToLine }
+      : null;
+  const ActionIcon = action?.icon;
 
-      <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="flex items-center justify-between gap-3">
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${statusTone[project.status]}`}
-          >
+  return (
+    <article className="project-card" data-project-key={project.slug}>
+      <Link
+        className="project-cover"
+        data-tilt
+        href={detailHref}
+        aria-label={`${project.title} 화면과 상세 정보 보기`}
+      >
+        <ProjectArtwork project={project} />
+      </Link>
+      <div className="project-card-body">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className={`status ${statusTone[project.status]}`}>
             <span
+              aria-hidden="true"
               className={`size-1.5 rounded-full ${statusDot[project.status]}`}
             />
             {project.statusLabel}
           </span>
-          <span className="num font-mono text-xs text-subtle">
-            {project.updatedAt}
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+            {platforms.includes("web") ? (
+              <Globe aria-hidden="true" size={14} />
+            ) : (
+              <Smartphone aria-hidden="true" size={14} />
+            )}
+            {platforms.map((x) => (x === "web" ? "웹" : "Android")).join(" / ")}
           </span>
         </div>
-
-        <div className="space-y-2">
-          <p className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
-            <ProjectIcon name={project.icon} size={13} />
-            {project.eyebrow}
-          </p>
-          <h3 className="text-xl font-medium tracking-[-0.01em]">
-            <Link
-              className="hover:text-accent"
-              href={`/projects/${project.slug}`}
-            >
-              {project.title}
-            </Link>
+        <div>
+          <h3>
+            <Link href={detailHref}>{project.title}</Link>
           </h3>
-          <p className="text-sm leading-6 text-muted">{project.summary}</p>
+          <p className="project-summary mt-2">{project.summary}</p>
         </div>
-
-        <p className="text-xs text-muted">
-          {platformsOf(project)
-            .map((platform) => (platform === "web" ? "웹" : "Android"))
-            .join(" · ")}
-          {platformsOf(project).includes("android") &&
-            !project.apk &&
-            " · APK 미공개"}
-          {project.apk &&
-            ` · ${project.apk.label === "signed release APK" ? "서명 릴리스" : "개발 미리보기"}`}
-        </p>
-
-        <div className="flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <span
-              className="rounded-md border border-line bg-surface-2 px-2 py-0.5 font-mono text-[11px] text-muted"
-              key={tag}
+        <div className="project-tags" aria-label="주요 기술">
+          {project.tags.slice(0, 3).join(" / ")}
+        </div>
+        {project.apk && (
+          <p className="text-xs text-muted">
+            {project.apk.label === "signed release APK"
+              ? "정식 서명 릴리스"
+              : "개발 프리뷰"}{" "}
+            <span className="num">v{project.apk.version}</span>
+          </p>
+        )}
+        {platforms.includes("android") && !project.apk && (
+          <p className="text-xs text-muted">
+            설치 파일은 아직 공개하지 않았어요.
+          </p>
+        )}
+        <div className="project-actions">
+          {action && ActionIcon && (
+            <a
+              className="text-link"
+              href={action.href}
+              aria-label={`${project.title} ${action.label}${project.liveUrl ? " (새 탭)" : ""}`}
+              target={project.liveUrl ? "_blank" : undefined}
+              rel="noreferrer"
+              download={project.liveUrl ? undefined : true}
             >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
+              {action.label}
+              <ActionIcon aria-hidden="true" size={16} />
+            </a>
+          )}
           <Link
-            className="inline-flex h-11 items-center gap-1.5 rounded-full bg-fg px-4 text-sm font-medium text-bg transition hover:opacity-90"
-            href={`/projects/${project.slug}`}
+            className="text-link project-detail-link"
+            href={detailHref}
             aria-label={`${project.title} 상세 보기`}
           >
-            상세 보기
-            <ArrowUpRight
-              aria-hidden="true"
-              className="transition group-hover:translate-x-0.5"
-              size={14}
-            />
+            작업 기록
+            <ChevronRight aria-hidden="true" size={16} />
           </Link>
-          {project.liveUrl && (
-            <a
-              className="inline-flex h-11 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
-              aria-label={`${project.title} 웹 서비스 열기 (새 탭)`}
-              href={project.liveUrl}
-              rel="noreferrer"
-              target="_blank"
-            >
-              바로가기
-              <ExternalLink aria-hidden="true" size={14} />
-            </a>
-          )}
-          {project.apk && (
-            <a
-              className="inline-flex h-11 items-center gap-1.5 rounded-full border border-line bg-surface-2 px-4 text-sm font-medium transition hover:border-line-strong"
-              aria-label={`${project.title} APK v${project.apk.version} 다운로드`}
-              download
-              href={project.apk.url}
-              rel="noreferrer"
-            >
-              APK
-              <span className="num font-mono text-xs text-subtle">
-                v{project.apk.version}
-              </span>
-              <ArrowDownToLine aria-hidden="true" size={14} />
-            </a>
-          )}
         </div>
+        <p className="num text-xs text-subtle">
+          업데이트{" "}
+          <time dateTime={project.updatedAt.replaceAll(".", "-")}>
+            {project.updatedAt}
+          </time>
+        </p>
       </div>
     </article>
   );

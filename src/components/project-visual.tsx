@@ -90,7 +90,7 @@ function StarlinkVisual({ accent }: { accent: string }) {
   ] as const;
 
   return (
-    <div className="relative min-h-[180px] overflow-hidden rounded-lg bg-[#07101f]">
+    <div className="relative min-h-[180px] overflow-hidden rounded-lg bg-[#07101f] text-[#edf2fa] [&_p]:text-[#edf2fa]">
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-30"
@@ -198,8 +198,8 @@ function Caption({ title, sub }: { title: string; sub: string }) {
 function Chip({ accent, children }: { accent: string; children: string }) {
   return (
     <span
-      className="rounded-full px-2.5 py-1 font-mono text-[11px] font-medium text-white"
-      style={{ backgroundColor: accent }}
+      className="rounded-md border bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent"
+      style={{ borderColor: accent }}
     >
       {children}
     </span>
@@ -231,7 +231,7 @@ function CurrencyVisual({ accent }: { accent: string }) {
         <p className="text-[11px] text-subtle">1,000 CZK</p>
         <p
           className="mt-0.5 font-mono text-[20px] font-semibold"
-          style={{ color: accent }}
+          style={{ color: "var(--fg)" }}
         >
           65,080원
         </p>
@@ -304,9 +304,8 @@ function CalendarVisual({ accent }: { accent: string }) {
         <div className="flex -space-x-1.5">
           {["J", "M", "S"].map((item) => (
             <span
-              className="grid size-6 place-items-center rounded-full border border-surface-2 text-[10px] font-medium text-white"
+              className="grid size-6 place-items-center rounded-full border border-surface-2 bg-accent text-[10px] font-medium text-accent-ink"
               key={item}
-              style={{ backgroundColor: accent }}
             >
               {item}
             </span>
@@ -325,7 +324,7 @@ function CalendarVisual({ accent }: { accent: string }) {
             key={index}
             style={
               active.has(index)
-                ? { backgroundColor: `${accent}26`, color: accent }
+                ? { backgroundColor: "var(--accent-soft)", color: "var(--accent)" }
                 : { backgroundColor: "var(--surface)", color: "var(--fg-subtle)" }
             }
           >
@@ -389,7 +388,7 @@ function AlertsVisual({ accent }: { accent: string }) {
             <div className="flex flex-1 items-center gap-1.5" key={item}>
               <span
                 className="grid size-6 place-items-center rounded-full text-[10px] font-medium text-white"
-                style={{ backgroundColor: accent, opacity: 0.5 + item * 0.12 }}
+                style={{ backgroundColor: "var(--accent)", color: "var(--accent-ink)" }}
               >
                 {item}
               </span>
@@ -426,12 +425,12 @@ function CouponsVisual({ accent }: { accent: string }) {
         <Chip accent={accent}>09:00</Chip>
       </div>
       <div className="grid gap-1.5">
-        {coupons.map(([name, day, width], index) => (
+        {coupons.map(([name, day, width]) => (
           <Row key={name}>
             <div className="grid grid-cols-[40px_1fr_auto] items-center gap-3">
               <div
                 className="grid aspect-[4/3] place-items-center rounded text-[9px] font-medium text-white"
-                style={{ backgroundColor: accent, opacity: 0.7 + index * 0.1 }}
+                style={{ backgroundColor: "var(--accent)", color: "var(--accent-ink)" }}
               >
                 IMG
               </div>
@@ -472,12 +471,12 @@ function TravelVisual({ accent }: { accent: string }) {
       </div>
 
       <div className="grid gap-1.5">
-        {schedule.map(([time, place, state], index) => (
+        {schedule.map(([time, place, state]) => (
           <Row key={time}>
             <div className="grid grid-cols-[46px_1fr_auto] items-center gap-3">
               <span
                 className="num font-mono text-[11px] font-medium"
-                style={{ color: accent, opacity: 0.75 + index * 0.12 }}
+                style={{ color: "var(--fg-muted)" }}
               >
                 {time}
               </span>

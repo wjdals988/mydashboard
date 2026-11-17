@@ -66,10 +66,26 @@ test("recent sort is descending and never mutates source data", () => {
   const snapshot = JSON.stringify(projects);
   const sorted = run({ sort: "updated" });
   // 맨 앞은 가장 최근에 갱신한 프로젝트다. 특정 slug로 고정하면 다른 프로젝트를 갱신할 때마다 깨진다.
-  const latest = projects.reduce((max, p) => (p.updatedAt > max ? p.updatedAt : max), "");
+  const latest = projects.reduce(
+    (max, p) => (p.updatedAt > max ? p.updatedAt : max),
+    "",
+  );
   assert.equal(sorted[0].updatedAt, latest);
   assert.ok(
     sorted.every((p, i) => i === 0 || sorted[i - 1].updatedAt >= p.updatedAt),
   );
   assert.equal(JSON.stringify(projects), snapshot);
+});
+
+test("platform search matches inferred platform and Korean aliases", () => {
+  const android = run({ platform: "android" });
+  assert.deepEqual(run({ query: "Android" }), android);
+  assert.deepEqual(run({ query: "안드로이드" }), android);
+  const webSearch = run({ query: "웹" });
+  for (const project of run({ platform: "web" }))
+    assert.ok(webSearch.includes(project));
+  // A description may mention a web console even without a published live URL.
+  assert.ok(
+    webSearch.some((project) => project.slug === "streamer-alert-system"),
+  );
 });
