@@ -8,7 +8,7 @@
     "status": "building",
     "statusLabel": "실기기 검증 전",
     "year": "2026",
-    "updatedAt": "2026.11.16",
+    "updatedAt": "2026.11.28",
     "sourceUrl": "https://github.com/wjdals988/runmoni",
     "operatingSystem": "Android 10+",
     "tags": [
@@ -30,6 +30,16 @@
       "야외 GPS·화면 꺼짐·위젯/알림·제조사 절전 실기기 확인"
     ],
     "releaseNotes": [
+      {
+        "version": "0.10.0-dev",
+        "versionCode": 34,
+        "date": "2026.11.28",
+        "notes": [
+          "남녀 달리기 8포즈에 맞춘 레이스·야간 도심·트레일 의상과 장비 15종을 옷장에서 조합할 수 있습니다.",
+          "홈과 러닝 준비, 탐색의 내 위치와 주변 러너 표시, 크루의 파티 목록을 개선했습니다.",
+          "러닝·기록의 트랙 패널과 거리 수치, 공유 편집의 비율 표시를 다듬었습니다."
+        ]
+      },
       {
         "version": "0.8.0-dev",
         "versionCode": 31,
@@ -314,43 +324,29 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.8.0-dev/runmoni-0.8.0-dev.apk",
-      "fileName": "runmoni-0.8.0-dev.apk",
-      "version": "0.8.0-dev",
-      "versionCode": 31,
-      "size": "172,828,638 bytes",
-      "sha256": "5c2c6a12faf75d38f4328046a3a93537472d37842963e4357f0b45fbed62531b",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.8.0-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.10.0-dev/runmoni-0.10.0-dev.apk",
+      "fileName": "runmoni-0.10.0-dev.apk",
+      "version": "0.10.0-dev",
+      "versionCode": 34,
+      "size": "175,807,560 bytes",
+      "sha256": "8423c1a4a55f88fe4fa3f035302e58ed455cea31eca231678ae7177b31cc20ca",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.10.0-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "클라우드 Android API29에서 촬영한 0.8.0-dev 실제 MainActivity 원본4장입니다. 로컬 TEST 서명 debug 화면이며 공개 서명 APK 실행 증거가 아닙니다. 검토용 합성 기록·프로필을 사용했고 GPS 주입은0회입니다. 이번 Main 검토에서 남자 캡·새 의복 선택과 전체 사진 공유 스타일·초안 복원 및 무료 지도를 확인했습니다. 검토용 가명·5.24km 합성 기록과 합성 사진을 사용했습니다. 시스템 사진 선택과 전체 사진 공유 스타일·초안 복원, 무료 벡터 지도를 실제 앱에서 확인했습니다. 실제 위치/GPS 주입·운영 쓰기는0회이며 SNS 전달은 확인하지 않았습니다. 실제 휴대폰 검증 전 개발 프리뷰입니다. Google 로그인·운영 프로필/위치 공유 쓰기·공개 서명 APK 실행·야외 GPS·SNS 전달·사용자 시각 승인은 별도 확인이 필요합니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/pull/63",
+    "screenshotsNote": "API 29 에뮬레이터에서 새 빌드의 실제 Android 앱을 촬영했습니다. 공개 APK는 기존 배포 키로 서명한 휴대폰 검증 전 개발 프리뷰입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/tree/main/docs/app-review/2026-11-28-studio-refresh",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.8.0-dev/cap.png",
-        "alt": "실제 Android 앱 화면: 러닝 캡 · Aseprite 소재 디테일과 부위별 목록",
-        "caption": "러닝 캡 · Aseprite 소재 디테일과 부위별 목록",
+        "src": "/reviews/runmoni/0.10.0-dev/home.png",
+        "alt": "실제 Android 앱 화면 · 홈 · 러닝 준비",
+        "caption": "홈 · 러닝 준비",
         "width": 480,
         "height": 854
       },
       {
-        "src": "/reviews/runmoni/0.8.0-dev/kit.png",
-        "alt": "실제 Android 앱 화면: 새 의복 · 메시 저지·리브 크루삭스·패널 러닝화",
-        "caption": "새 의복 · 메시 저지·리브 크루삭스·패널 러닝화",
-        "width": 480,
-        "height": 854
-      },
-      {
-        "src": "/reviews/runmoni/0.8.0-dev/photo.png",
-        "alt": "실제 Android 앱 화면: 사진 공유 · 합성 검토 이미지 위 미니미와 기록 스탬프",
-        "caption": "사진 공유 · 합성 검토 이미지 위 미니미와 기록 스탬프",
-        "width": 480,
-        "height": 854
-      },
-      {
-        "src": "/reviews/runmoni/0.8.0-dev/map.png",
-        "alt": "실제 Android 앱 화면: 무료 벡터 지도 · 지도 밖 조작과 차분한 색상",
-        "caption": "무료 벡터 지도 · 지도 밖 조작과 차분한 색상",
+        "src": "/reviews/runmoni/0.10.0-dev/closet.png",
+        "alt": "실제 Android 앱 화면 · 옷장 · 나이트 방풍 셸 착용",
+        "caption": "옷장 · 나이트 방풍 셸 착용",
         "width": 480,
         "height": 854
       }
