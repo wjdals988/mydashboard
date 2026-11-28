@@ -31,6 +31,16 @@
     ],
     "releaseNotes": [
       {
+        "version": "0.11.0-dev",
+        "versionCode": 36,
+        "date": "2026.11.28",
+        "notes": [
+          "러닝 결과의 1km 구간 차트와 표에서 전체 평균과 직전 구간에 비해 얼마나 차이 났는지 확인할 수 있습니다.",
+          "홈에서 최근 7일 거리·횟수·시간을 확인하고 마지막 결과를 바로 엽니다.",
+          "달리기 전 거리·시간 목표를 하나 선택하고, 1km 구간 페이스 음성과 진동을 설정합니다."
+        ]
+      },
+      {
         "version": "0.10.1-dev",
         "versionCode": 35,
         "date": "2026.11.28",
@@ -334,31 +344,31 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.10.1-dev/runmoni-0.10.1-dev.apk",
-      "fileName": "runmoni-0.10.1-dev.apk",
-      "version": "0.10.1-dev",
-      "versionCode": 35,
-      "size": "175,930,575 bytes",
-      "sha256": "ea27f81b4c231786fc9d5352d8075f7dfb4508d7a7599944d643e52c466cf65c",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.10.1-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.11.0-dev/runmoni-0.11.0-dev.apk",
+      "fileName": "runmoni-0.11.0-dev.apk",
+      "version": "0.11.0-dev",
+      "versionCode": 36,
+      "size": "176,045,263 bytes",
+      "sha256": "7e54d2fa2230c0182596416ec7af724f53e61563d81c43757c8e511d93db51c3",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.11.0-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "API 29 에뮬레이터에서 검토용 200% 글씨로 러닝과 옷장 화면을 촬영했습니다. 공개 APK는 휴대폰 실기기 검증 전 개발 프리뷰입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/tree/main/docs/app-review/2026-11-28-alignment-refinement",
+    "screenshotsNote": "API 29 에뮬레이터에서 검토용 러닝의 결과 요약과 1km 페이스 분석을 촬영했습니다. 공개 APK는 휴대폰 실기기 검증 전 개발 프리뷰입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/tree/main/docs/app-review/2026-11-28-run-results",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.10.1-dev/closet.png",
-        "alt": "실제 Android 앱 화면 · 옷장 · 첫 두 아이템과 부위 버튼",
-        "caption": "옷장 · 첫 두 아이템과 부위 버튼",
-        "width": 320,
-        "height": 520
+        "src": "/reviews/runmoni/0.11.0-dev/results.png",
+        "alt": "실제 Android 앱 화면 · 러닝 결과 · 요약과 빠른 구간",
+        "caption": "러닝 결과 · 요약과 빠른 구간",
+        "width": 411,
+        "height": 760
       },
       {
-        "src": "/reviews/runmoni/0.10.1-dev/running.png",
-        "alt": "실제 Android 앱 화면 · 러닝 · 검토용 기록과 200% 글씨",
-        "caption": "러닝 · 검토용 기록과 200% 글씨",
-        "width": 320,
-        "height": 640
+        "src": "/reviews/runmoni/0.11.0-dev/pace.png",
+        "alt": "실제 Android 앱 화면 · 러닝 분석 · 1km 페이스와 구간표",
+        "caption": "러닝 분석 · 1km 페이스와 구간표",
+        "width": 411,
+        "height": 760
       }
     ]
   },
