@@ -31,6 +31,16 @@
     ],
     "releaseNotes": [
       {
+        "version": "0.10.1-dev",
+        "versionCode": 35,
+        "date": "2026.11.28",
+        "notes": [
+          "기존 미니미 원화에 맞춰 레이스 바이저, 나이트 캡, 트레일 헤드밴드의 착용 위치를 다듬었습니다.",
+          "큰 글씨에서도 러닝 거리·시간·페이스와 GPS를 바로 확인하고, 옷장에서 부위 전체를 고를 수 있습니다.",
+          "기존 R의 윤곽을 살린 런처 아이콘과 화면 여백·정렬을 적용했습니다."
+        ]
+      },
+      {
         "version": "0.10.0-dev",
         "versionCode": 34,
         "date": "2026.11.28",
@@ -324,31 +334,31 @@
     "accent": "#2d8a68",
     "icon": "footprints",
     "apk": {
-      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.10.0-dev/runmoni-0.10.0-dev.apk",
-      "fileName": "runmoni-0.10.0-dev.apk",
-      "version": "0.10.0-dev",
-      "versionCode": 34,
-      "size": "175,807,560 bytes",
-      "sha256": "8423c1a4a55f88fe4fa3f035302e58ed455cea31eca231678ae7177b31cc20ca",
-      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.10.0-dev",
+      "url": "https://github.com/wjdals988/runmoni/releases/download/v0.10.1-dev/runmoni-0.10.1-dev.apk",
+      "fileName": "runmoni-0.10.1-dev.apk",
+      "version": "0.10.1-dev",
+      "versionCode": 35,
+      "size": "175,930,575 bytes",
+      "sha256": "ea27f81b4c231786fc9d5352d8075f7dfb4508d7a7599944d643e52c466cf65c",
+      "releaseUrl": "https://github.com/wjdals988/runmoni/releases/tag/v0.10.1-dev",
       "label": "실기기 검증 전 개발 프리뷰 APK"
     },
-    "screenshotsNote": "API 29 에뮬레이터에서 새 빌드의 실제 Android 앱을 촬영했습니다. 공개 APK는 기존 배포 키로 서명한 휴대폰 검증 전 개발 프리뷰입니다.",
-    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/tree/main/docs/app-review/2026-11-28-studio-refresh",
+    "screenshotsNote": "API 29 에뮬레이터에서 검토용 200% 글씨로 러닝과 옷장 화면을 촬영했습니다. 공개 APK는 휴대폰 실기기 검증 전 개발 프리뷰입니다.",
+    "screenshotsReviewUrl": "https://github.com/wjdals988/runmoni/tree/main/docs/app-review/2026-11-28-alignment-refinement",
     "screenshots": [
       {
-        "src": "/reviews/runmoni/0.10.0-dev/home.png",
-        "alt": "실제 Android 앱 화면 · 홈 · 러닝 준비",
-        "caption": "홈 · 러닝 준비",
-        "width": 480,
-        "height": 854
+        "src": "/reviews/runmoni/0.10.1-dev/closet.png",
+        "alt": "실제 Android 앱 화면 · 옷장 · 첫 두 아이템과 부위 버튼",
+        "caption": "옷장 · 첫 두 아이템과 부위 버튼",
+        "width": 320,
+        "height": 520
       },
       {
-        "src": "/reviews/runmoni/0.10.0-dev/closet.png",
-        "alt": "실제 Android 앱 화면 · 옷장 · 나이트 방풍 셸 착용",
-        "caption": "옷장 · 나이트 방풍 셸 착용",
-        "width": 480,
-        "height": 854
+        "src": "/reviews/runmoni/0.10.1-dev/running.png",
+        "alt": "실제 Android 앱 화면 · 러닝 · 검토용 기록과 200% 글씨",
+        "caption": "러닝 · 검토용 기록과 200% 글씨",
+        "width": 320,
+        "height": 640
       }
     ]
   },
